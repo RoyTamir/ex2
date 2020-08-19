@@ -1,126 +1,90 @@
-#pragma once
-
 #include <cstdint>
 using std::uint32_t;
 
-#include "ErrorCode.hpp"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "ErrorCodeException.hpp"
 
 class Matrix {
 private:
-	uint32_t _width;
-	uint32_t _height;
-	double* _topLeft;
+	const uint32_t _width;
+	const uint32_t _height;
+	const double* _topLeft;
+
 public:
 	/**
-	 * @brief Creates a new matrix of a given height an width,
-	 *  all values are initially zeroes.
+	 * @brief Constructor, all values are initially zeroes.
 	 *
-	 * @param[out] matrix The address of a matrix pointer to receive
-	 *  the address of the created matrix.
 	 * @param[in] height Height of the matrix
 	 * @param[in] width Width of the matrix
-	 * @return ErrorCode
 	 */
-	ErrorCode matrix_create(uint32_t height, uint32_t width);
+	Matrix(const uint32_t height, const uint32_t width) throw(ErrorCodeException);
 
 	/**
-	 * @brief Creates a new matrix from an old matrix.
+	 * @brief assignment opperator.
 	 *
-	 * @param[out] matrix The address of a matrix pointer to receive
-	 *  the address of the copied matrix.
-	 * @param[in] source The matrix to copy.
-	 * @return ErrorCode
+	 * @param[in] source The assigned matrix.
 	 */
-	ErrorCode matrix_copy(PMatrix* result);
+	Matrix& operator=(const Matrix& source) throw(ErrorCodeException);
 
 	/**
-	 * @brief Destroys a matrix.
-	 *
-	 * @param matrix the matrix to destroy.
+	 * @brief Destroys matrix.
 	 */
-	void matrix_destroy();
+	void destroy() throw(ErrorCodeException);
 
 	/**
-	 * @brief Returns the height of a give matrix.
+	 * @brief Returns height of given matrix.
 	 *
-	 * @param[in] matrix The matrix.
-	 * @param[out] result On output, contains the height of the matrix.
-	 * @return ErrorCode
+	 * @return uint32_t
 	 */
-	ErrorCode matrix_getHeight(uint32_t* result);
+	uint32_t getHeight() const throw(ErrorCodeException);
 
 	/**
-	 * @brief Returns the width of a give matrix.
+	 * @brief Returns width of matrix.
 	 *
-	 * @param[in] matrix The matrix.
-	 * @param[out] result On output, contains the height of the matrix.
-	 * @return ErrorCode
+	 * @return uint32_t
 	 */
-	ErrorCode matrix_getWidth(uint32_t* result);
+	uint32_t getWidth() const throw(ErrorCodeException);
 
 	/**
 	 * @brief Sets a value to the matrix.
 	 *
-	 * @param[in, out] matrix The matrix to operate on.
 	 * @param[in] rowIndex Row index of the value to set.
 	 * @param[in] colIndex Column index of the value to setF.
 	 * @param[in] value Value to set.
-	 * @return ErrorCode
 	 */
-	ErrorCode matrix_setValue(uint32_t rowIndex, uint32_t colIndex,
-                          double value);
+	void setValue(const uint32_t rowIndex, const uint32_t colIndex,
+                          const double value) throw(ErrorCodeException);
 
 	/**
 	 * @brief Sets a value to the matrix.
 	 *
-	 * @param[in] matrix The matrix to operate on.
 	 * @param[in] rowIndex Row index of the value to get.
 	 * @param[in] colIndex Column index of the value to get.
-	 * @param[out] value The address of a double variable to receive
-	 *  the value from the matrix.
-	 * @return ErrorCode
+	 * @return double.
 	 */
-	ErrorCode matrix_getValue(uint32_t rowIndex, uint32_t colIndex,
-    	                      double* value);
+	double getValue(const uint32_t rowIndex, const uint32_t colIndex)
+						const throw(ErrorCodeException);
 
 	/**
-	 * @brief Computes the addition of two matrices.
+	 * @brief Addition opperator.
 	 *
-	 * @param[out] result The address of a matrix pointer to receive
-	 *  the address of the resulting matrix.
-	 * @param[in] lhs The left hand side of the addition operation.
-	 * @param[in] rhs The right hand side of the addition operation.
-	 * @return ErrorCode
+	 * @param[in] other The right hand side of the addition operation.
+	 * @return Matrix&
 	 */
-	ErrorCode matrix_add(CPMatrix lhs, CPMatrix rhs);
+	Matrix& operator+(const Matrix& other) throw(ErrorCodeException);
 
 	/**
-	 * @brief Computes the multiplication of two matrices.
+	 * @brief Multiplication opperator (matrix by matrix).
 	 *
-	 * @param[out] result The address of a matrix pointer to receive
-	 *  the address of the resulting matrix.
-	 * @param[in] lhs The left hand side of the multiplication operation.
-	 * @param[in] rhs The right hand side of the multiplication operation.
-	 * @return ErrorCode
+	 * @param[in] other The right hand side of the multiplication operation.
+	 * @return Matrix&
 	 */
-	ErrorCode matrix_multiplyMatrices(CPMatrix lhs, CPMatrix rhs);
+	Matrix& operator*(const Matrix& other) throw(ErrorCodeException);
 
 	/**
-	 * @brief Multiplies a matrix with a scalar and stores the result in
-	 *  the given matrix.
+	 * @brief Multiplication operator (matrix by scalar).
 	 *
-	 * @param[in, out] matrix On input, the matrix to multiply with a scalar.
-	 *  On output, the result of the multiplication operation.
 	 * @param[in] scalar The scalar to multiply with.
-	 * @return ErrorCode
+	 * @return Matrix&
 	 */
-	ErrorCode matrix_multiplyWithScalar(double scalar);
+	Matrix& operator*(const double scalar) noexcept;
 }
-
-#ifdef __cplusplus
-}
-#endif
