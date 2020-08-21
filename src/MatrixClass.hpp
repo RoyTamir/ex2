@@ -2,13 +2,13 @@
 using std::uint32_t;
 
 #include "ErrorCodeException.hpp"
+#include "Matrix.h"
 
-class Matrix {
-private:
-	const uint32_t _width;
-	const uint32_t _height;
-	const double* _topLeft;
+class MatrixClass{
+//Fields
+PMatrix matix;
 
+//methods
 public:
 	/**
 	 * @brief Constructor, all values are initially zeroes.
@@ -16,19 +16,37 @@ public:
 	 * @param[in] height Height of the matrix
 	 * @param[in] width Width of the matrix
 	 */
-	Matrix(const uint32_t height, const uint32_t width) throw(ErrorCodeException);
+	MatrixClass(const uint32_t height, const uint32_t width) throw(ErrorCodeException);
 
 	/**
-	 * @brief assignment opperator.
+	 * @brief Constructor, a new Matrix Class object from matrix.
+	 * (copy Constructor)
+	 * 
+	 * @param[in] source The matrix to copy.
+	 */
+	MatrixClass(const MatrixClass& source) throw(ErrorCodeException);
+
+	/**
+	 * @brief assignment opperator (copy assignment).
 	 *
 	 * @param[in] source The assigned matrix.
 	 */
-	Matrix& operator=(const Matrix& source) throw(ErrorCodeException);
+	MatrixClass& operator=(const MatrixClass& source) throw(ErrorCodeException);
+
+		/**
+	 * @brief Constructor, a new Matrix Class object from matrix.
+	 * (move Constructor)
+	 * 
+	 * @param[in] source The matrix to copy.
+	 */
+	MatrixClass(MatrixClass&& source) throw(ErrorCodeException);
 
 	/**
-	 * @brief Destroys matrix.
+	 * @brief assignment opperator (move assignment).
+	 *
+	 * @param[in] source The assigned matrix.
 	 */
-	void destroy() throw(ErrorCodeException);
+	MatrixClass& operator=(MatrixClass&& source) throw(ErrorCodeException);
 
 	/**
 	 * @brief Returns height of given matrix.
@@ -70,7 +88,7 @@ public:
 	 * @param[in] other The right hand side of the addition operation.
 	 * @return Matrix&
 	 */
-	Matrix& operator+(const Matrix& other) throw(ErrorCodeException);
+	MatrixClass& operator+(const MatrixClass& other) throw(ErrorCodeException);
 
 	/**
 	 * @brief Multiplication opperator (matrix by matrix).
@@ -78,7 +96,7 @@ public:
 	 * @param[in] other The right hand side of the multiplication operation.
 	 * @return Matrix&
 	 */
-	Matrix& operator*(const Matrix& other) throw(ErrorCodeException);
+	MatrixClass& operator*(const MatrixClass& other) throw(ErrorCodeException);
 
 	/**
 	 * @brief Multiplication operator (matrix by scalar).
@@ -86,5 +104,10 @@ public:
 	 * @param[in] scalar The scalar to multiply with.
 	 * @return Matrix&
 	 */
-	Matrix& operator*(const double scalar) noexcept;
-}
+	MatrixClass& operator*(const double scalar) throw(ErrorCodeException);
+
+	/**
+	 * @brief Destructor for destroying the matrix.
+	 */
+	~MatrixClass();
+};
