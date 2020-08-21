@@ -6,17 +6,17 @@ using std::uint32_t;
 
 class MatrixClass{
 //Fields
-PMatrix matix;
+PMatrix matrix;
 
 //methods
 public:
 	/**
 	 * @brief Constructor, all values are initially zeroes.
 	 *
-	 * @param[in] height Height of the matrix
-	 * @param[in] width Width of the matrix
+	 * @param[in] height Height of the matrix.
+	 * @param[in] width Width of the matrix.
 	 */
-	MatrixClass(const uint32_t height, const uint32_t width) throw(ErrorCodeException);
+	MatrixClass(uint32_t height, uint32_t width) throw(ErrorCodeException);
 
 	/**
 	 * @brief Constructor, a new Matrix Class object from matrix.
@@ -69,8 +69,8 @@ public:
 	 * @param[in] colIndex Column index of the value to setF.
 	 * @param[in] value Value to set.
 	 */
-	void setValue(const uint32_t rowIndex, const uint32_t colIndex,
-                          const double value) throw(ErrorCodeException);
+	void setValue(uint32_t rowIndex, uint32_t colIndex,
+                           double value) throw(ErrorCodeException);
 
 	/**
 	 * @brief Sets a value to the matrix.
@@ -79,8 +79,7 @@ public:
 	 * @param[in] colIndex Column index of the value to get.
 	 * @return double.
 	 */
-	double getValue(const uint32_t rowIndex, const uint32_t colIndex)
-						const throw(ErrorCodeException);
+	double getValue(uint32_t rowIndex, uint32_t colIndex) throw(ErrorCodeException);
 
 	/**
 	 * @brief Addition opperator.
@@ -104,7 +103,7 @@ public:
 	 * @param[in] scalar The scalar to multiply with.
 	 * @return Matrix&
 	 */
-	MatrixClass& operator*(const double scalar) throw(ErrorCodeException);
+	MatrixClass& operator*(double scalar) throw(ErrorCodeException);
 
 	/**
 	 * @brief Destructor for destroying the matrix.
