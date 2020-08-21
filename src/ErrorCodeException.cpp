@@ -5,22 +5,25 @@
 #include "ErrorCode.h"
 #include "ErrorCodeException.hpp"
 
-class ErrorCodeException : public std::exception {
-private:
-    ErrorCode code;
+class ErrorCodeException {
+//Fields
+ErrorCode code;
 
+//methods
 public:
     /**
      * @brief Checks if error code indicates a success or not.
      *
      * @return whether the error code indicates a success or not.
      */
-    bool isSuccess() { return !code };
+    bool isSuccess() {
+         return error_isSuccess(code); 
+        }
 
     /**
      * @brief Checks prints error code's error message.
      */
     void printErrorMessage() {
-		cout << error_getErrorMessage(code) << std::endl; 
+		cout<<error_getErrorMessage(code)<<endl; 
 	}
-}
+};
