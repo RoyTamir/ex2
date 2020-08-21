@@ -16,4 +16,15 @@ public:
             throw exeption;
         }
     }
+
+    MatrixClass(const MatrixClass& source) throw(ErrorCodeException) {
+        //copy the matrix
+        ErrorCode er = matrix_copy(&matrix, source.matrix);
+
+        //checking success
+        ErrorCodeException* exeption = new ErrorCodeException(er);
+        if(!exeption->isSuccess()) {
+            throw exeption;
+        }
+    }
 };
