@@ -1,12 +1,12 @@
-#include <stdbool.h>
-#include <stdint.h>
-
 #include "ErrorCode.h"
 
-class ErrorCodeException : public std::exception {
-private:
-	ErrorCode code;
+#include <exception>
 
+class ErrorCodeException {
+//Fields
+ErrorCode code;
+
+//methods
 public:
 	/**
 	 * @brief Checks if error code indicates a success or not.
@@ -19,4 +19,4 @@ public:
 	 * @brief Checks prints error code's error message.
 	 */
 	void printErrorMessage();
-}
+};
