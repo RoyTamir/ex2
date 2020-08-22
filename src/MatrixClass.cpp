@@ -69,4 +69,13 @@ public:
 
         return *this;
     }
+
+    MatrixClass& operator*(const MatrixClass& other) throw(ErrorCodeException){
+        //Multipling the other matrix and this matrix in 
+        //to this matrix & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(
+            matrix_multiplyMatrices(&matrix, matrix, other.matrix));
+
+        return *this;
+    }
 };
