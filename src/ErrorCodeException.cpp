@@ -1,8 +1,3 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <cstdio>
-
-#include "ErrorCode.h"
 #include "ErrorCodeException.hpp"
 
 //Implementing methods

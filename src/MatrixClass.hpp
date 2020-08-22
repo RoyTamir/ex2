@@ -1,8 +1,8 @@
-#include <cstdint>
-using std::uint32_t;
-
 #include "ErrorCodeException.hpp"
 #include "Matrix.h"
+
+#include <cstdint>
+using std::uint32_t;
 
 class MatrixClass{
 //Fields

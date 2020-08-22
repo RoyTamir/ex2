@@ -1,6 +1,5 @@
 #include "ErrorCode.h"
 
-#include <exception>
 #include <iostream>
 
 using std::endl;
