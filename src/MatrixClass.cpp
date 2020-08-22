@@ -29,7 +29,10 @@ public:
     }
 
     MatrixClass& operator=(const MatrixClass& source) throw(ErrorCodeException){
-        //copy the matrix
+        //Trying to destroy the matrix in the field (if not intalized yet would do nothing)
+        matrix_destroy(matrix);
+
+        //create copy of the matrix in the fields
         ErrorCode er = matrix_copy(&matrix, source.matrix);
 
         //checking success
