@@ -8,7 +8,7 @@ using std::cout;
 
 class ErrorCodeException {
 //Fields
-ErrorCode code;
+ErrorCode _errorCode;
 
 //methods
 public:
@@ -18,7 +18,7 @@ public:
  	* 
  	* @param code The ErrorCode.
  	*/
-	explicit ErrorCodeException(const ErrorCode code);
+	explicit ErrorCodeException(const ErrorCode er);
 
 	/**
 	 * @brief Checks if error code indicates a success or not.

@@ -6,16 +6,16 @@
 #include "ErrorCodeException.hpp"
 
 //Implementing methods
-	ErrorCodeException::ErrorCodeException(const ErrorCode code){
-    this->code = code;
+	ErrorCodeException::ErrorCodeException(const ErrorCode er){
+    _errorCode = er;
   }
 
   bool ErrorCodeException::isSuccess() const{
-    return error_isSuccess(code); 
+    return error_isSuccess(_errorCode); 
   }
 
   void ErrorCodeException::printErrorMessage() const{
-		cout<<error_getErrorMessage(code)<<endl; 
+		cout<<error_getErrorMessage(_errorCode)<<endl; 
 	}
 
   void ErrorCodeException::throwErrorIfNeeded(ErrorCode er) throw(ErrorCodeException) {
@@ -25,4 +25,3 @@
       throw exeption;
     }
   }
-  

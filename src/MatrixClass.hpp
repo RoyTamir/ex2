@@ -6,7 +6,7 @@ using std::uint32_t;
 
 class MatrixClass{
 //Fields
-PMatrix matrix;
+PMatrix _matrix;
 
 //methods
 public:
