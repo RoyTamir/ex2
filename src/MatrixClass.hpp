@@ -64,29 +64,29 @@ public:
 	 * @param[in] colIndex Column index of the value to get.
 	 * @return double.
 	 */
-	double getValue(uint32_t rowIndex, uint32_t colIndex) throw(ErrorCodeException);
+	double getValue(uint32_t rowIndex, uint32_t colIndex) const throw(ErrorCodeException);
 
 	/**
-	 * @brief Addition opperator.
+	 * @brief Addition opperator (adds to the left side the right side).
 	 *
 	 * @param[in] other The right hand side of the addition operation.
-	 * @return Matrix&
+	 * @return MatrixClass& 
 	 */
 	MatrixClass& operator+(const MatrixClass& other) throw(ErrorCodeException);
 
 	/**
-	 * @brief Multiplication opperator (matrix by matrix).
+	 * @brief Multiplication opperator (matrix by matrix the risult in the left matrix).
 	 *
 	 * @param[in] other The right hand side of the multiplication operation.
-	 * @return Matrix&
+	 * @return MatrixClass&
 	 */
 	MatrixClass& operator*(const MatrixClass& other) throw(ErrorCodeException);
 
 	/**
-	 * @brief Multiplication operator (matrix by scalar).
+	 * @brief Multiplication operator (matrix by scalar the result in the matrix).
 	 *
 	 * @param[in] scalar The scalar to multiply with.
-	 * @return Matrix&
+	 * @return MatrixClass&
 	 */
 	MatrixClass& operator*(double scalar) throw(ErrorCodeException);
 
@@ -107,7 +107,7 @@ public:
 	/**
 	 * @brief assignment opperator (move assignment).
 	 *
-	 * @param[in] source The assigned matrix.
+	 * @param[in] source The assigned MatrixClass.
 	 */
 	MatrixClass& operator=(MatrixClass&& source) = delete;
 };

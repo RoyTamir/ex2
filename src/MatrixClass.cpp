@@ -61,4 +61,12 @@ public:
 
         return value;
     }
+
+    MatrixClass& operator+(const MatrixClass& other) throw(ErrorCodeException){
+        //adding the other matrix to this & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(
+            matrix_add(&matrix, matrix, other.matrix));
+
+        return *this;
+    }
 };
