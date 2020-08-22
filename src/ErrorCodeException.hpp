@@ -38,4 +38,12 @@ public:
 	 */
 	~ErrorCodeException() = default;
 
+	/**
+     * @brief gets ErrorCode & if it's not success throws 
+	 * ErrorCodeException with the same ErrorCode.
+     * 
+     * @param er the ErrorCode.
+     */
+    static void throwErrorIfNeeded(ErrorCode er) throw(ErrorCodeException);
+
 };

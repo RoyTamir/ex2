@@ -95,7 +95,7 @@ public:
 	 */
 	~MatrixClass();
 
-	//DELETING MOVE METHODS (We would use only cpt methods)
+//DELETING MOVE METHODS (We would use only cpt methods)
 	/**
 	 * @brief Constructor, a new Matrix Class object from matrix.
 	 * (move Constructor)
