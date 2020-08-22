@@ -5,30 +5,24 @@
 #include "ErrorCode.h"
 #include "ErrorCodeException.hpp"
 
-class ErrorCodeException {
-//Fields
-ErrorCode code;
-
-//methods
-public:
-
-	ErrorCodeException(const ErrorCode code){
+//Implementing methods
+	ErrorCodeException::ErrorCodeException(const ErrorCode code){
     this->code = code;
   }
 
-  bool isSuccess() {
+  bool ErrorCodeException::isSuccess() const{
     return error_isSuccess(code); 
   }
 
-  void printErrorMessage() {
+  void ErrorCodeException::printErrorMessage() const{
 		cout<<error_getErrorMessage(code)<<endl; 
 	}
 
-  static void throwErrorIfNeeded(ErrorCode er) throw(ErrorCodeException) {
+  void ErrorCodeException::throwErrorIfNeeded(ErrorCode er) throw(ErrorCodeException) {
     //checking success
     ErrorCodeException* exeption = new ErrorCodeException(er);
     if(!exeption->isSuccess()) {
       throw exeption;
     }
-  } 
-};
+  }
+  
