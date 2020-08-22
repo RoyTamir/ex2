@@ -35,4 +35,22 @@ public:
 
         return height;
     }
+
+    uint32_t getWidth() const throw(ErrorCodeException) {
+        uint32_t width;
+
+        //gets the width & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(matrix_getWidth(matrix, &width));
+
+        return width;
+    }
+
+    void setValue(uint32_t rowIndex, uint32_t colIndex,
+                           double value) throw(ErrorCodeException){
+        //sets the value & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(
+            matrix_setValue(matrix, rowIndex, colIndex, value));
+    }
+
+    
 };
