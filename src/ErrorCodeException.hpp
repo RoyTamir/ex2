@@ -18,7 +18,7 @@ public:
  	* 
  	* @param code The ErrorCode.
  	*/
-	ErrorCodeException(const ErrorCode code);
+	explicit ErrorCodeException(const ErrorCode code);
 
 	/**
 	 * @brief Checks if error code indicates a success or not.
@@ -37,4 +37,5 @@ public:
 	 * 
 	 */
 	~ErrorCodeException() = default;
+
 };

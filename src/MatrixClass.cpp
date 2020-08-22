@@ -29,6 +29,7 @@ public:
     }
 
     MatrixClass& operator=(const MatrixClass& source) throw(ErrorCodeException){
+
         //Trying to destroy the matrix in the field (if not intalized yet would do nothing)
         matrix_destroy(matrix);
 
@@ -40,5 +41,7 @@ public:
         if(!exeption->isSuccess()) {
             throw exeption;
         }
+
+        return *this;
     }
 };

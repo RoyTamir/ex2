@@ -33,21 +33,6 @@ public:
 	 */
 	MatrixClass& operator=(const MatrixClass& source) throw(ErrorCodeException);
 
-		/**
-	 * @brief Constructor, a new Matrix Class object from matrix.
-	 * (move Constructor)
-	 * 
-	 * @param[in] source The matrix to copy.
-	 */
-	MatrixClass(MatrixClass&& source) throw(ErrorCodeException);
-
-	/**
-	 * @brief assignment opperator (move assignment).
-	 *
-	 * @param[in] source The assigned matrix.
-	 */
-	MatrixClass& operator=(MatrixClass&& source) throw(ErrorCodeException);
-
 	/**
 	 * @brief Returns height of given matrix.
 	 *
@@ -109,4 +94,20 @@ public:
 	 * @brief Destructor for destroying the matrix.
 	 */
 	~MatrixClass();
+
+	//DELETING MOVE METHODS (We would use only cpt methods)
+	/**
+	 * @brief Constructor, a new Matrix Class object from matrix.
+	 * (move Constructor)
+	 * 
+	 * @param[in] source The matrix to copy.
+	 */
+	MatrixClass(MatrixClass&& source) = delete;
+
+	/**
+	 * @brief assignment opperator (move assignment).
+	 *
+	 * @param[in] source The assigned matrix.
+	 */
+	MatrixClass& operator=(MatrixClass&& source) = delete;
 };
