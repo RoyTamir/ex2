@@ -52,5 +52,13 @@ public:
             matrix_setValue(matrix, rowIndex, colIndex, value));
     }
 
-    
+    double getValue(uint32_t rowIndex, uint32_t colIndex) const throw(ErrorCodeException){
+        double value;
+
+        //gets the value & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(
+            matrix_getValue(matrix, rowIndex, colIndex, &value));
+
+        return value;
+    }
 };
