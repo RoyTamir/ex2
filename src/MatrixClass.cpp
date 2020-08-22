@@ -106,4 +106,9 @@ public:
 
         return *this;
     }
+
+    ~MatrixClass() {
+        //destroying the corrent matrix
+        matrix_destroy(matrix);
+    }
 };
