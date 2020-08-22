@@ -63,18 +63,46 @@ public:
     }
 
     MatrixClass& operator+(const MatrixClass& other) throw(ErrorCodeException){
-        //adding the other matrix to this & throwing exception if needed
+        //Creating the result matrix 
+        PMatrix result;
+        matrix_create(&result, this->getHeight(), this->getWidth());
+
+        //Calculating result matrix & throwing exception if needed
         ErrorCodeException::throwErrorIfNeeded(
-            matrix_add(&matrix, matrix, other.matrix));
+            matrix_add(&result, matrix, other.matrix));
+
+        //destroying the corrent matrix
+        matrix_destroy(matrix);
+
+        //updating the matrix to the result
+        matrix = result;
 
         return *this;
     }
 
     MatrixClass& operator*(const MatrixClass& other) throw(ErrorCodeException){
-        //Multipling the other matrix and this matrix in 
-        //to this matrix & throwing exception if needed
+        //Creating the result matrix 
+        PMatrix result;
+        matrix_create(&result, this->getHeight(), other.getWidth());
+
+        //Calculating result matrix & throwing exception if needed
         ErrorCodeException::throwErrorIfNeeded(
-            matrix_multiplyMatrices(&matrix, matrix, other.matrix));
+            matrix_multiplyMatrices(&result, matrix, other.matrix));
+
+        //destroying the corrent matrix
+        matrix_destroy(matrix);
+
+        //updating the matrix to the result
+        matrix = result;
+
+        return *this;
+    }
+
+    MatrixClass& operator*(double scalar) throw(ErrorCodeException){
+        //Multipling this matrix with the scalar into 
+        //this matrix & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(
+            matrix_multiplyWithScalar(matrix, scalar));
 
         return *this;
     }
