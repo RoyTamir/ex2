@@ -17,7 +17,7 @@ public:
 	 * @param[in] height Height of the matrix.
 	 * @param[in] width Width of the matrix.
 	 */
-	explicit MatrixClass(uint32_t height, uint32_t width);
+	MatrixClass(uint32_t height, uint32_t width);
 
 	/**
 	 * @brief Constructor, a new Matrix Class object from matrix.
@@ -50,7 +50,8 @@ public:
 
 	/**
 	 * @brief Sets a value to the matrix.
-	 *
+	 *******we wished to implement this by operator () but couldn't
+	 *******because the functions we used didnt support returning double&
 	 * @param[in] rowIndex Row index of the value to set.
 	 * @param[in] colIndex Column index of the value to setF.
 	 * @param[in] value Value to set.
@@ -59,37 +60,38 @@ public:
                            double value);
 
 	/**
-	 * @brief Sets a value to the matrix.
+	 * @brief gets a value to the matrix.
 	 *
 	 * @param[in] rowIndex Row index of the value to get.
 	 * @param[in] colIndex Column index of the value to get.
 	 * @return double.
 	 */
-	double getValue(uint32_t rowIndex, uint32_t colIndex) const;
+	double operator()(uint32_t rowIndex, uint32_t colIndex) const;
 
 	/**
-	 * @brief Addition opperator (adds to the left side the right side).
+	 * @brief Addition opperator (adds to the left side the right side 
+	 * (this matrix chenges)).
 	 *
 	 * @param[in] other The right hand side of the addition operation.
 	 * @return MatrixClass& 
 	 */
-	MatrixClass& operator+(const MatrixClass& other);
+	MatrixClass& operator+=(const MatrixClass& other);
 
 	/**
-	 * @brief Multiplication opperator (matrix by matrix the risult in the left matrix).
+	 * @brief Multiplication opperator (matrix by matrix the risult in the left matrix(this)).
 	 *
 	 * @param[in] other The right hand side of the multiplication operation.
 	 * @return MatrixClass&
 	 */
-	MatrixClass& operator*(const MatrixClass& other);
+	MatrixClass& operator*=(const MatrixClass& other);
 
 	/**
-	 * @brief Multiplication operator (matrix by scalar the result in the matrix).
+	 * @brief Multiplication operator (matrix by scalar the result in this matrix).
 	 *
 	 * @param[in] scalar The scalar to multiply with.
 	 * @return MatrixClass&
 	 */
-	MatrixClass& operator*(double scalar);
+	MatrixClass& operator*=(double scalar);
 
 	/**
 	 * @brief Destructor for destroying the matrix.
@@ -112,7 +114,15 @@ public:
 	 */
 	MatrixClass& operator=(MatrixClass&& source) = delete;
 
-//Another helpful functions:
-	void print() noexcept;
+//friends functins
+
+	/**
+	 * @brief used for printing the matrix (make it a stream)
+	 * 
+	 * @param stream to add the matrix to.
+	 * @param matrix the matrix to add.
+	 * @return std::ostream& the stream with the matrix.
+	 */
+	friend std::ostream& operator<<(std::ostream& stream, const MatrixClass& matrix);
 
 };

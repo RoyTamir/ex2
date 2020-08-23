@@ -47,7 +47,7 @@
             matrix_setValue(_matrix, rowIndex, colIndex, value));
     }
 
-    double MatrixClass::getValue(uint32_t rowIndex, uint32_t colIndex) const{
+    double MatrixClass::operator()(uint32_t rowIndex, uint32_t colIndex) const{
         double value;
 
         //gets the value & throwing exception if needed
@@ -57,7 +57,7 @@
         return value;
     }
 
-    MatrixClass& MatrixClass::operator+(const MatrixClass& other) {
+    MatrixClass& MatrixClass::operator+=(const MatrixClass& other) {
         //Creating the result matrix 
         PMatrix result;
         matrix_create(&result, this->getHeight(), this->getWidth());
@@ -75,7 +75,7 @@
         return *this;
     }
 
-    MatrixClass& MatrixClass::operator*(const MatrixClass& other) {
+    MatrixClass& MatrixClass::operator*=(const MatrixClass& other) {
         //Creating the result matrix 
         PMatrix result;
         matrix_create(&result, this->getHeight(), other.getWidth());
@@ -93,7 +93,7 @@
         return *this;
     }
 
-    MatrixClass& MatrixClass::operator*(double scalar){
+    MatrixClass& MatrixClass::operator*=(double scalar){
         //Multipling this matrix with the scalar into 
         //this matrix & throwing exception if needed
         ErrorCodeException::throwErrorIfNeeded(
@@ -107,16 +107,18 @@
         matrix_destroy(_matrix);
     }
 
-    void MatrixClass::print() noexcept{
+    std::ostream& operator<<(std::ostream& stream, const MatrixClass& matrix){
         //var to use
-        uint32_t height = getHeight();
-        uint32_t width = getHeight();
+        uint32_t height = matrix.getHeight();
+        uint32_t width = matrix.getHeight();
 
         for(uint32_t row = 0; row < height; ++row) {
             for(uint32_t col = 0; col < width; ++col) {
-                cout<<getValue(row, col)<<"|";
+                stream<<matrix(row, col)<<"|";
                 }
 
-        cout<<endl;
+        stream<<endl;
         }
+
+        return stream;
     }
