@@ -2,6 +2,7 @@
 #include "Matrix.h"
 #include "ErrorCodeException.hpp"
 
+#include <memory>
 #include <cstdint>
 using std::uint32_t;
 
@@ -78,6 +79,15 @@ public:
 	MatrixClass& operator+=(const MatrixClass& other);
 
 	/**
+	 * @brief Minus opperator (reducing the left side by the right side 
+	 * (this matrix chenges)).
+	 *
+	 * @param[in] other The right hand side of the addition operation.
+	 * @return MatrixClass& this matrix
+	 */
+	MatrixClass& operator-=(const MatrixClass& other);
+
+	/**
 	 * @brief Multiplication opperator (matrix by matrix the risult in the left matrix(this)).
 	 *
 	 * @param[in] other The right hand side of the multiplication operation.
@@ -123,6 +133,15 @@ public:
 	 * @return MatrixClass& the new result matrix
 	 */
 	MatrixClass& operator+(const MatrixClass& other) const;
+
+	/**
+	 * @brief Minus opperator (reducing the left side by the right side 
+	 * & returning a new result matrix)).
+	 *
+	 * @param[in] other The right hand side of the addition operation.
+	 * @return MatrixClass& the new result matrix
+	 */
+	MatrixClass& operator-(const MatrixClass& other) const;
 
 	/**
 	 * @brief Multiplication opperator (multipling the matrixes & return new matrix).

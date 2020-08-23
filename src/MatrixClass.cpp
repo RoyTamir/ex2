@@ -75,6 +75,13 @@
         return *this;
     }
 
+    MatrixClass&  MatrixClass::operator-=(const MatrixClass& other) {
+        MatrixClass* minusOther = &(other * (-1));
+        (*this) += *minusOther;
+        delete minusOther;
+        return *this;
+    }
+
     MatrixClass& MatrixClass::operator*=(const MatrixClass& other) {
         //Creating the result matrix 
         PMatrix result;
@@ -116,6 +123,13 @@
         ErrorCodeException::throwErrorIfNeeded(
             matrix_add(&result->_matrix, _matrix, other._matrix));
 
+        return *result;
+    }
+
+    MatrixClass& MatrixClass::operator-(const MatrixClass& other) const {
+        MatrixClass* minusOther = &(other * (-1));
+        MatrixClass* result = &((*this) + *minusOther);
+        delete minusOther;
         return *result;
     }
 
