@@ -111,4 +111,8 @@ public:
 	 * @param[in] source The assigned MatrixClass.
 	 */
 	MatrixClass& operator=(MatrixClass&& source) = delete;
+
+//Another helpful functions:
+	void print() noexcept;
+
 };

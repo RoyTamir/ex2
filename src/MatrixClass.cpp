@@ -106,3 +106,17 @@
         //destroying the corrent matrix
         matrix_destroy(_matrix);
     }
+
+    void MatrixClass::print() noexcept{
+        //var to use
+        uint32_t height = getHeight();
+        uint32_t width = getHeight();
+
+        for(uint32_t row = 0; row < height; ++row) {
+            for(uint32_t col = 0; col < width; ++col) {
+                cout<<getValue(row, col)<<"|";
+                }
+
+        cout<<endl;
+        }
+    }
