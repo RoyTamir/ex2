@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ErrorCode.h"
 
 #include <iostream>
@@ -5,7 +7,7 @@
 using std::endl;
 using std::cout;
 
-class ErrorCodeException {
+class ErrorCodeException{
 //Fields
 const ErrorCode _errorCode;
 

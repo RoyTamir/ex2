@@ -1,5 +1,6 @@
-#include "ErrorCodeException.hpp"
+#pragma once
 #include "Matrix.h"
+#include "ErrorCodeException.hpp"
 
 #include <cstdint>
 using std::uint32_t;
@@ -16,7 +17,7 @@ public:
 	 * @param[in] height Height of the matrix.
 	 * @param[in] width Width of the matrix.
 	 */
-	MatrixClass(uint32_t height, uint32_t width);
+	explicit MatrixClass(uint32_t height, uint32_t width);
 
 	/**
 	 * @brief Constructor, a new Matrix Class object from matrix.

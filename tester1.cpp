@@ -1,6 +1,8 @@
 #include <iostream>
 #include "MatrixClass.hpp"
 
+using namespace std;
+
 int main() {
     try{
     MatrixClass* mc = new MatrixClass(10, 10);
