@@ -1,56 +1,47 @@
+#pragma once
+
 #include "DIBHeaderParser.hpp"
 
 #include <string>
-using std::string
+using std::string;
 
-class DIBHeaderParser {
+DIBHeaderParser::DIBHeaderParser(string str) {
+	this->_str = str;
+	this->_bitsPerPixel = str[10];
+	int width = 0, height = 0, horRes = 0, verRes = 0, power = 1;
+    for (int i = 0; i < 4; i++) {
+        width += str[4 + i] * power;
+        height += str[8 + i] * power;
+		horRes += str[24 + i] * power;
+		verRes += str[28 + i] * power;
+        power *= 256;
+    }
+    this->_bitArrayWidth = width;
+    this->_bitArrayHeight = height;
+	this->_horizontalResolution = horRes;
+	this->_verticalResolution = verRes;
+}
 
-    string _str;
-    int _bitArrayWidth;
-    int _bitArrayHeight;
-    int _bitsPerPixel;
-    int _horizontalResolution;
-    int _verticalResolution;
+string DIBHeaderParser::getStr() const {
+	return this->_str;
+}
 
-public:
-	DIBHeaderParser(string str) {
-		this._str = str;
-		this._bitsPerPixel = str[10];
-		int width = 0, height = 0, horRes = 0, horRes = 0, power = 1;
-        for (int i = 0; i < 4; i++) {
-            width += str[4 + i] * power;
-            height += str[8 + i] * power;
-			horRes += str[24 + i] * power;
-			verRes += str[28 + i] * power;
-            power *= 256;
-        }
-        this._bitArrayWidth = width;
-        this._bitArrayHeight = height;
-		this._horizontalResolution = horRes;
-		this._verticalResolution = verRes;
-	}
+int DIBHeaderParser::getBitArrayWidth() const {
+	return this->_bitArrayWidth;
+}
 
-    string getStr() const {
-		return this._str;
-	}
+int DIBHeaderParser::getBitArrayHeight() const {
+	return this->_bitArrayHeight;
+}
 
-    int getBitArrayWidth() const {
-		return this._bitArrayWidth;
-	}
+int DIBHeaderParser::getBitsPerPixel() const {
+	return this->_bitsPerPixel;
+}
 
-    int getBitArrayHeight() const;
-		return this._bitArrayHeight;
-	}
+int DIBHeaderParser::getHorizontalResolution() const {
+	return this->_horizontalResolution;
+}
 
-    int getBitsPerPixel() const {
-		return this._bitsPerPixel;
-	}
-
-    int getHorizontalResolution() const {
-		return this._horizontalResolution;
-	}
-
-    int getVerticalResolution() {
-		return this._verticalReolution;
-	}
+int DIBHeaderParser::getVerticalResolution() const {
+	return this->_verticalResolution;
 }

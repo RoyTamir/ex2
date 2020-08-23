@@ -1,5 +1,7 @@
+#pragma once
+
 #include <string>
-using std::string
+using std::string;
 
 class DIBHeaderParser {
 
@@ -11,10 +13,11 @@ class DIBHeaderParser {
 	int _verticalResolution;
 
 public:
+	DIBHeaderParser(string str);
 	string getStr() const;
 	int getBitArrayWidth() const;
 	int getBitArrayHeight() const;
 	int getBitsPerPixel() const;
 	int getHorizontalResolution() const;
 	int getVerticalResolution() const;
-}
+};

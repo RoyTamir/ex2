@@ -1,9 +1,23 @@
+#pragma once
+
+#include "BitmapHeaderParser.cpp"
+#include "DIBHeaderParser.cpp"
+#include "ColorTableParser.cpp"
+#include "BitmapArrayParser.cpp"
+#include "Color.cpp"
+
+#include <string>
+using std::string;
+
 class BMPParser {
-	const char* BMP;
-	BitmapHeaderParser _BHparser;
-	DIBHeaderParser _DIBParser;
-	ColorTableParser _CTParser;
-	BitMapArrayParser _BMAParser;
+
+	string _str;
+	BitmapHeaderParser* _BHparser;
+	DIBHeaderParser* _DIBparser;
+	ColorTableParser* _CTparser;
+	BitMapArrayParser* _BMAparser;
+
 public:
-	char* getBMP() const;
-}
+	BMPParser(string str);
+	string getBMP() const;
+};

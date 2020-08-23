@@ -1,25 +1,30 @@
+#pragma once
+
+#include <string>
+using std::string;
+
 #include "BitmapHeaderParser.hpp"
 
-class BitmapHeaderParser {
-
-    const char* _str;
-    const int _size;
-    const int _offset;
-    
-public:
-	BitMapHeaderParser(const char* str) {
-		this._str = str;
+BitmapHeaderParser::BitmapHeaderParser(string str) {
+	this->_str = str;
+	int size = 0, offset = 0, power = 1;
+	for (int i = 0; i < 4; i++) {
+		size += str[2 + i] * power;
+		offset += str[10 + i] * power;
+		power *= 256;
 	}
+	this->_size = size;
+	this->_offset = offset;
+}
 
-    char* getStr() const {
-		return this._str;
-	}
+string BitmapHeaderParser::getStr() const {
+	return this->_str;
+}
 
-    int getSize() const {
-		return this._size;
-	}
+int BitmapHeaderParser::getSize() const {
+	return this->_size;
+}
 
-    int getOffset() const {
-		return this._offset;
-	}
+int BitmapHeaderParser::getOffset() const {
+	return this->_offset;
 }

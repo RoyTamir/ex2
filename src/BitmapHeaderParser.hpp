@@ -1,11 +1,17 @@
+#pragma once
+
+#include <string>
+using std::string;
+
 class BitmapHeaderParser {
 
-	const char* _str;
-	const int _size;
-	const int _offset;
+	string _str;
+	int _size;
+	int _offset;
 
-private:
-	char* getStr() const;
+public:
+	BitmapHeaderParser(string str);
+	string getStr() const;
 	int getSize() const;
 	int getOffset() const;
-}
+};
