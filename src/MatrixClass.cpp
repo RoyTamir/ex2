@@ -107,6 +107,42 @@
         matrix_destroy(_matrix);
     }
 
+//another operators. warning! they return new MatrixClass
+    MatrixClass& MatrixClass::operator+(const MatrixClass& other) const{
+        //Creating the result matrix 
+        MatrixClass* result = new MatrixClass(this->getHeight(), this->getWidth());
+
+        //Calculating result matrix & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(
+            matrix_add(&result->_matrix, _matrix, other._matrix));
+
+        return *result;
+    }
+
+    MatrixClass& MatrixClass::operator*(const MatrixClass& other) const{
+        //Creating the result matrix 
+        MatrixClass* result = new MatrixClass(this->getHeight(), other.getWidth());
+
+        //Calculating result matrix & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(
+            matrix_multiplyMatrices(&result->_matrix, _matrix, other._matrix));
+
+        return *result;
+    }
+
+    MatrixClass& MatrixClass::operator*(double scalar) const {
+        //Creating the result matrix (copying this matrix)
+        MatrixClass* result = new MatrixClass(*this);
+
+        //Multipling this matrix with the scalar into 
+        //this matrix & throwing exception if needed
+        ErrorCodeException::throwErrorIfNeeded(
+            matrix_multiplyWithScalar(result->_matrix, scalar));
+
+        return *result;
+    }
+
+//friends functins
     std::ostream& operator<<(std::ostream& stream, const MatrixClass& matrix){
         //var to use
         uint32_t height = matrix.getHeight();
@@ -121,4 +157,8 @@
         }
 
         return stream;
+    }
+
+    MatrixClass& operator*(double scalar, const MatrixClass& matrix) {
+        return matrix * scalar;
     }

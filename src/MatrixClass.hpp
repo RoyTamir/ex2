@@ -73,7 +73,7 @@ public:
 	 * (this matrix chenges)).
 	 *
 	 * @param[in] other The right hand side of the addition operation.
-	 * @return MatrixClass& 
+	 * @return MatrixClass& this matrix
 	 */
 	MatrixClass& operator+=(const MatrixClass& other);
 
@@ -81,7 +81,7 @@ public:
 	 * @brief Multiplication opperator (matrix by matrix the risult in the left matrix(this)).
 	 *
 	 * @param[in] other The right hand side of the multiplication operation.
-	 * @return MatrixClass&
+	 * @return MatrixClass& this matrix
 	 */
 	MatrixClass& operator*=(const MatrixClass& other);
 
@@ -89,7 +89,7 @@ public:
 	 * @brief Multiplication operator (matrix by scalar the result in this matrix).
 	 *
 	 * @param[in] scalar The scalar to multiply with.
-	 * @return MatrixClass&
+	 * @return MatrixClass& this matrix
 	 */
 	MatrixClass& operator*=(double scalar);
 
@@ -114,6 +114,33 @@ public:
 	 */
 	MatrixClass& operator=(MatrixClass&& source) = delete;
 
+//another operators. warning! they return new MatrixClass
+
+	/**
+	 * @brief Addition opperator (adds the matrixes & return new matrix).
+	 *
+	 * @param[in] other The right hand side of the addition operation.
+	 * @return MatrixClass& the new result matrix
+	 */
+	MatrixClass& operator+(const MatrixClass& other) const;
+
+	/**
+	 * @brief Multiplication opperator (multipling the matrixes & return new matrix).
+	 *
+	 * @param[in] other The right hand side of the multiplication operation.
+	 * @return MatrixClass& the new result matrix
+	 */
+	MatrixClass& operator*(const MatrixClass& other) const;
+
+	/**
+	 * @brief Multiplication operator (multipling the matrixe & the scalar
+	 *  & return new matrix).
+	 *
+	 * @param[in] scalar The scalar to multiply with.
+	 * @return MatrixClass& the new result matrix
+	 */
+	MatrixClass& operator*(double scalar) const;
+
 //friends functins
 
 	/**
@@ -125,4 +152,12 @@ public:
 	 */
 	friend std::ostream& operator<<(std::ostream& stream, const MatrixClass& matrix);
 
+	/**
+	 * @brief Multiplication operator (multipling the matrixe & the scalar
+	 *  & return new matrix).
+	 *
+	 * @param[in] scalar The scalar to multiply with.
+	 * @return MatrixClass& the new result matrix
+	 */
+	friend MatrixClass& operator*(double scalar, const MatrixClass& matrix);
 };
