@@ -46,5 +46,4 @@ public:
      * @param er the ErrorCode.
      */
     static void throwErrorIfNeeded(ErrorCode er);
-
 };
