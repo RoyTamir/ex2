@@ -1,20 +1,17 @@
 #include "MatrixClass.hpp"
 
 //Implementing methods
-	MatrixClass::MatrixClass(uint32_t height, uint32_t width)
-     throw(ErrorCodeException) {
+	MatrixClass::MatrixClass(uint32_t height, uint32_t width){
         //creating the matrix & throwing exception if needed
         ErrorCodeException::throwErrorIfNeeded(matrix_create(&_matrix, height, width));
     }
 
-    MatrixClass::MatrixClass(const MatrixClass& source)
-     throw(ErrorCodeException) {
-        //copy the matrix & throwing exception if needed
+    MatrixClass::MatrixClass(const MatrixClass& source){
+        //copy the matrix & throwing excepstion if needed
         ErrorCodeException::throwErrorIfNeeded(matrix_copy(&_matrix, source._matrix));
     }
 
-    MatrixClass& MatrixClass::operator=(const MatrixClass& source)
-     throw(ErrorCodeException){
+    MatrixClass& MatrixClass::operator=(const MatrixClass& source){
 
         //Trying to destroy the matrix in the field (if not intalized yet would do nothing)
         matrix_destroy(_matrix);
@@ -25,7 +22,7 @@
         return *this;
     }
 
-    uint32_t MatrixClass::getHeight() const throw(ErrorCodeException) {
+    uint32_t MatrixClass::getHeight() const {
         uint32_t height;
 
         //gets the height & throwing exception if needed
@@ -34,7 +31,7 @@
         return height;
     }
 
-    uint32_t MatrixClass::getWidth() const throw(ErrorCodeException) {
+    uint32_t MatrixClass::getWidth() const {
         uint32_t width;
 
         //gets the width & throwing exception if needed
@@ -44,14 +41,13 @@
     }
 
     void MatrixClass::setValue(uint32_t rowIndex, uint32_t colIndex,
-                           double value) throw(ErrorCodeException){
+                           double value) {
         //sets the value & throwing exception if needed
         ErrorCodeException::throwErrorIfNeeded(
             matrix_setValue(_matrix, rowIndex, colIndex, value));
     }
 
-    double MatrixClass::getValue(uint32_t rowIndex, uint32_t colIndex)
-     const throw(ErrorCodeException){
+    double MatrixClass::getValue(uint32_t rowIndex, uint32_t colIndex) const{
         double value;
 
         //gets the value & throwing exception if needed
@@ -61,8 +57,7 @@
         return value;
     }
 
-    MatrixClass& MatrixClass::operator+(const MatrixClass& other)
-     throw(ErrorCodeException){
+    MatrixClass& MatrixClass::operator+(const MatrixClass& other) {
         //Creating the result matrix 
         PMatrix result;
         matrix_create(&result, this->getHeight(), this->getWidth());
@@ -80,8 +75,7 @@
         return *this;
     }
 
-    MatrixClass& MatrixClass::operator*(const MatrixClass& other)
-     throw(ErrorCodeException){
+    MatrixClass& MatrixClass::operator*(const MatrixClass& other) {
         //Creating the result matrix 
         PMatrix result;
         matrix_create(&result, this->getHeight(), other.getWidth());
@@ -99,7 +93,7 @@
         return *this;
     }
 
-    MatrixClass& MatrixClass::operator*(double scalar) throw(ErrorCodeException){
+    MatrixClass& MatrixClass::operator*(double scalar){
         //Multipling this matrix with the scalar into 
         //this matrix & throwing exception if needed
         ErrorCodeException::throwErrorIfNeeded(

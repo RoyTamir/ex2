@@ -5,7 +5,7 @@ int main() {
     try{
     MatrixClass* mc = new MatrixClass(10, 10);
     cout<<mc->getHeight()<<endl;
-    }catch(ErrorCodeException& e){
+    }catch(const ErrorCodeException& e){
         e.printErrorMessage();
     }
     return 0;

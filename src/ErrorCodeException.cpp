@@ -1,9 +1,7 @@
 #include "ErrorCodeException.hpp"
 
 //Implementing methods
-	ErrorCodeException::ErrorCodeException(const ErrorCode er){
-    _errorCode = er;
-  }
+	ErrorCodeException::ErrorCodeException(const ErrorCode er) : _errorCode(er){}
 
   bool ErrorCodeException::isSuccess() const{
     return error_isSuccess(_errorCode); 
@@ -13,10 +11,10 @@
 		cout<<error_getErrorMessage(_errorCode)<<endl; 
 	}
 
-  void ErrorCodeException::throwErrorIfNeeded(ErrorCode er) throw(ErrorCodeException) {
+  void ErrorCodeException::throwErrorIfNeeded(ErrorCode er){
     //checking success
-    ErrorCodeException* exeption = new ErrorCodeException(er);
-    if(!exeption->isSuccess()) {
+    ErrorCodeException exeption = ErrorCodeException(er);
+    if(!exeption.isSuccess()) {
       throw exeption;
     }
   }
