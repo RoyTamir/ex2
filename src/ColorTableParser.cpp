@@ -8,18 +8,25 @@ using std::vector;
 class ColorTableParser {
 
     string _str;
-    vector<vector<int>> _colors;
+    vector<Color> _colors;
 
 public:
 	ColorTableParser(string str) {
 		this._str = str;
+		for (string::iterator it = this._str.begin(); it != this._str.end, it++) {
+			this._colors.pushback(new Color(it++, it++, it++));
+		}
 	}
 
     string getStr() const {
 		return this._str;
 	}
 
-    vector<int> getColor(int n) const {
-		return colors[n];
+	int getColorCount() const {
+		return this._colors.size();
+	}
+
+    Color getColor(int n) const {
+		return _colors[n];
 	}
 }
