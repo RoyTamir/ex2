@@ -22,14 +22,16 @@ public:
 	/**
 	 * @brief Construct a new BMPHeaderParser object.
 	 * 
-	 * @param str the string from the BMP file.
+	 * @param str the string from the BMP file
+	 * that refers to header.
 	 */
 	BMPHeaderParser(const string& str);
 
 	/**
 	 * @brief Get the Str object.
 	 * 
-	 * @return the string from the BMP file.
+	 * @return the string from the BMP file
+	 * * that refers to header.
 	 */
 	const string& getStr() const;
 

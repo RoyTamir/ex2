@@ -7,6 +7,13 @@ using std::string;
 using std::uint32_t;
 using std::uint16_t;
 
+#define NUM_BYTES_OF_BITS_PER_PIXEL 2
+#define NUM_BYTES_OF_THE_OTHER_FIELDS 4
+
+#define LOCATION_OF_BITMAP_ARRAY_WIDTH 4
+#define LOCATION_OF_BITMAP_ARRAY_HEIGHT 8
+#define LOCATION_OF__BITS_PER_PIXEL 14
+#define LOCATION_OF_NUM_COLORS_IN_COLOR_PALETTE 32
 class DIBHeaderParser {
 
 	string _str;
@@ -20,14 +27,16 @@ public:
 	/**
 	 * @brief Construct a new DIBHeaderParser object.
 	 * 
-	 * @param str the string from the BMP file.
+	 * @param str the string from the BMP file
+	 * that refers to DIBheader.
 	 */
 	DIBHeaderParser(const string& str);
 	
 	/**
 	 * @brief Get the Str object.
 	 * 
-	 * @return const string& the string from the BMP file.
+	 * @return const string& the string from the BMP file
+	 *  that refers to DIBheader.
 	 */
 	const string& getStr() const;
 
