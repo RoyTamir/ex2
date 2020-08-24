@@ -3,6 +3,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif 
+
 typedef enum {
     // DON'T CHANGE THIS VALUE!
     ERROR_SUCCESS = 0,
@@ -30,3 +34,4 @@ bool error_isSuccess(ErrorCode code);
  * @return const char* the textual representation of the error code.
  */
 const char* error_getErrorMessage(ErrorCode code);
+}

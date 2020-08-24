@@ -1,26 +1,20 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <cstdio>
-
-#include "ErrorCode.h"
 #include "ErrorCodeException.hpp"
 
-class ErrorCodeException {
-//Fields
-ErrorCode code;
+//Implementing methods
+	ErrorCodeException::ErrorCodeException(const ErrorCode er) : _errorCode(er){}
 
-//methods
-public:
+  bool ErrorCodeException::isSuccess() const{
+    return error_isSuccess(_errorCode); 
+  }
 
-	ErrorCodeException(const ErrorCode code){
-        this->code = code;
-    }
-
-    bool isSuccess() {
-         return error_isSuccess(code); 
-        }
-
-    void printErrorMessage() {
-		cout<<error_getErrorMessage(code)<<endl; 
+  void ErrorCodeException::printErrorMessage() const{
+		cout<<error_getErrorMessage(_errorCode)<<endl; 
 	}
-};
+
+  void ErrorCodeException::throwErrorIfNeeded(ErrorCode er){
+    //checking success
+    ErrorCodeException exeption = ErrorCodeException(er);
+    if(!exeption.isSuccess()) {
+      throw exeption;
+    }
+  }

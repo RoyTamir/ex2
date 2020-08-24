@@ -1,8 +1,4 @@
-#pragma once
-
 #include "BitMapArrayParser.hpp"
-#include "Color.cpp"
-#include "MatrixClass.cpp"
 
 #include <string>
 using std::string;
@@ -68,14 +64,14 @@ int BitMapArrayParser::getHeight() const {
 	return this->_height;
 }
 
-&MatrixClass BitMapArrayParser::getBitMapR() const {
-	return this->_Rmatrix;
+MatrixClass& BitMapArrayParser::getBitMapR() const {
+	return *(this->_Rmatrix);
 }
 
-&MatrixClass BitMapArrayParser::getBitMapG() const {
-    return this->_Gmatrix;
+MatrixClass& BitMapArrayParser::getBitMapG() const {
+    return *(this->_Gmatrix);
 }
 
-&MatrixClass BitMapArrayParser::getBitMapB() const {
-    return this->_Bmatrix;
+MatrixClass& BitMapArrayParser::getBitMapB() const {
+    return *(this->_Bmatrix);
 }

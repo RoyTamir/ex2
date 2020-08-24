@@ -1,14 +1,15 @@
+#pragma once
+
 #include "ErrorCode.h"
 
-#include <exception>
 #include <iostream>
 
 using std::endl;
 using std::cout;
 
-class ErrorCodeException {
+class ErrorCodeException{
 //Fields
-ErrorCode code;
+const ErrorCode _errorCode;
 
 //methods
 public:
@@ -18,7 +19,7 @@ public:
  	* 
  	* @param code The ErrorCode.
  	*/
-	explicit ErrorCodeException(const ErrorCode code);
+	explicit ErrorCodeException(const ErrorCode er);
 
 	/**
 	 * @brief Checks if error code indicates a success or not.
@@ -38,4 +39,11 @@ public:
 	 */
 	~ErrorCodeException() = default;
 
+	/**
+     * @brief gets ErrorCode & if it's not success throws 
+	 * ErrorCodeException with the same ErrorCode.
+     * 
+     * @param er the ErrorCode.
+     */
+    static void throwErrorIfNeeded(ErrorCode er);
 };
