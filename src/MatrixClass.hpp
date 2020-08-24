@@ -104,6 +104,14 @@ public:
 	MatrixClass& operator*=(double scalar);
 
 	/**
+	 * @brief Division operator (dividing the matrix by the scalar & the result in this matrix).
+	 *
+	 * @param[in] scalar The scalar to divide with.
+	 * @return MatrixClass& this matrix
+	 */
+	MatrixClass& operator/=(double scalar);
+
+	/**
 	 * @brief Destructor for destroying the matrix.
 	 */
 	~MatrixClass();
@@ -159,6 +167,15 @@ public:
 	 * @return MatrixClass& the new result matrix
 	 */
 	MatrixClass& operator*(double scalar) const;
+
+	/**
+	 * @brief Division operator (dividing the matrix by the scalar
+	 *  & return new matrix).
+	 *
+	 * @param[in] scalar The scalar to divide with.
+	 * @return MatrixClass& the new result matrix
+	 */
+	MatrixClass& operator/(double scalar) const;
 
 //friends functins
 

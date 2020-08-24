@@ -15,12 +15,25 @@ int main() {
         }
     }
 
-    MatrixClass copyMc = mc;
+    const MatrixClass copyMc = mc;
     cout<<endl<<"the matrix:"<<endl<<mc;
     cout<<endl<<"after mult"<<endl<<(mc *= copyMc);
     cout<<endl<<"after add:"<<endl<<(mc += copyMc);
     cout<<endl<<"after mult (scalar)"<<endl<<(mc *= 9);
-    
+    cout<<endl<<"after divide (scalar)"<<endl<<(mc /= 9);
+
+    cout<<endl<<"after Minus "<<endl<<(mc -= copyMc);
+
+    //check for the other operators
+    mc = copyMc;
+    cout<<endl<<"the matrix:"<<endl<<mc;
+    cout<<endl<<"after mult"<<endl<<(mc * copyMc);
+    cout<<endl<<"after add:"<<endl<<(mc + copyMc);
+    cout<<endl<<"after mult (scalar)"<<endl<<(mc * 9);
+    cout<<endl<<"after mult (scalar)"<<endl<<(mc * -9);
+    cout<<endl<<"after divide (scalar)"<<endl<<(mc / 2);
+    cout<<endl<<"after Minus "<<endl<<(mc - copyMc);
+    //needs deleting memory... (lets the end of the program hendle it)
     }catch(const ErrorCodeException& e){
         e.printErrorMessage();
     }

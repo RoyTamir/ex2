@@ -109,6 +109,10 @@
         return *this;
     }
 
+    MatrixClass& MatrixClass::operator/=(double scalar) {
+        return *(this) *= (1 / scalar);
+    }
+
     MatrixClass::~MatrixClass() {
         //destroying the corrent matrix
         matrix_destroy(_matrix);
@@ -154,6 +158,10 @@
             matrix_multiplyWithScalar(result->_matrix, scalar));
 
         return *result;
+    }
+
+    MatrixClass& MatrixClass::operator/(double scalar) const {
+        return *this * (1 / scalar);
     }
 
 //friends functins
