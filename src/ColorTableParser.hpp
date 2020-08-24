@@ -17,9 +17,43 @@ class ColorTableParser {
 	vector<Color> _colors;
 
 public:
+	/**
+	 * @brief Construct a new Color Table Parser object.
+	 * 
+	 * @param str the string from the BMP file
+	 *  that refers to Color Palette.
+	 */
 	ColorTableParser(const string& str);
+
+	/**
+	 * @brief Get the Str object.
+	 * 
+	 * @return const string& the string from the BMP file
+	 *  that refers to Color Palette.
+	 */
 	const string& getStr() const;
+
+	/**
+	 * @brief Get the Color Count object.
+	 * 
+	 * @return uint32_t the size of the Color Palette
+	 *  (num of colors).
+	 */
 	uint32_t getColorCount() const;
+
+	/**
+	 * @brief Get the Color object.
+	 * 
+	 * @param n 
+	 * @return Color the color in the n location.
+	 */
 	Color getColor(uint32_t n) const;
+
+	/**
+	 * @brief Get the Colors object.
+	 * 
+	 * @return vector<Color> the vector that represents the
+	 * Color Palette.
+	 */
 	vector<Color> getColors() const;
 };

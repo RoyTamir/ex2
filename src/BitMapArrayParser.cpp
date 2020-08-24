@@ -1,10 +1,5 @@
 #include "BitMapArrayParser.hpp"
 
-#include <string>
-using std::string;
-#include <vector>
-using std::vector;
-
 BitMapArrayParser::BitMapArrayParser(string str, int width, int height, vector<Color> colors) {
 	this->_str = str;
 	this->_width = width;
