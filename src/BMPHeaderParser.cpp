@@ -5,14 +5,15 @@ using std::string;
 
 BMPHeaderParser::BMPHeaderParser(string str) {
 	this->_str = str;
-	int size = 0, offset = 0, power = 1;
-	for (int i = 0; i < 4; i++) {
-		size += str[2 + i] * power;
-		offset += str[10 + i] * power;
-		power *= 256;
-	}
-	this->_size = size;
-	this->_offset = offset;
+
+	string sizeString = str.substr(LOCATION_OF_SIZE,
+			LOCATION_OF_SIZE + NUM_BYTES_OF_SIZE_AND_OFFSET - 1);
+
+	string offsetString = str.substr(LOCATION_OF_OFFSET,
+			LOCATION_OF_OFFSET + NUM_BYTES_OF_SIZE_AND_OFFSET - 1);
+
+	this->_size = stoi(sizeString);
+	this->_offset = stoi(offsetString);
 }
 
 string BMPHeaderParser::getStr() const {
