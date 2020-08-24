@@ -1,6 +1,4 @@
-#include <fstream>
-#include <iterator>
-#include <string>
+#include "file_reading.hpp"
 
 /**
  * @brief Read the content of a file at path filePath.

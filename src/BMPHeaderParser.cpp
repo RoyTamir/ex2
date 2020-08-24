@@ -20,10 +20,10 @@ string BMPHeaderParser::getStr() const {
 	return this->_str;
 }
 
-int BMPHeaderParser::getSize() const {
+uint32_t BMPHeaderParser::getSize() const {
 	return this->_size;
 }
 
-int BMPHeaderParser::getOffset() const {
+uint32_t BMPHeaderParser::getOffset() const {
 	return this->_offset;
 }

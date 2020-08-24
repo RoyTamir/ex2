@@ -1,7 +1,10 @@
 #pragma once
 
+#include <cstdint>
 #include <string>
+
 using std::string;
+using std::uint32_t;
 
 #define NUM_BYTES_OF_SIZE_AND_OFFSET 4
 #define LOCATION_OF_SIZE 2
@@ -10,8 +13,8 @@ class BMPHeaderParser {
 
 //Fields
 	string _str;
-	int _size;
-	int _offset;
+	uint32_t _size;
+	uint32_t  _offset;
 public:
 	/**
 	 * @brief Construct a new BMPHeaderParser object.
@@ -34,12 +37,12 @@ public:
 	 * 
 	 * @return the the size of the BMP file, in bytes.
 	 */
-	int getSize() const;
+	uint32_t getSize() const;
 
 	/**
 	 * @brief Get the Offset object.
 	 * 
 	 * @return the Offset of the pixel array in bytes.
 	 */
-	int getOffset() const;
+	uint32_t getOffset() const;
 };
