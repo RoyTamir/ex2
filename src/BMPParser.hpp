@@ -1,10 +1,10 @@
 #pragma once
 
-#include "BitmapHeaderParser.cpp"
-#include "DIBHeaderParser.cpp"
-#include "ColorTableParser.cpp"
-#include "BitmapArrayParser.cpp"
-#include "Color.cpp"
+#include "BitmapHeaderParser.hpp"
+#include "DIBHeaderParser.hpp"
+#include "ColorTableParser.hpp"
+#include "BitMapArrayParser.hpp"
+#include "Color.hpp"
 
 #include <string>
 using std::string;

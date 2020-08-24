@@ -1,9 +1,4 @@
 #include "BMPParser.hpp"
-#include "BitmapHeaderParser.cpp"
-#include "DIBHeaderParser.cpp"
-#include "ColorTableParser.cpp"
-#include "BitmapArrayParser.cpp"
-#include "Color.cpp"
 
 #include <string>
 using std::string;

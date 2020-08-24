@@ -1,7 +1,4 @@
-#pragma once
-
 #include "ColorTableParser.hpp"
-#include "Color.cpp"
 
 #include <string>
 #include <vector>

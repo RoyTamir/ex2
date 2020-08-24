@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Color.hpp"
 
 Color::Color(int R, int G, int B) {

@@ -1,8 +1,4 @@
-#pragma once
-
 #include "BitMapArrayParser.hpp"
-#include "Color.cpp"
-#include "MatrixClass.cpp"
 
 #include <string>
 using std::string;
