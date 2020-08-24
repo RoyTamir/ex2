@@ -2,7 +2,10 @@
 
 #include <cstdint>
 #include <string>
+#include <iostream>
 
+using std::cout;
+using std::endl;
 using std::string;
 using std::uint32_t;
 
@@ -22,7 +25,7 @@ public:
 	 * @param str the string from the 
 	 * BMP file that Represents the Header.
 	 */
-	BMPHeaderParser(string str);
+	BMPHeaderParser(const string& str);
 
 	/**
 	 * @brief Get the Str object.
@@ -30,7 +33,7 @@ public:
 	 * @return the string from the 
 	 * BMP file that Represents the Header.
 	 */
-	string getStr() const;
+	const string& getStr() const;
 
 	/**
 	 * @brief Get the Size object.

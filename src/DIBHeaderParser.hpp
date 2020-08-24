@@ -1,23 +1,25 @@
 #pragma once
 
+#include <cstdint>
 #include <string>
+
 using std::string;
+using std::uint32_t;
 
 class DIBHeaderParser {
 
 	string _str;
-	int _bitArrayWidth;
-	int _bitArrayHeight;
-	int _bitsPerPixel;
-	int _horizontalResolution;
-	int _verticalResolution;
+	uint32_t _bitmapArrayWidth;
+	uint32_t _bitmapArrayHeight;
+	uint32_t _bitsPerPixel;
+	uint32_t _numColorsInColorPalette;
+
 
 public:
 	DIBHeaderParser(string str);
 	string getStr() const;
-	int getBitArrayWidth() const;
-	int getBitArrayHeight() const;
-	int getBitsPerPixel() const;
-	int getHorizontalResolution() const;
-	int getVerticalResolution() const;
+	uint32_t getBitArrayWidth() const;
+	uint32_t getBitArrayHeight() const;
+	uint32_t getBitsPerPixel() const;
+	uint32_t getNumColorsInColorPalette() const;
 };

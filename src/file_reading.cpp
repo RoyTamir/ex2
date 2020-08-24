@@ -26,7 +26,6 @@ std::string readFileContent(const std::string& filePath) {
   if (!in.eof()) {
     // Unlikly to happen error here...
   }
-
   return content;
 }
 
