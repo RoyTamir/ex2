@@ -1,9 +1,9 @@
 #include <string>
 using std::string;
 
-#include "BitmapHeaderParser.hpp"
+#include "BMPHeaderParser.hpp"
 
-BitmapHeaderParser::BitmapHeaderParser(string str) {
+BMPHeaderParser::BMPHeaderParser(string str) {
 	this->_str = str;
 	int size = 0, offset = 0, power = 1;
 	for (int i = 0; i < 4; i++) {
@@ -15,14 +15,14 @@ BitmapHeaderParser::BitmapHeaderParser(string str) {
 	this->_offset = offset;
 }
 
-string BitmapHeaderParser::getStr() const {
+string BMPHeaderParser::getStr() const {
 	return this->_str;
 }
 
-int BitmapHeaderParser::getSize() const {
+int BMPHeaderParser::getSize() const {
 	return this->_size;
 }
 
-int BitmapHeaderParser::getOffset() const {
+int BMPHeaderParser::getOffset() const {
 	return this->_offset;
 }

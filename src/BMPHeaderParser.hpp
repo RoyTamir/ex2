@@ -3,14 +3,14 @@
 #include <string>
 using std::string;
 
-class BitmapHeaderParser {
+class BMPHeaderParser {
 
 	string _str;
 	int _size;
 	int _offset;
 
 public:
-	BitmapHeaderParser(string str);
+	BMPHeaderParser(string str);
 	string getStr() const;
 	int getSize() const;
 	int getOffset() const;

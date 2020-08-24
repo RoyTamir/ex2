@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BitmapHeaderParser.hpp"
+#include "BMPHeaderParser.hpp"
 #include "DIBHeaderParser.hpp"
 #include "ColorTableParser.hpp"
 #include "BitMapArrayParser.hpp"
@@ -12,7 +12,7 @@ using std::string;
 class BMPParser {
 
 	string _str;
-	BitmapHeaderParser* _BHparser;
+	BMPHeaderParser* _BHparser;
 	DIBHeaderParser* _DIBparser;
 	ColorTableParser* _CTparser;
 	BitMapArrayParser* _BMAparser;
