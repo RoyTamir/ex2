@@ -18,7 +18,7 @@ string BMPParser::getBMP() const {
 	return this->_str;
 }
 
-int main() {
-	BMPParser* parser = new BMPParser("bflcq,le,por.ewrap/riclhmulhmil,cmhoejrgruajekfnekfhnrlglkgj,rigjrimjcjfdfbjfhufhufbjanhcsn");
-	return 0;
-}
+// int main() {
+// 	BMPParser* parser = new BMPParser("bflcq,le,por.ewrap/riclhmulhmil,cmhoejrgruajekfnekfhnrlglkgj,rigjrimjcjfdfbjfhufhufbjanhcsn");
+// 	return 0;
+// }
