@@ -1,15 +1,18 @@
 #pragma once
 
+#include <cstdint>
+
+using std::uint16_t;
 class Color {
 
-	int _R;
-	int _G;
-	int _B;
+	uint16_t _R;
+	uint16_t _G;
+	uint16_t _B;
 
 public:
-	Color(int R, int G, int B);
-	int getR() const;
-	int getG() const;
-	int getB() const;
+	Color(uint16_t R, uint16_t G, uint16_t B);
+	uint16_t getR() const;
+	uint16_t getG() const;
+	uint16_t getB() const;
 	Color toGray() const;
 };

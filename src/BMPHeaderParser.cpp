@@ -8,10 +8,10 @@ BMPHeaderParser::BMPHeaderParser(const string& str) {
 	}
 
 	uint32_t* size = (uint32_t*) str.substr(LOCATION_OF_SIZE,
-			LOCATION_OF_SIZE + NUM_BYTES_OF_SIZE_AND_OFFSET - 1).data();
+			NUM_BYTES_OF_SIZE_AND_OFFSET).data();
 
 	uint32_t* offset = (uint32_t*) str.substr(LOCATION_OF_OFFSET,
-			LOCATION_OF_OFFSET + NUM_BYTES_OF_SIZE_AND_OFFSET - 1).data();
+			NUM_BYTES_OF_SIZE_AND_OFFSET).data();
 
 	this->_size = *size;
 	this->_offset = *offset;

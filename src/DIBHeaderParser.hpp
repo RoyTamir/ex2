@@ -65,7 +65,8 @@ public:
 	/**
 	 * @brief Get the Num Colors In Color Palette object.
 	 * 
-	 * @return uint32_t Number of colors in the color palette.
+	 * @return uint32_t Number of colors in the color palette (0 indicates the default
+	 * 2^n, 𝑤ℎ𝑒𝑟𝑒 𝑛 𝑖𝑠 𝑡ℎ𝑒 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑏𝑖𝑡𝑠).
 	 */
 	uint32_t getNumColorsInColorPalette() const;
 };

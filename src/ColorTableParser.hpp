@@ -2,10 +2,14 @@
 
 #include "Color.hpp"
 
+#include <cstdint>
 #include <string>
 #include <vector>
+
 using std::string;
 using std::vector;
+using std::uint32_t;
+using std::uint16_t;
 
 class ColorTableParser {
 
@@ -13,9 +17,9 @@ class ColorTableParser {
 	vector<Color> _colors;
 
 public:
-	ColorTableParser(string str);
-	string getStr() const;
-	int getColorCount() const;
-	Color getColor(int n) const;
+	ColorTableParser(const string& str);
+	const string& getStr() const;
+	uint32_t getColorCount() const;
+	Color getColor(uint32_t n) const;
 	vector<Color> getColors() const;
 };

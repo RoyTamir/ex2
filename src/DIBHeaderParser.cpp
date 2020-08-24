@@ -4,16 +4,16 @@ DIBHeaderParser::DIBHeaderParser(const string& str) {
 	this->_str = str;
 
 	uint32_t* bitmapArrayWidth = (uint32_t*) str.substr(LOCATION_OF_BITMAP_ARRAY_WIDTH,
-			LOCATION_OF_BITMAP_ARRAY_WIDTH + NUM_BYTES_OF_THE_OTHER_FIELDS- 1).data();
+			 NUM_BYTES_OF_THE_OTHER_FIELDS).data();
 
 	uint32_t* bitmapArrayHeight = (uint32_t*) str.substr(LOCATION_OF_BITMAP_ARRAY_HEIGHT,
-			LOCATION_OF_BITMAP_ARRAY_HEIGHT + NUM_BYTES_OF_THE_OTHER_FIELDS- 1).data();
+			NUM_BYTES_OF_THE_OTHER_FIELDS).data();
 
 	uint16_t* bitsPerPixel = (uint16_t*) str.substr(LOCATION_OF__BITS_PER_PIXEL,
-			LOCATION_OF__BITS_PER_PIXEL + NUM_BYTES_OF_BITS_PER_PIXEL- 1).data();
+			NUM_BYTES_OF_BITS_PER_PIXEL).data();
 
 	uint32_t* numColorsInColorPalette = (uint32_t*) str.substr(LOCATION_OF_NUM_COLORS_IN_COLOR_PALETTE,
-			LOCATION_OF_NUM_COLORS_IN_COLOR_PALETTE + NUM_BYTES_OF_THE_OTHER_FIELDS- 1).data();
+			NUM_BYTES_OF_THE_OTHER_FIELDS).data();
 
 	this->_bitmapArrayWidth = *bitmapArrayWidth;
 	this->_bitmapArrayHeight = *bitmapArrayHeight;
