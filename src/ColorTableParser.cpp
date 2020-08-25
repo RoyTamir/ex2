@@ -1,9 +1,5 @@
 #include "ColorTableParser.hpp"
 
-#include <iostream>///
-
-using namespace std;///
-
 ColorTableParser::ColorTableParser(const string& str) {
 	this->_str = str;
 	for (uint32_t i = 0; i < str.length(); ++i) {

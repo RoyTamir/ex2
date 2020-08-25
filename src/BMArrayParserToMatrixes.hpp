@@ -3,12 +3,10 @@
 #include "MatrixClass.hpp"
 #include <cstdint>
 #include <string>
-#include <memory>
 
 using std::uint16_t;
 using std::uint32_t;
 using std::string;
-
 //for 24 bits pixels
 class BMArrayParserToMatrixes {
 
@@ -32,10 +30,11 @@ public:
 
 	/**
 	 * @brief Get the Str object.
+	 * (& changing the str to support the matrixes)
 	 * 
 	 * @return const string& 
 	 */
-	const string& getStr() const;
+	const string& getStr();
 
 	/**
 	 * @brief Get the Width object.
@@ -85,4 +84,10 @@ public:
 	 * 
 	 */
 	void changeToGray();
+
+	/**
+ 	* @brief Rotating the matrixes 90 degree. 
+ 	* 
+ 	*/
+	void rotate();
 };

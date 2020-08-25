@@ -69,4 +69,11 @@ public:
 	 * 2^n, 𝑤ℎ𝑒𝑟𝑒 𝑛 𝑖𝑠 𝑡ℎ𝑒 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑏𝑖𝑡𝑠).
 	 */
 	uint32_t getNumColorsInColorPalette() const;
+
+	/**
+	 * @brief swiching bitmapArrayHeight and bitmapArrayWidth.
+	 * 
+	 * @param newHeight the new height.
+	 */
+	void switchHeightAndWidth();
 };

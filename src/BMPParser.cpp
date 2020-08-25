@@ -44,3 +44,18 @@ void BMPParser::imageToGray(){
 		cout<<"Error: BMPParser Constructor: the bits per pixel arn't 8 or 24"<<endl;
 	}
 }
+
+void BMPParser::rotateImage() {
+	uint32_t arrayOffset = this->_BHparser->getOffset();
+	this->_DIBparser->switchHeightAndWidth();
+	this->_str.replace(14, 40, this->_DIBparser->getStr());
+	if (this->_DIBparser->getBitsPerPixel() == 24) { //if 24 bits per pixel
+		this->_BMAparser->rotate();
+
+		this->_str.replace(arrayOffset, this->_str.length() - arrayOffset, this->_BMAparser->getStr());
+	} else if (this->_DIBparser->getBitsPerPixel() == 8) {//if 8 bits per pixel
+
+	} else { 
+		cout<<"Error: BMPParser Constructor: the bits per pixel arn't 8 or 24"<<endl;
+	}
+}

@@ -33,7 +33,37 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 	}
 }
 
-const string& BMArrayParserToMatrixes::getStr() const {
+const string& BMArrayParserToMatrixes::getStr() {
+	//writing the changes to the string
+	for (uint32_t row = 0; row < this->_height; ++row) {
+		//wher in the string the new row of the matrix starts
+		uint32_t starOfRow = row * (this->_width * 3 + _bytesPeddingPerRow);
+
+		//the file is starting from the bottom left of 
+		//the picture to the upper right of the picture.
+		uint32_t rowIndex = (this->_height - 1) - row;
+
+		uint16_t color;
+    	char* c;
+   		string s;
+		for (uint32_t col = 0; col < this->_width; ++col) {
+		    color = (uint16_t) (*(this->_Rmatrix))(rowIndex, col);
+    		c = (char*) &color;
+   		 	s = c;
+			this->_str.replace(starOfRow + col * 3, 1, s);
+
+		    color = (uint16_t) (*(this->_Gmatrix))(rowIndex, col);
+    		c = (char*) &color;
+   		 	s = c;
+			this->_str.replace(starOfRow + col * 3 + 1, 1, s);
+
+			color = (uint16_t) (*(this->_Bmatrix))(rowIndex, col);
+    		c = (char*) &color;
+   		 	s = c;
+			this->_str.replace(starOfRow + col * 3 + 2, 1, s);
+		}
+	}
+
 	return this->_str;
 }
 
@@ -74,33 +104,34 @@ void BMArrayParserToMatrixes::changeToGray() {
 	*(this->_Rmatrix) = gray;
 	*(this->_Gmatrix) = gray;
 	*(this->_Bmatrix) = gray;
+}
 
-	for (uint32_t row = 0; row < this->_height; ++row) {
-		//wher in the string the new row of the matrix starts
-		uint32_t starOfRow = row * (this->_width * 3 + _bytesPeddingPerRow);
+void BMArrayParserToMatrixes::rotate() {
+	//switching width & height
+	uint32_t width = this->_width;
+	uint32_t height = this->_height;
+	this->_height = width;
+	this->_width = height;
 
-		//the file is starting from the bottom left of 
-		//the picture to the upper right of the picture.
-		uint32_t rowIndex = (this->_height - 1) - row;
+	MatrixClass* newRmatrix = new MatrixClass(this->_height, this->_width);
+	MatrixClass*  newGmatrix = new MatrixClass(this->_height, this->_width);
+	MatrixClass*  newBmatrix = new MatrixClass(this->_height, this->_width);
 
-		uint16_t color;
-    	char* c;
-   		string s;
-		for (uint32_t col = 0; col < this->_width; ++col) {
-		    color = (uint16_t) (*(this->_Rmatrix))(rowIndex, col);
-    		c = (char*) &color;
-   		 	s = c;
-			this->_str.replace(starOfRow + col * 3, 1, s);
-
-		    color = (uint16_t) (*(this->_Gmatrix))(rowIndex, col);
-    		c = (char*) &color;
-   		 	s = c;
-			this->_str.replace(starOfRow + col * 3 + 1, 1, s);
-
-			color = (uint16_t) (*(this->_Bmatrix))(rowIndex, col);
-    		c = (char*) &color;
-   		 	s = c;
-			this->_str.replace(starOfRow + col * 3 + 2, 1, s);
+	//Itarating on the old matrixes and intalizing the new ones.
+	for (uint32_t row = 0; row < this->_width; ++row) {
+		for (uint32_t col = 0; col < this->_height; ++col) {
+		
+			newRmatrix->setValue(col, this->_width - row - 1,(*(this->_Rmatrix))(row, col));
+			newGmatrix->setValue(col, this->_width -  row - 1,(*(this->_Gmatrix))(row, col));
+			newBmatrix->setValue(col, this->_width -  row - 1,(*(this->_Bmatrix))(row, col));
+		
 		}
 	}
+	delete this->_Rmatrix;
+	delete this->_Gmatrix;
+	delete this->_Bmatrix;
+
+	this->_Rmatrix = newRmatrix;
+	this->_Gmatrix = newGmatrix;
+	this->_Bmatrix = newBmatrix;
 }

@@ -31,4 +31,5 @@ public:
 	BMPParser(const string& str);
 	const string& getBMP() const;
 	void imageToGray();
+	void rotateImage();
 };

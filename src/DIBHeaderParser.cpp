@@ -40,3 +40,16 @@ uint32_t DIBHeaderParser::getBitsPerPixel() const {
 uint32_t DIBHeaderParser::getNumColorsInColorPalette() const {
 	return this->_numColorsInColorPalette;
 }
+
+void DIBHeaderParser::switchHeightAndWidth(){
+	string height = this->_str.substr(LOCATION_OF_BITMAP_ARRAY_HEIGHT,
+			NUM_BYTES_OF_THE_OTHER_FIELDS);
+	string width = this->_str.substr(LOCATION_OF_BITMAP_ARRAY_WIDTH,
+			 NUM_BYTES_OF_THE_OTHER_FIELDS);
+
+	this->_str.replace(LOCATION_OF_BITMAP_ARRAY_HEIGHT,
+			NUM_BYTES_OF_THE_OTHER_FIELDS, width);
+	
+	this->_str.replace(LOCATION_OF_BITMAP_ARRAY_WIDTH,
+			 NUM_BYTES_OF_THE_OTHER_FIELDS, height);
+}
