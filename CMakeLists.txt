@@ -16,7 +16,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 link_directories(${CMAKE_SOURCE_DIR}/src)
 
 file(GLOB My_Source_Files src/*.cpp)
-add_executable(ex2 main.cpp ${My_Source_Files})
+add_executable(ex2 tester2.cpp ${My_Source_Files})
 target_link_libraries(ex2 matrix)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

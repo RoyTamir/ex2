@@ -1,4 +1,11 @@
+#pragma once
+
+#include "file_reading.hpp"
+#include  "BMPParser.hpp"
 #include <string>
+#include <memory>
+using std::string;
+using std::make_unique;
 
 namespace testing {
 namespace bmp {

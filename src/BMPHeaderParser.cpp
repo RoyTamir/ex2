@@ -4,7 +4,7 @@ BMPHeaderParser::BMPHeaderParser(const string& str) {
 	this->_str = str;
 
 	if(str[0] != 'B' && str[1] != 'M'){
-		cout<<"This isn't a BMP file"<<endl;
+		cout<<"Error: BMPHeaderParser Constructor: This isn't a BMP file"<<endl;
 	}
 
 	uint32_t* size = (uint32_t*) str.substr(LOCATION_OF_SIZE,
