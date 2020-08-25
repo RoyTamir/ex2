@@ -74,4 +74,33 @@ void BMArrayParserToMatrixes::changeToGray() {
 	*(this->_Rmatrix) = gray;
 	*(this->_Gmatrix) = gray;
 	*(this->_Bmatrix) = gray;
+
+	for (uint32_t row = 0; row < this->_height; ++row) {
+		//wher in the string the new row of the matrix starts
+		uint32_t starOfRow = row * (this->_width * 3 + _bytesPeddingPerRow);
+
+		//the file is starting from the bottom left of 
+		//the picture to the upper right of the picture.
+		uint32_t rowIndex = (this->_height - 1) - row;
+
+		uint16_t color;
+    	char* c;
+   		string s;
+		for (uint32_t col = 0; col < this->_width; ++col) {
+		    color = (uint16_t) (*(this->_Rmatrix))(rowIndex, col);
+    		c = (char*) &color;
+   		 	s = c;
+			this->_str.replace(starOfRow + col * 3, 1, s);
+
+		    color = (uint16_t) (*(this->_Gmatrix))(rowIndex, col);
+    		c = (char*) &color;
+   		 	s = c;
+			this->_str.replace(starOfRow + col * 3 + 1, 1, s);
+
+			color = (uint16_t) (*(this->_Bmatrix))(rowIndex, col);
+    		c = (char*) &color;
+   		 	s = c;
+			this->_str.replace(starOfRow + col * 3 + 2, 1, s);
+		}
+	}
 }

@@ -35,6 +35,10 @@ int main() {
     cout<<"color in gray:"<<bitMatrix24.getBitMapR()(0, 0)<<"r,"<<bitMatrix24.getBitMapG()(0, 0)
     <<"g,"<<bitMatrix24.getBitMapB()(0, 0)<<"b"<<endl;
 
+    //tryin to write
+    lana.replace(header.getOffset(), lana.length(), bitMatrix24.getStr());
+    writeFileContent("result.bmp", lana);
+
     cout<<"*****************image (8 bits):*****************"<<endl;
 
     string image = readFileContent("image.bmp");
