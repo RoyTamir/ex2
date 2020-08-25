@@ -4,6 +4,7 @@
 #include "DIBHeaderParser.hpp"
 #include "ColorTableParser.hpp"
 #include "BMArrayParserToMatrixes.hpp"
+#include "BMPParser.hpp"
 #include "Color.hpp"
 
 #include <string>

@@ -4,9 +4,9 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 	this->_str = str;
 	this->_width = width;
 	this->_height = height;
-	this->_Rmatrix = new MatrixClass(width, height);
-	this->_Gmatrix = new MatrixClass(width, height);
-	this->_Bmatrix = new MatrixClass(width, height);
+	this->_Rmatrix = new MatrixClass(height, width);
+	this->_Gmatrix = new MatrixClass(height, width);
+	this->_Bmatrix = new MatrixClass(height, width);
 
 	//calculating how much padding for width *3 (=nub bits to pixel) to be 4*int
 	this->_bytesPeddingPerRow = (4 - ((width * 3) % 4))%4;
@@ -60,4 +60,19 @@ MatrixClass& BMArrayParserToMatrixes::getBitMapG() const {
 
 MatrixClass& BMArrayParserToMatrixes::getBitMapB() const {
     return *(this->_Bmatrix);
+}
+
+void BMArrayParserToMatrixes::changeToGray() {
+	*(this->_Rmatrix) *= 0.2126;
+	*(this->_Gmatrix) *= 0.7152;
+	*(this->_Bmatrix) *= 0.0722;
+
+	MatrixClass gray(this->_height, this->_width);
+	gray += *(this->_Rmatrix);
+	gray += *(this->_Gmatrix);
+	gray += *(this->_Bmatrix);
+
+	*(this->_Rmatrix) = gray;
+	*(this->_Gmatrix) = gray;
+	*(this->_Bmatrix) = gray;
 }

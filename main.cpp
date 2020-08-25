@@ -30,6 +30,10 @@ int main() {
     cout<<"color:"<<bitMatrix.getBitMapR()(0, 0)<<"r,"<<bitMatrix.getBitMapG()(0, 0)
     <<"g,"<<bitMatrix.getBitMapB()(0, 0)<<"b"<<endl;
 
+    bitMatrix.changeToGray();
+    cout<<"color:"<<bitMatrix.getBitMapR()(0, 0)<<"r,"<<bitMatrix.getBitMapG()(0, 0)
+    <<"g,"<<bitMatrix.getBitMapB()(0, 0)<<"b"<<endl;
+
     cout<<"*****************image (8 bits):*****************"<<endl;
 
     string image = readFileContent("image.bmp");

@@ -78,4 +78,11 @@ public:
 	 * @return MatrixClass& the B pixel'S value -matrix of the BitmapArray.
 	 */
 	MatrixClass& getBitMapB() const;
+
+	/**
+	 * @brief Changes the matrixes to have
+	 * together the RGB of the a gray color.
+	 * 
+	 */
+	void changeToGray();
 };
