@@ -10,7 +10,6 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 
 	//calculating how much padding for width *3 (=nub bits to pixel) to be 4*int
 	this->_bytesPeddingPerRow = (4 - ((width * 3) % 4))%4;
-	cout<<_bytesPeddingPerRow<<endl;
 
 	for (uint32_t row = 0; row < height; ++row) {
 		//wher in the string the new row of the matrix starts
