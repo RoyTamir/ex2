@@ -1,29 +1,30 @@
-#include <string>
-using std::string;
-
 #include "BMPHeaderParser.hpp"
 
-BMPHeaderParser::BMPHeaderParser(string str) {
+BMPHeaderParser::BMPHeaderParser(const string& str) {
 	this->_str = str;
 
-	string sizeString = str.substr(LOCATION_OF_SIZE,
-			LOCATION_OF_SIZE + NUM_BYTES_OF_SIZE_AND_OFFSET - 1);
+	if(str[0] != 'B' && str[1] != 'M'){
+		cout<<"This isn't a BMP file"<<endl;
+	}
 
-	string offsetString = str.substr(LOCATION_OF_OFFSET,
-			LOCATION_OF_OFFSET + NUM_BYTES_OF_SIZE_AND_OFFSET - 1);
+	uint32_t* size = (uint32_t*) str.substr(LOCATION_OF_SIZE,
+			NUM_BYTES_OF_SIZE_AND_OFFSET).data();
 
-	this->_size = stoi(sizeString);
-	this->_offset = stoi(offsetString);
+	uint32_t* offset = (uint32_t*) str.substr(LOCATION_OF_OFFSET,
+			NUM_BYTES_OF_SIZE_AND_OFFSET).data();
+
+	this->_size = *size;
+	this->_offset = *offset;
 }
 
-string BMPHeaderParser::getStr() const {
+const string& BMPHeaderParser::getStr() const {
 	return this->_str;
 }
 
-int BMPHeaderParser::getSize() const {
+uint32_t BMPHeaderParser::getSize() const {
 	return this->_size;
 }
 
-int BMPHeaderParser::getOffset() const {
+uint32_t BMPHeaderParser::getOffset() const {
 	return this->_offset;
 }

@@ -1,45 +1,42 @@
 #include "DIBHeaderParser.hpp"
 
-#include <string>
-using std::string;
-
-DIBHeaderParser::DIBHeaderParser(string str) {
+DIBHeaderParser::DIBHeaderParser(const string& str) {
 	this->_str = str;
-	this->_bitsPerPixel = str[10];
-	int width = 0, height = 0, horRes = 0, verRes = 0, power = 1;
-    for (int i = 0; i < 4; i++) {
-        width += str[4 + i] * power;
-        height += str[8 + i] * power;
-		horRes += str[24 + i] * power;
-		verRes += str[28 + i] * power;
-        power *= 256;
-    }
-    this->_bitArrayWidth = width;
-    this->_bitArrayHeight = height;
-	this->_horizontalResolution = horRes;
-	this->_verticalResolution = verRes;
+
+	uint32_t* bitmapArrayWidth = (uint32_t*) str.substr(LOCATION_OF_BITMAP_ARRAY_WIDTH,
+			 NUM_BYTES_OF_THE_OTHER_FIELDS).data();
+
+	uint32_t* bitmapArrayHeight = (uint32_t*) str.substr(LOCATION_OF_BITMAP_ARRAY_HEIGHT,
+			NUM_BYTES_OF_THE_OTHER_FIELDS).data();
+
+	uint16_t* bitsPerPixel = (uint16_t*) str.substr(LOCATION_OF__BITS_PER_PIXEL,
+			NUM_BYTES_OF_BITS_PER_PIXEL).data();
+
+	uint32_t* numColorsInColorPalette = (uint32_t*) str.substr(LOCATION_OF_NUM_COLORS_IN_COLOR_PALETTE,
+			NUM_BYTES_OF_THE_OTHER_FIELDS).data();
+
+	this->_bitmapArrayWidth = *bitmapArrayWidth;
+	this->_bitmapArrayHeight = *bitmapArrayHeight;
+	this->_bitsPerPixel = *bitsPerPixel;
+	this->_numColorsInColorPalette = *numColorsInColorPalette;
 }
 
-string DIBHeaderParser::getStr() const {
+const string& DIBHeaderParser::getStr() const {
 	return this->_str;
 }
 
-int DIBHeaderParser::getBitArrayWidth() const {
-	return this->_bitArrayWidth;
+uint32_t DIBHeaderParser::getBitArrayWidth() const {
+	return this->_bitmapArrayWidth;
 }
 
-int DIBHeaderParser::getBitArrayHeight() const {
-	return this->_bitArrayHeight;
+uint32_t DIBHeaderParser::getBitArrayHeight() const {
+	return this->_bitmapArrayHeight;
 }
 
-int DIBHeaderParser::getBitsPerPixel() const {
+uint32_t DIBHeaderParser::getBitsPerPixel() const {
 	return this->_bitsPerPixel;
 }
 
-int DIBHeaderParser::getHorizontalResolution() const {
-	return this->_horizontalResolution;
-}
-
-int DIBHeaderParser::getVerticalResolution() const {
-	return this->_verticalResolution;
+uint32_t DIBHeaderParser::getNumColorsInColorPalette() const {
+	return this->_numColorsInColorPalette;
 }

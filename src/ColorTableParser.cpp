@@ -1,26 +1,27 @@
 #include "ColorTableParser.hpp"
 
-#include <string>
-#include <vector>
-using std::string;
-using std::vector;
-
-ColorTableParser::ColorTableParser(string str) {
+ColorTableParser::ColorTableParser(const string& str) {
 	this->_str = str;
-	for (string::iterator it = this->_str.begin(); it != this->_str.end(); it++) {
-		this->_colors.push_back(*(new Color(*(it++), *(it++), *(it++))));
+	for (uint32_t i = 0; i < str.length(); ++i) {
+		uint16_t* r = (uint16_t*) str.substr(i, 1).data();
+		++i;
+		uint16_t* g = (uint16_t*) str.substr(i, 1).data();
+		++i;
+		uint16_t* b = (uint16_t*) str.substr(i, 1).data();
+		++i;
+		this->_colors.push_back(Color(*r, *g, *b));
 	}
 }
 
-string ColorTableParser::getStr() const {
+const string& ColorTableParser::getStr() const {
 	return this->_str;
 }
 
-int ColorTableParser::getColorCount() const {
+uint32_t ColorTableParser::getColorCount() const {
 	return this->_colors.size();
 }
 
-Color ColorTableParser::getColor(int n) const {
+Color ColorTableParser::getColor(uint32_t n) const {
 	return this->_colors[n];
 }
 
