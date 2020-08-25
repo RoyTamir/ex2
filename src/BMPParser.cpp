@@ -54,7 +54,9 @@ void BMPParser::rotateImage() {
 
 		this->_str.replace(arrayOffset, this->_str.length() - arrayOffset, this->_BMAparser->getStr());
 	} else if (this->_DIBparser->getBitsPerPixel() == 8) {//if 8 bits per pixel
+	this->_BMAColorparser->rotate();
 
+	this->_str.replace(arrayOffset, this->_str.length() - arrayOffset, this->_BMAColorparser->getStr());
 	} else { 
 		cout<<"Error: BMPParser Constructor: the bits per pixel arn't 8 or 24"<<endl;
 	}

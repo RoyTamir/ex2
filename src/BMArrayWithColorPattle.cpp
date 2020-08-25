@@ -54,5 +54,48 @@ void BMArrayWithColorPattle::changeToGray() {
 		}
 	}
 }
- 
+
+void BMArrayWithColorPattle::rotate() {
+		//switching width & height
+	uint32_t width = this->_width;
+	uint32_t height = this->_height;
+	this->_height = width;
+	this->_width = height;
+
+	MatrixClass* newMatrix = new MatrixClass(this->_height, this->_width);
+
+	//Itarating on the old matrixes and intalizing the new ones.
+	for (uint32_t row = 0; row < this->_width; ++row) {
+		for (uint32_t col = 0; col < this->_height; ++col) {
+		
+			newMatrix->setValue(col, this->_width - row - 1,(*(this->_matrix))(row, col));
+		
+		}
+	}
+	delete this->_matrix;
+
+	this->_matrix = newMatrix;
+
+	//writing it to the str:
+
+	for (uint32_t row = 0; row < this->_height; ++row) {
+		//where in the string the new row of the matrix starts
+		uint32_t starOfRow = row * (this->_width + _bytesPeddingPerRow);
+
+		//the file is starting from the bottom left of 
+		//the picture to the upper right of the picture.
+		uint32_t rowIndex = (this->_height - 1) - row;
+
+		uint16_t color;
+    	char* c;
+   		string s;
+		for (uint32_t col = 0; col < this->_width; ++col) {
+			color = (uint16_t) (*(this->_matrix))(rowIndex, col);
+    		c = (char*) &color;
+   		 	s = c;
+			//startOfRaw in the matrix, col = num of pixel in the raw before (*1 = this size in the string)
+			this->_str.replace(starOfRow + col , 1, s);
+		}
+	}
+}
 

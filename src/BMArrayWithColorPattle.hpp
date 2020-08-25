@@ -72,4 +72,10 @@ public:
 	 * 
 	 */
 	void changeToGray();
+
+	/**
+ 	* @brief Rotating the matrix 90 degree. 
+ 	* 
+ 	*/
+	void rotate();
 };
