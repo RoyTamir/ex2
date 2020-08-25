@@ -1,6 +1,6 @@
-#include "BitMapArrayParser.hpp"
+#include "BMArrayParserToMatrixes.hpp"
 
-BitMapArrayParser::BitMapArrayParser(string str, int width, int height, vector<Color> colors) {
+BMArrayParserToMatrixes::BMArrayParserToMatrixes(string str, int width, int height, vector<Color> colors) {
 	this->_str = str;
 	this->_width = width;
 	this->_height = height;
@@ -29,7 +29,7 @@ BitMapArrayParser::BitMapArrayParser(string str, int width, int height, vector<C
 	}
 }
 /*
-BitMapArrayParser::BitMapArrayParser(string str, int width, int height) {
+BMArrayParserToMatrixes::BMArrayParserToMatrixes(string str, int width, int height) {
     this->_str = str;
     this->_width = width;
     this->_height = height;
@@ -47,26 +47,26 @@ BitMapArrayParser::BitMapArrayParser(string str, int width, int height) {
 }
 */
 
-string BitMapArrayParser::getStr() const {
+string BMArrayParserToMatrixes::getStr() const {
 	return this->_str;
 }
 
-int BitMapArrayParser::getWidth() const {
+int BMArrayParserToMatrixes::getWidth() const {
 	return this->_width;
 }
 
-int BitMapArrayParser::getHeight() const {
+int BMArrayParserToMatrixes::getHeight() const {
 	return this->_height;
 }
 
-MatrixClass& BitMapArrayParser::getBitMapR() const {
+MatrixClass& BMArrayParserToMatrixes::getBitMapR() const {
 	return *(this->_Rmatrix);
 }
 
-MatrixClass& BitMapArrayParser::getBitMapG() const {
+MatrixClass& BMArrayParserToMatrixes::getBitMapG() const {
     return *(this->_Gmatrix);
 }
 
-MatrixClass& BitMapArrayParser::getBitMapB() const {
+MatrixClass& BMArrayParserToMatrixes::getBitMapB() const {
     return *(this->_Bmatrix);
 }

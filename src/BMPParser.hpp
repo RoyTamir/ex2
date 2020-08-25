@@ -3,7 +3,7 @@
 #include "BMPHeaderParser.hpp"
 #include "DIBHeaderParser.hpp"
 #include "ColorTableParser.hpp"
-#include "BitMapArrayParser.hpp"
+#include "BMArrayParserToMatrixes.hpp"
 #include "Color.hpp"
 
 #include <string>
@@ -15,7 +15,7 @@ class BMPParser {
 	BMPHeaderParser* _BHparser;
 	DIBHeaderParser* _DIBparser;
 	ColorTableParser* _CTparser;
-	BitMapArrayParser* _BMAparser;
+	BMArrayParserToMatrixes* _BMAparser;
 
 public:
 	BMPParser(string str);

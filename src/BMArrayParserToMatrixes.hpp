@@ -8,7 +8,7 @@ using std::string;
 #include <vector>
 using std::vector;
 
-class BitMapArrayParser {
+class BMArrayParserToMatrixes {
 
 	string _str;
 	int _width;
@@ -19,8 +19,8 @@ class BitMapArrayParser {
 	vector<Color> _colors;
 
 public:
-	BitMapArrayParser(string str, int width, int height, vector<Color> colors);
-	//BitMapArrayParser(string str, int width, int height);
+	BMArrayParserToMatrixes(string str, int width, int height, vector<Color> colors);
+	//BMArrayParserToMatrixes(string str, int width, int height);
 	string getStr() const;
 
 	int getWidth() const;
