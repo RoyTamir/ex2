@@ -31,11 +31,13 @@ vector<Color*> ColorTableParser::getColors() const {
 
 void ColorTableParser::changeColorToGray(uint32_t n) {
 	this->_colors.at(n)->toGray();
-
 	uint16_t color;
     char* c;
    	string s;
 
+ 	//then because we did "this->_colors.at(n)->toGray()"
+	// R = 0 G = 0 B = 0 so it's black and no need change
+	if(this->_colors.at(n)->getR() != 0){
 	//each color takes 4 bits that the first 3 are: R G B.
 	color = (uint16_t) this->_colors.at(n)->getR();
     c = (char*) &color;
@@ -50,6 +52,7 @@ void ColorTableParser::changeColorToGray(uint32_t n) {
     c = (char*) &color;
    	s = c;
 	this->_str.replace(n*4 + 2, 1, s); //n*4 the loction the bit starts from.
+	}
 }
 
 ColorTableParser::~ColorTableParser(){

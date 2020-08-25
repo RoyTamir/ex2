@@ -21,10 +21,19 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 		for (uint32_t col = 0; col < width; ++col) {
 			//startOfRaw in the matrix, col = num of pixel in the raw before (*3 = his size in the string)
 			uint16_t* r = (uint16_t*) str.substr(starOfRow + col * 3, 1).data();
+			if(*r == 0){
+			this->_zero = str.substr(starOfRow + col * 3, 1);
+			}
 
 			uint16_t* g = (uint16_t*) str.substr(starOfRow + col * 3 + 1, 1).data();
+			if(*r == 0){
+			this->_zero = str.substr(starOfRow + col * 3 + 1, 1);
+			}
 
 			uint16_t* b = (uint16_t*) str.substr(starOfRow + col * 3 + 2, 1).data();
+			if(*r == 0){
+			this->_zero = str.substr(starOfRow + col * 3 + 2, 1);
+			}
 
 			this->_Rmatrix->setValue(rowIndex, col, *r);
 			this->_Gmatrix->setValue(rowIndex, col, *g);
@@ -46,20 +55,36 @@ const string& BMArrayParserToMatrixes::getStr() {
 		uint16_t color;
     	char* c;
    		string s;
+		//Note: if we have 0 in one of the var we check
+		// it means we got a zero when we read (and intalized _zero)
+		//(if the 0 is from changeToGray() it means there were a place were
+		//R=0, G=0, B=0
 		for (uint32_t col = 0; col < this->_width; ++col) {
-		    color = (uint16_t) (*(this->_Rmatrix))(rowIndex, col);
-    		c = (char*) &color;
-   		 	s = c;
+			if ((*(this->_Rmatrix))(rowIndex, col) != 0) {
+				color = (uint16_t) (*(this->_Rmatrix))(rowIndex, col);
+				c = (char*) &color;
+   		 		s = c;
+			}else{//0 is special to write
+   		 		s = this->_zero;	
+			}
 			this->_str.replace(starOfRow + col * 3, 1, s);
 
-		    color = (uint16_t) (*(this->_Gmatrix))(rowIndex, col);
-    		c = (char*) &color;
-   		 	s = c;
+			if ((*(this->_Gmatrix))(rowIndex, col) != 0) {
+				color = (uint16_t) (*(this->_Gmatrix))(rowIndex, col);
+				c = (char*) &color;
+   		 		s = c;
+			}else{//0 is special to write
+   		 		s = this->_zero;	
+			}
 			this->_str.replace(starOfRow + col * 3 + 1, 1, s);
 
-			color = (uint16_t) (*(this->_Bmatrix))(rowIndex, col);
-    		c = (char*) &color;
-   		 	s = c;
+			if ((*(this->_Bmatrix))(rowIndex, col) != 0) {
+				color = (uint16_t) (*(this->_Bmatrix))(rowIndex, col);
+				c = (char*) &color;
+   		 		s = c;
+			}else{//0 is special to write
+   		 		s = this->_zero;	
+			}
 			this->_str.replace(starOfRow + col * 3 + 2, 1, s);
 		}
 	}

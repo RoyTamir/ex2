@@ -9,6 +9,9 @@ using std::uint32_t;
 using std::string;
 //for 24 bits pixels
 class BMArrayParserToMatrixes {
+	//if we read a string that 
+	//represent 0 we will save her (writing 0 is special).
+	string _zero;
 
 	string _str;
 	uint32_t _width;

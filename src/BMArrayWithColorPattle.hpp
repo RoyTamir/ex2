@@ -12,7 +12,10 @@ using std::string;
 
 //for 8 bits pixels
 class BMArrayWithColorPattle {
-
+	//if we read a string that 
+	//represent 0 we will save her (writing 0 is special).
+	string _zero;
+	
 	string _str;
 	uint32_t _width;
 	uint32_t _height;

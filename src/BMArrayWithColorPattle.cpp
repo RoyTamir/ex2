@@ -21,7 +21,9 @@ BMArrayWithColorPattle::BMArrayWithColorPattle(const string& str, uint32_t width
 		for (uint32_t col = 0; col < width; ++col) {
 			//startOfRaw in the matrix, col = num of pixel in the raw before (*1 = this size in the string)
 			uint16_t* colorIndex = (uint16_t*) str.substr(starOfRow + col , 1).data();
-
+			if(*colorIndex == 0){
+			this->_zero = str.substr(starOfRow + col , 1);
+			}
 			this->_matrix->setValue(rowIndex, col, *colorIndex);
 		}
 	}
@@ -90,10 +92,13 @@ void BMArrayWithColorPattle::rotate() {
     	char* c;
    		string s;
 		for (uint32_t col = 0; col < this->_width; ++col) {
-			color = (uint16_t) (*(this->_matrix))(rowIndex, col);
-    		c = (char*) &color;
-   		 	s = c;
-			//startOfRaw in the matrix, col = num of pixel in the raw before (*1 = this size in the string)
+			if ((*(this->_matrix))(rowIndex, col) != 0) {
+				color = (uint16_t) (*(this->_matrix))(rowIndex, col);
+				c = (char*) &color;
+   		 		s = c;
+			}else{//0 is special to write
+   		 		s = this->_zero;	
+			}
 			this->_str.replace(starOfRow + col , 1, s);
 		}
 	}
