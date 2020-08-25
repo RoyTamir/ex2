@@ -1,6 +1,6 @@
-## ex2
+# ex2
 
-# part 1 - wrapper of ex1:
+## part 1 - wrapper of ex1:
 
 We made an ErrorCodeException exception class that has an ErrorCode field.
 The exception gets thrown whenever the returned ErrorCode of a function from ex1 isn't 0 (success).
@@ -10,7 +10,7 @@ We used delegation to get all of the original functionality of ex1.
 All of MatrixClass's functions are operators except for constructors, destructors, getHeight,
 getHeight, and setValue.
 
-# part 2 - BMP file parsing:
+## part 2 - BMP file parsing:
 
 We created a BMPParser class.
 BMPParser's fields are a string (the text in the BMP file) and parsers for each of the BMP's parts.
