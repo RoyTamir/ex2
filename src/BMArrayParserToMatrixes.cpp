@@ -1,62 +1,56 @@
 #include "BMArrayParserToMatrixes.hpp"
 
-BMArrayParserToMatrixes::BMArrayParserToMatrixes(string str, int width, int height, vector<Color> colors) {
+#include <iostream>/////
+
+using namespace std;/////
+BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t width, uint32_t height) {
 	this->_str = str;
 	this->_width = width;
 	this->_height = height;
-	this->_colors = colors;
-	this->_Rmatrix = new MatrixClass(this->_width, this->_height);
-	this->_Gmatrix = new MatrixClass(this->_width, this->_height);
-	this->_Bmatrix = new MatrixClass(this->_width, this->_height);
-	string::iterator it = this->_str.begin();
-	if (this->_colors.size()) {
-		for (int i = 0; i < this->_height; i++) {
-			for (int j = 0; j < this->_width; j++, it++) {
-				Color c = this->_colors[*it];
-				this->_Rmatrix->setValue(i, j, c.getR());
-				this->_Gmatrix->setValue(i, j, c.getG());
-				this->_Bmatrix->setValue(i, j, c.getB());
-			}
+	this->_Rmatrix = new MatrixClass(width, height);
+	this->_Gmatrix = new MatrixClass(width, height);
+	this->_Bmatrix = new MatrixClass(width, height);
+
+	//calculating how much padding for width *3 (=nub bits to pixel) to be 4*int
+	this->_bytesPeddingPerRow = (4 - ((width * 3) % 4))%4;
+	cout<<_bytesPeddingPerRow<<endl;
+
+	for (uint32_t row = 0; row < height; ++row) {
+		//wher in the string the new row of the matrix starts
+		uint32_t starOfRow = row * (width * 3 + _bytesPeddingPerRow);
+
+		//the file is starting from the bottom left of 
+		//the picture to the upper right of the picture.
+		uint32_t rowIndex = (height - 1) - row;
+		for (uint32_t col = 0; col < width; ++col) {
+			//startOfRaw in the matrix, col = num of pixel in the raw before (*3 = his size in the string)
+			uint16_t* r = (uint16_t*) str.substr(starOfRow + col * 3, 1).data();
+
+			uint16_t* g = (uint16_t*) str.substr(starOfRow + col * 3 + 1, 1).data();
+
+			uint16_t* b = (uint16_t*) str.substr(starOfRow + col * 3 + 2, 1).data();
+
+			this->_Rmatrix->setValue(rowIndex, col, *r);
+			this->_Gmatrix->setValue(rowIndex, col, *g);
+			this->_Bmatrix->setValue(rowIndex, col, *b);
 		}
-	} else {
-		for (int i = 0; i < this->_height; i++) {
-     	   for (int j = 0; j < this->_width; j++, it++) {
-        	    this->_Rmatrix->setValue(i, j, *(it++));
-            	this->_Gmatrix->setValue(i, j, *(it++));
-            	this->_Bmatrix->setValue(i, j, *(it++));
-        	}
-    	}
 	}
 }
-/*
-BMArrayParserToMatrixes::BMArrayParserToMatrixes(string str, int width, int height) {
-    this->_str = str;
-    this->_width = width;
-    this->_height = height;
-	this->_Rmatrix = new MatrixClass(this->_width, this->_height);
-    this->_Gmatrix = new MatrixClass(this->_width, this->_height);
-    this->_Bmatrix = new MatrixClass(this->_width, this->_height);
-	string::iterator it = this->_str.begin();
-	for (int i = 0; i < this->_height; i++) {
-        for (int j = 0; j < this->_width; j++, it++) {
-            this->_Rmatrix->setValue(i, j, *(it++));
-            this->_Gmatrix->setValue(i, j, *(it++));
-            this->_Bmatrix->setValue(i, j, *(it++));
-        }
-    }
-}
-*/
 
-string BMArrayParserToMatrixes::getStr() const {
+const string& BMArrayParserToMatrixes::getStr() const {
 	return this->_str;
 }
 
-int BMArrayParserToMatrixes::getWidth() const {
+uint32_t BMArrayParserToMatrixes::getWidth() const {
 	return this->_width;
 }
 
-int BMArrayParserToMatrixes::getHeight() const {
+uint32_t BMArrayParserToMatrixes::getHeight() const {
 	return this->_height;
+}
+
+uint16_t BMArrayParserToMatrixes::getbytesPeddingPerRow() const {
+	return this->_bytesPeddingPerRow;
 }
 
 MatrixClass& BMArrayParserToMatrixes::getBitMapR() const {

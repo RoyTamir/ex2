@@ -1,33 +1,35 @@
 #pragma once
 
 #include "MatrixClass.hpp"
-#include "Color.hpp"
-
+#include <cstdint>
 #include <string>
-using std::string;
-#include <vector>
-using std::vector;
+#include <memory>
 
+using std::uint16_t;
+using std::uint32_t;
+using std::string;
+
+//for 24 bits pixels
 class BMArrayParserToMatrixes {
 
 	string _str;
-	int _width;
-	int _height;
+	uint32_t _width;
+	uint32_t _height;
+	uint16_t _bytesPeddingPerRow; //max 3
 	MatrixClass* _Rmatrix;
 	MatrixClass* _Bmatrix;
 	MatrixClass* _Gmatrix;
-	vector<Color> _colors;
 
 public:
-	BMArrayParserToMatrixes(string str, int width, int height, vector<Color> colors);
-	//BMArrayParserToMatrixes(string str, int width, int height);
-	string getStr() const;
+	BMArrayParserToMatrixes(const string& str, uint32_t width, uint32_t height);
 
-	int getWidth() const;
+	const string& getStr() const;
 
-	int getHeight() const;
+	uint32_t getWidth() const;
 
-	MatrixClass& getBitMap() const;
+	uint32_t getHeight() const;
+
+	uint16_t getbytesPeddingPerRow() const;
 
 	MatrixClass& getBitMapR() const;
 

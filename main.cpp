@@ -2,6 +2,7 @@
 #include "BMPHeaderParser.hpp"
 #include "DIBHeaderParser.hpp"
 #include "ColorTableParser.hpp"
+#include "BMArrayParserToMatrixes.hpp"
 #include <iostream>
 #include <string>
 #include <cstdint>
@@ -9,6 +10,7 @@
 using namespace std;
 
 int main() {
+    try{
     cout<<"*****************lana (24 bits):*****************"<<endl;
     string lana = readFileContent("lena-color.bmp");
 
@@ -22,6 +24,11 @@ int main() {
     cout<<DIBheader.getBitArrayHeight()<<endl;
     cout<<DIBheader.getBitsPerPixel()<<endl;
     cout<<DIBheader.getNumColorsInColorPalette()<<endl;
+
+    BMArrayParserToMatrixes bitMatrix(lana.substr(header.getOffset(), lana.length()),
+     DIBheader.getBitArrayWidth(), DIBheader.getBitArrayHeight());
+    cout<<"color:"<<bitMatrix.getBitMapR()(0, 0)<<"r,"<<bitMatrix.getBitMapG()(0, 0)
+    <<"g,"<<bitMatrix.getBitMapB()(0, 0)<<"b"<<endl;
 
     cout<<"*****************image (8 bits):*****************"<<endl;
 
@@ -42,5 +49,8 @@ int main() {
 
     cout<<"color:"<<colorTable.getColor(2).getR()<<"r,"<<colorTable.getColor(2).getG()
     <<"g,"<<colorTable.getColor(5).getB()<<"b"<<endl;
+    }catch(const ErrorCodeException& e) {
+        e.printErrorMessage();
+    }
 	return 0;
 }
