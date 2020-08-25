@@ -65,4 +65,11 @@ public:
 	 * @return MatrixClass& the R pixel'S value -matrix of the BitmapArray.
 	 */
 	MatrixClass& getBitMap() const;
+
+	/**
+	 * @brief Changes the Color Table Parser to gray
+	 * as needed in the matrix.
+	 * 
+	 */
+	void changeToGray();
 };

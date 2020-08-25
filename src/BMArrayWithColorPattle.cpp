@@ -1,7 +1,7 @@
 #include "BMArrayWithColorPattle.hpp"
 
 BMArrayWithColorPattle::BMArrayWithColorPattle(const string& str, uint32_t width,
-            uint32_t height, ColorTableParser* colorTable){
+        uint32_t height, ColorTableParser* colorTable){
     this->_str = str;
 	this->_width = width;
 	this->_height = height;
@@ -45,6 +45,14 @@ uint16_t BMArrayWithColorPattle::getbytesPeddingPerRow() const {
 
 MatrixClass& BMArrayWithColorPattle::getBitMap() const {
 	return *(this->_matrix);
+}
+
+void BMArrayWithColorPattle::changeToGray() {
+	for(uint32_t row = 0; row < this->_height; ++row){
+		for (uint32_t col = 0; col < this->_width; ++col) {
+			this->_colorTable->changeColorToGray((uint32_t) ((*(this->_matrix))(row, col)));
+		}
+	}
 }
  
 

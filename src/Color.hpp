@@ -34,9 +34,8 @@ public:
 	uint16_t getB() const;
 
 	/**
-	 * @brief Returns the suitable gray Color for this Color.
+	 * @brief Turn this color to gray Color.
 	 * 
-	 * @return Color the suitable gray Color for this Color.
 	 */
-	Color toGray() const;
+	void toGray();
 };

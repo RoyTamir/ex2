@@ -18,7 +18,9 @@ uint16_t Color::getB() const {
 	return this->_B;
 }
 
-Color Color::toGray() const {
+void Color::toGray() {
 	uint16_t gray = (uint16_t) (0.2126 * this->_R + 0.7152 * this->_G + 0.0722 * this->_B);
-	return *(new Color(gray, gray, gray));
+	this->_R = gray;
+	this->_G = gray;
+	this->_B = gray;
 }

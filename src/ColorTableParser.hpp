@@ -14,7 +14,7 @@ using std::uint16_t;
 class ColorTableParser {
 
 	string _str;
-	vector<Color> _colors;
+	vector<Color*> _colors;
 
 public:
 	/**
@@ -55,5 +55,18 @@ public:
 	 * @return vector<Color> the vector that represents the
 	 * Color Palette.
 	 */
-	vector<Color> getColors() const;
+	vector<Color*> getColors() const;
+
+	/**
+	 * @brief changing the specific color to gray.
+	 * 
+	 * @param n the index of the color in the vector<Color>. 
+	 */
+	void changeColorToGray(uint32_t n);
+
+	/**
+	 * @brief Destroy the Color Table Parser object
+	 * 
+	 */
+	~ColorTableParser();
 };
