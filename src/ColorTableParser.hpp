@@ -9,8 +9,8 @@
 namespace BMPClasses {
 class ColorTableParser {
 
-	std::string _str;
-	std::vector<Color*> _colors;
+	std::string m_str;
+	std::vector<Color*> m_colors;
 
 public:
 	/**

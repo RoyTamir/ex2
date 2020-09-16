@@ -7,7 +7,7 @@
 namespace MatrixClasses {
 class ErrorCodeException{
 //Fields
-const ErrorCode _errorCode;
+const ErrorCode m_errorCode;
 
 //methods
 public:

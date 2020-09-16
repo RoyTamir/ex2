@@ -9,7 +9,7 @@
 namespace MatrixClasses {
 class MatrixClass{
 //Fields
-PMatrix _matrix;
+PMatrix m_matrix;
 
 //methods
 public:

@@ -5,9 +5,9 @@
 namespace BMPClasses {
 class Color {
 
-	std::uint16_t _R;
-	std::uint16_t _G;
-	std::uint16_t _B;
+	std::uint16_t m_R;
+	std::uint16_t m_G;
+	std::uint16_t m_B;
 
 public:
 	Color(std::uint16_t R, std::uint16_t G, std::uint16_t B);

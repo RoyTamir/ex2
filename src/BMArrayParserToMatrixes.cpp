@@ -7,19 +7,19 @@ using std::uint32_t;
 using std::string;
 
 BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t width, uint32_t height) {
-	this->_str = str;
-	this->_width = width;
-	this->_height = height;
-	this->_Rmatrix = new MatrixClass(height, width);
-	this->_Gmatrix = new MatrixClass(height, width);
-	this->_Bmatrix = new MatrixClass(height, width);
+	this->m_str = str;
+	this->m_width = width;
+	this->m_height = height;
+	this->m_Rmatrix = new MatrixClass(height, width);
+	this->m_Gmatrix = new MatrixClass(height, width);
+	this->m_Bmatrix = new MatrixClass(height, width);
 
 	//calculating how much padding for width *3 (=nub bits to pixel) to be 4*int
-	this->_bytesPeddingPerRow = (4 - ((width * 3) % 4))%4;
+	this->m_bytesPeddingPerRow = (4 - ((width * 3) % 4))%4;
 
 	for (uint32_t row = 0; row < height; ++row) {
 		//wher in the string the new row of the matrix starts
-		uint32_t starOfRow = row * (width * 3 + _bytesPeddingPerRow);
+		uint32_t starOfRow = row * (width * 3 + m_bytesPeddingPerRow);
 
 		//the file is starting from the bottom left of 
 		//the picture to the upper right of the picture.
@@ -28,35 +28,35 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 			//startOfRaw in the matrix, col = num of pixel in the raw before (*3 = his size in the string)
 			uint16_t* r = (uint16_t*) str.substr(starOfRow + col * 3, 1).data();
 			if(*r == 0){
-			this->_zero = str.substr(starOfRow + col * 3, 1);
+			this->m_zero = str.substr(starOfRow + col * 3, 1);
 			}
 
 			uint16_t* g = (uint16_t*) str.substr(starOfRow + col * 3 + 1, 1).data();
 			if(*r == 0){
-			this->_zero = str.substr(starOfRow + col * 3 + 1, 1);
+			this->m_zero = str.substr(starOfRow + col * 3 + 1, 1);
 			}
 
 			uint16_t* b = (uint16_t*) str.substr(starOfRow + col * 3 + 2, 1).data();
 			if(*r == 0){
-			this->_zero = str.substr(starOfRow + col * 3 + 2, 1);
+			this->m_zero = str.substr(starOfRow + col * 3 + 2, 1);
 			}
 
-			this->_Rmatrix->setValue(rowIndex, col, *r);
-			this->_Gmatrix->setValue(rowIndex, col, *g);
-			this->_Bmatrix->setValue(rowIndex, col, *b);
+			this->m_Rmatrix->setValue(rowIndex, col, *r);
+			this->m_Gmatrix->setValue(rowIndex, col, *g);
+			this->m_Bmatrix->setValue(rowIndex, col, *b);
 		}
 	}
 }
 
 const string& BMArrayParserToMatrixes::getStr() {
 	//writing the changes to the string
-	for (uint32_t row = 0; row < this->_height; ++row) {
+	for (uint32_t row = 0; row < this->m_height; ++row) {
 		//wher in the string the new row of the matrix starts
-		uint32_t starOfRow = row * (this->_width * 3 + _bytesPeddingPerRow);
+		uint32_t starOfRow = row * (this->m_width * 3 + m_bytesPeddingPerRow);
 
 		//the file is starting from the bottom left of 
 		//the picture to the upper right of the picture.
-		uint32_t rowIndex = (this->_height - 1) - row;
+		uint32_t rowIndex = (this->m_height - 1) - row;
 
 		uint16_t color;
     	char* c;
@@ -65,104 +65,104 @@ const string& BMArrayParserToMatrixes::getStr() {
 		// it means we got a zero when we read (and intalized _zero)
 		//(if the 0 is from changeToGray() it means there were a place were
 		//R=0, G=0, B=0
-		for (uint32_t col = 0; col < this->_width; ++col) {
-			if ((*(this->_Rmatrix))(rowIndex, col) != 0) {
-				color = (uint16_t) (*(this->_Rmatrix))(rowIndex, col);
+		for (uint32_t col = 0; col < this->m_width; ++col) {
+			if ((*(this->m_Rmatrix))(rowIndex, col) != 0) {
+				color = (uint16_t) (*(this->m_Rmatrix))(rowIndex, col);
 				c = (char*) &color;
    		 		s = c;
 			}else{//0 is special to write
-   		 		s = this->_zero;	
+   		 		s = this->m_zero;	
 			}
-			this->_str.replace(starOfRow + col * 3, 1, s);
+			this->m_str.replace(starOfRow + col * 3, 1, s);
 
-			if ((*(this->_Gmatrix))(rowIndex, col) != 0) {
-				color = (uint16_t) (*(this->_Gmatrix))(rowIndex, col);
+			if ((*(this->m_Gmatrix))(rowIndex, col) != 0) {
+				color = (uint16_t) (*(this->m_Gmatrix))(rowIndex, col);
 				c = (char*) &color;
    		 		s = c;
 			}else{//0 is special to write
-   		 		s = this->_zero;	
+   		 		s = this->m_zero;	
 			}
-			this->_str.replace(starOfRow + col * 3 + 1, 1, s);
+			this->m_str.replace(starOfRow + col * 3 + 1, 1, s);
 
-			if ((*(this->_Bmatrix))(rowIndex, col) != 0) {
-				color = (uint16_t) (*(this->_Bmatrix))(rowIndex, col);
+			if ((*(this->m_Bmatrix))(rowIndex, col) != 0) {
+				color = (uint16_t) (*(this->m_Bmatrix))(rowIndex, col);
 				c = (char*) &color;
    		 		s = c;
 			}else{//0 is special to write
-   		 		s = this->_zero;	
+   		 		s = this->m_zero;	
 			}
-			this->_str.replace(starOfRow + col * 3 + 2, 1, s);
+			this->m_str.replace(starOfRow + col * 3 + 2, 1, s);
 		}
 	}
 
-	return this->_str;
+	return this->m_str;
 }
 
 uint32_t BMArrayParserToMatrixes::getWidth() const {
-	return this->_width;
+	return this->m_width;
 }
 
 uint32_t BMArrayParserToMatrixes::getHeight() const {
-	return this->_height;
+	return this->m_height;
 }
 
 uint16_t BMArrayParserToMatrixes::getbytesPeddingPerRow() const {
-	return this->_bytesPeddingPerRow;
+	return this->m_bytesPeddingPerRow;
 }
 
 MatrixClass& BMArrayParserToMatrixes::getBitMapR() const {
-	return *(this->_Rmatrix);
+	return *(this->m_Rmatrix);
 }
 
 MatrixClass& BMArrayParserToMatrixes::getBitMapG() const {
-    return *(this->_Gmatrix);
+    return *(this->m_Gmatrix);
 }
 
 MatrixClass& BMArrayParserToMatrixes::getBitMapB() const {
-    return *(this->_Bmatrix);
+    return *(this->m_Bmatrix);
 }
 
 void BMArrayParserToMatrixes::changeToGray() {
-	*(this->_Rmatrix) *= 0.2126;
-	*(this->_Gmatrix) *= 0.7152;
-	*(this->_Bmatrix) *= 0.0722;
+	*(this->m_Rmatrix) *= 0.2126;
+	*(this->m_Gmatrix) *= 0.7152;
+	*(this->m_Bmatrix) *= 0.0722;
 
-	MatrixClass gray(this->_height, this->_width);
-	gray += *(this->_Rmatrix);
-	gray += *(this->_Gmatrix);
-	gray += *(this->_Bmatrix);
+	MatrixClass gray(this->m_height, this->m_width);
+	gray += *(this->m_Rmatrix);
+	gray += *(this->m_Gmatrix);
+	gray += *(this->m_Bmatrix);
 
-	*(this->_Rmatrix) = gray;
-	*(this->_Gmatrix) = gray;
-	*(this->_Bmatrix) = gray;
+	*(this->m_Rmatrix) = gray;
+	*(this->m_Gmatrix) = gray;
+	*(this->m_Bmatrix) = gray;
 }
 
 void BMArrayParserToMatrixes::rotate() {
 	//switching width & height
-	uint32_t width = this->_width;
-	uint32_t height = this->_height;
-	this->_height = width;
-	this->_width = height;
+	uint32_t width = this->m_width;
+	uint32_t height = this->m_height;
+	this->m_height = width;
+	this->m_width = height;
 
-	MatrixClass* newRmatrix = new MatrixClass(this->_height, this->_width);
-	MatrixClass*  newGmatrix = new MatrixClass(this->_height, this->_width);
-	MatrixClass*  newBmatrix = new MatrixClass(this->_height, this->_width);
+	MatrixClass* newRmatrix = new MatrixClass(this->m_height, this->m_width);
+	MatrixClass*  newGmatrix = new MatrixClass(this->m_height, this->m_width);
+	MatrixClass*  newBmatrix = new MatrixClass(this->m_height, this->m_width);
 
 	//Itarating on the old matrixes and intalizing the new ones.
-	for (uint32_t row = 0; row < this->_width; ++row) {
-		for (uint32_t col = 0; col < this->_height; ++col) {
+	for (uint32_t row = 0; row < this->m_width; ++row) {
+		for (uint32_t col = 0; col < this->m_height; ++col) {
 		
-			newRmatrix->setValue(col, this->_width - row - 1,(*(this->_Rmatrix))(row, col));
-			newGmatrix->setValue(col, this->_width -  row - 1,(*(this->_Gmatrix))(row, col));
-			newBmatrix->setValue(col, this->_width -  row - 1,(*(this->_Bmatrix))(row, col));
+			newRmatrix->setValue(col, this->m_width - row - 1,(*(this->m_Rmatrix))(row, col));
+			newGmatrix->setValue(col, this->m_width -  row - 1,(*(this->m_Gmatrix))(row, col));
+			newBmatrix->setValue(col, this->m_width -  row - 1,(*(this->m_Bmatrix))(row, col));
 		
 		}
 	}
-	delete this->_Rmatrix;
-	delete this->_Gmatrix;
-	delete this->_Bmatrix;
+	delete this->m_Rmatrix;
+	delete this->m_Gmatrix;
+	delete this->m_Bmatrix;
 
-	this->_Rmatrix = newRmatrix;
-	this->_Gmatrix = newGmatrix;
-	this->_Bmatrix = newBmatrix;
+	this->m_Rmatrix = newRmatrix;
+	this->m_Gmatrix = newGmatrix;
+	this->m_Bmatrix = newBmatrix;
 }

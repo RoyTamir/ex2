@@ -9,15 +9,15 @@ namespace BMPClasses {
 class BMArrayParserToMatrixes {
 	//if we read a string that 
 	//represent 0 we will save her (writing 0 is special).
-	std::string _zero;
+	std::string m_zero;
 
-	std::string _str;
-	std::uint32_t _width;
-	std::uint32_t _height;
-	std::uint16_t _bytesPeddingPerRow; //max 3
-	MatrixClasses::MatrixClass* _Rmatrix;
-	MatrixClasses::MatrixClass* _Bmatrix;
-	MatrixClasses::MatrixClass* _Gmatrix;
+	std::string m_str;
+	std::uint32_t m_width;
+	std::uint32_t m_height;
+	std::uint16_t m_bytesPeddingPerRow; //max 3
+	MatrixClasses::MatrixClass* m_Rmatrix;
+	MatrixClasses::MatrixClass* m_Bmatrix;
+	MatrixClasses::MatrixClass* m_Gmatrix;
 
 public:
 	/**

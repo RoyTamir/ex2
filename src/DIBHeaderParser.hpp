@@ -14,11 +14,11 @@
 namespace BMPClasses {
 class DIBHeaderParser {
 
-	std::string _str;
-	std::uint32_t _bitmapArrayWidth;
-	std::uint32_t _bitmapArrayHeight;
-	std::uint16_t _bitsPerPixel;
-	std::uint32_t _numColorsInColorPalette;
+	std::string m_str;
+	std::uint32_t m_bitmapArrayWidth;
+	std::uint32_t m_bitmapArrayHeight;
+	std::uint16_t m_bitsPerPixel;
+	std::uint32_t m_numColorsInColorPalette;
 
 
 public:

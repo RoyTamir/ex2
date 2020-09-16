@@ -4,27 +4,27 @@ using namespace BMPClasses;
 using std::uint16_t;
 
 Color::Color(uint16_t R, uint16_t G, uint16_t B) {
-	this->_R = R;
-	this->_G = G;
-	this->_B = B;
+	this->m_R = R;
+	this->m_G = G;
+	this->m_B = B;
 }
 
 uint16_t Color::getR() const {
-	return this->_R;
+	return this->m_R;
 }
 
 uint16_t Color::getG() const {
-	return this->_G;
+	return this->m_G;
 }
 
 uint16_t Color::getB() const {
-	return this->_B;
+	return this->m_B;
 }
 
 void Color::toGray() {
-	uint16_t gray = (uint16_t) (0.2126 * this->_R + 0.7152 * this->_G + 0.0722 * this->_B);
+	uint16_t gray = (uint16_t) (0.2126 * this->m_R + 0.7152 * this->m_G + 0.0722 * this->m_B);
 
-	this->_R = gray;
-	this->_G = gray;
-	this->_B = gray;
+	this->m_R = gray;
+	this->m_G = gray;
+	this->m_B = gray;
 }

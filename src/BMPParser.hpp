@@ -15,12 +15,12 @@
 namespace BMPClasses {
 class BMPParser {
 
-	std::string _str;
-	BMPHeaderParser* _BHparser = nullptr;
-	DIBHeaderParser* _DIBparser = nullptr;
-	ColorTableParser* _CTparser = nullptr;//for 8 bits per pixel
-	BMArrayParserToMatrixes* _BMAparser = nullptr;//for 24 bits per pixel
-	BMArrayWithColorPattle* _BMAColorparser = nullptr;//for 8 bits per pixel
+	std::string m_str;
+	BMPHeaderParser* m_BHparser = nullptr;
+	DIBHeaderParser* m_DIBparser = nullptr;
+	ColorTableParser* m_CTparser = nullptr;//for 8 bits per pixel
+	BMArrayParserToMatrixes* m_BMAparser = nullptr;//for 24 bits per pixel
+	BMArrayWithColorPattle* m_BMAColorparser = nullptr;//for 8 bits per pixel
 
 public:
 	BMPParser(const std::string& str);

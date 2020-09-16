@@ -6,7 +6,7 @@ using std::uint32_t;
 using std::uint16_t;
 
 DIBHeaderParser::DIBHeaderParser(const string& str) {
-	this->_str = str;
+	this->m_str = str;
 
 	uint32_t* bitmapArrayWidth = (uint32_t*) str.substr(LOCATION_OF_BITMAP_ARRAY_WIDTH,
 			 NUM_BYTES_OF_THE_OTHER_FIELDS).data();
@@ -20,41 +20,41 @@ DIBHeaderParser::DIBHeaderParser(const string& str) {
 	uint32_t* numColorsInColorPalette = (uint32_t*) str.substr(LOCATION_OF_NUM_COLORS_IN_COLOR_PALETTE,
 			NUM_BYTES_OF_THE_OTHER_FIELDS).data();
 
-	this->_bitmapArrayWidth = *bitmapArrayWidth;
-	this->_bitmapArrayHeight = *bitmapArrayHeight;
-	this->_bitsPerPixel = *bitsPerPixel;
-	this->_numColorsInColorPalette = *numColorsInColorPalette;
+	this->m_bitmapArrayWidth = *bitmapArrayWidth;
+	this->m_bitmapArrayHeight = *bitmapArrayHeight;
+	this->m_bitsPerPixel = *bitsPerPixel;
+	this->m_numColorsInColorPalette = *numColorsInColorPalette;
 }
 
 const string& DIBHeaderParser::getStr() const {
-	return this->_str;
+	return this->m_str;
 }
 
 uint32_t DIBHeaderParser::getBitArrayWidth() const {
-	return this->_bitmapArrayWidth;
+	return this->m_bitmapArrayWidth;
 }
 
 uint32_t DIBHeaderParser::getBitArrayHeight() const {
-	return this->_bitmapArrayHeight;
+	return this->m_bitmapArrayHeight;
 }
 
 uint32_t DIBHeaderParser::getBitsPerPixel() const {
-	return this->_bitsPerPixel;
+	return this->m_bitsPerPixel;
 }
 
 uint32_t DIBHeaderParser::getNumColorsInColorPalette() const {
-	return this->_numColorsInColorPalette;
+	return this->m_numColorsInColorPalette;
 }
 
 void DIBHeaderParser::switchHeightAndWidth(){
-	string height = this->_str.substr(LOCATION_OF_BITMAP_ARRAY_HEIGHT,
+	string height = this->m_str.substr(LOCATION_OF_BITMAP_ARRAY_HEIGHT,
 			NUM_BYTES_OF_THE_OTHER_FIELDS);
-	string width = this->_str.substr(LOCATION_OF_BITMAP_ARRAY_WIDTH,
+	string width = this->m_str.substr(LOCATION_OF_BITMAP_ARRAY_WIDTH,
 			 NUM_BYTES_OF_THE_OTHER_FIELDS);
 
-	this->_str.replace(LOCATION_OF_BITMAP_ARRAY_HEIGHT,
+	this->m_str.replace(LOCATION_OF_BITMAP_ARRAY_HEIGHT,
 			NUM_BYTES_OF_THE_OTHER_FIELDS, width);
 	
-	this->_str.replace(LOCATION_OF_BITMAP_ARRAY_WIDTH,
+	this->m_str.replace(LOCATION_OF_BITMAP_ARRAY_WIDTH,
 			 NUM_BYTES_OF_THE_OTHER_FIELDS, height);
 }

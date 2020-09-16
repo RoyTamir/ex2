@@ -12,9 +12,9 @@ namespace BMPClasses {
 class BMPHeaderParser {
 
 //Fields
-	std::string _str;
-	std::uint32_t _size;
-	std::uint32_t  _offset;
+	std::string m_str;
+	std::uint32_t m_size;
+	std::uint32_t  m_offset;
 public:
 	/**
 	 * @brief Construct a new BMPHeaderParser object.
