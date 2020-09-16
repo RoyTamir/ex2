@@ -4,10 +4,6 @@
 #include <string>
 #include <iostream>
 
-#define NUM_BYTES_OF_SIZE_AND_OFFSET 4
-#define LOCATION_OF_SIZE 2
-#define LOCATION_OF_OFFSET 10
-
 namespace BMPClasses {
 class BMPHeaderParser {
 
@@ -16,6 +12,11 @@ class BMPHeaderParser {
 	std::uint32_t m_size;
 	std::uint32_t  m_offset;
 public:
+
+	static constexpr int NUM_BYTES_OF_SIZE_AND_OFFSET = 4;
+	static constexpr int LOCATION_OF_SIZE = 2;
+	static constexpr int LOCATION_OF_OFFSET = 10;
+
 	/**
 	 * @brief Construct a new BMPHeaderParser object.
 	 * 

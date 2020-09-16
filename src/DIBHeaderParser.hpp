@@ -3,14 +3,6 @@
 #include <cstdint>
 #include <string>
 
-#define NUM_BYTES_OF_BITS_PER_PIXEL 2
-#define NUM_BYTES_OF_THE_OTHER_FIELDS 4
-
-#define LOCATION_OF_BITMAP_ARRAY_WIDTH 4
-#define LOCATION_OF_BITMAP_ARRAY_HEIGHT 8
-#define LOCATION_OF__BITS_PER_PIXEL 14
-#define LOCATION_OF_NUM_COLORS_IN_COLOR_PALETTE 32
-
 namespace BMPClasses {
 class DIBHeaderParser {
 
@@ -22,6 +14,15 @@ class DIBHeaderParser {
 
 
 public:
+
+	static constexpr int NUM_BYTES_OF_BITS_PER_PIXEL = 2;
+	static constexpr int NUM_BYTES_OF_THE_OTHER_FIELDS = 4;
+
+	static constexpr int LOCATION_OF_BITMAP_ARRAY_WIDTH = 4;
+	static constexpr int LOCATION_OF_BITMAP_ARRAY_HEIGHT = 8;
+	static constexpr int LOCATION_OF__BITS_PER_PIXEL = 14;
+	static constexpr int LOCATION_OF_NUM_COLORS_IN_COLOR_PALETTE = 32;
+
 	/**
 	 * @brief Construct a new DIBHeaderParser object.
 	 * 
