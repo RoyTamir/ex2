@@ -12,15 +12,9 @@
 #include <iostream>
 #include <string>
 
-
-using std::string;
-using std::cout;
-using std::endl;
-using std::uint32_t;
-
 class BMPParser {
 
-	string _str;
+	std::string _str;
 	BMPHeaderParser* _BHparser = nullptr;
 	DIBHeaderParser* _DIBparser = nullptr;
 	ColorTableParser* _CTparser = nullptr;//for 8 bits per pixel
@@ -28,8 +22,8 @@ class BMPParser {
 	BMArrayWithColorPattle* _BMAColorparser = nullptr;//for 8 bits per pixel
 
 public:
-	BMPParser(const string& str);
-	const string& getBMP() const;
+	BMPParser(const std::string& str);
+	const std::string& getBMP() const;
 	void imageToGray();
 	void rotateImage();
 };

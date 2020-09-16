@@ -1,5 +1,9 @@
 #include "BMArrayParserToMatrixes.hpp"
 
+using std::uint16_t;
+using std::uint32_t;
+using std::string;
+
 BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t width, uint32_t height) {
 	this->_str = str;
 	this->_width = width;

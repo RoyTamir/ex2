@@ -1,5 +1,10 @@
 #include "BMPHeaderParser.hpp"
 
+using std::cout;
+using std::endl;
+using std::string;
+using std::uint32_t;
+
 BMPHeaderParser::BMPHeaderParser(const string& str) {
 	this->_str = str;
 

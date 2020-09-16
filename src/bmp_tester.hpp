@@ -4,8 +4,6 @@
 #include  "BMPParser.hpp"
 #include <string>
 #include <memory>
-using std::string;
-using std::make_unique;
 
 namespace testing {
 namespace bmp {

@@ -1,5 +1,8 @@
 #include "ErrorCodeException.hpp"
 
+using std::endl;
+using std::cout;
+
 //Implementing methods
 	ErrorCodeException::ErrorCodeException(const ErrorCode er) : _errorCode(er){}
 

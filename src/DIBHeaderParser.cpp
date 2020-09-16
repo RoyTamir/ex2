@@ -1,5 +1,9 @@
 #include "DIBHeaderParser.hpp"
 
+using std::string;
+using std::uint32_t;
+using std::uint16_t;
+
 DIBHeaderParser::DIBHeaderParser(const string& str) {
 	this->_str = str;
 

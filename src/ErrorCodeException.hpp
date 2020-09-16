@@ -4,9 +4,6 @@
 
 #include <iostream>
 
-using std::endl;
-using std::cout;
-
 class ErrorCodeException{
 //Fields
 const ErrorCode _errorCode;

@@ -1,7 +1,9 @@
 #include "BMPParser.hpp"
 
-#include <string>
 using std::string;
+using std::cout;
+using std::endl;
+using std::uint32_t;
 
 BMPParser::BMPParser(const string& str) {
 	this->_str = str;

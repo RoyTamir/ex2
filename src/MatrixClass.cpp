@@ -1,5 +1,8 @@
 #include "MatrixClass.hpp"
 
+using std::uint32_t;
+using std::endl;
+
 //Implementing methods
 	MatrixClass::MatrixClass(uint32_t height, uint32_t width){
         //creating the matrix & throwing exception if needed

@@ -1,5 +1,9 @@
 #include "BMArrayWithColorPattle.hpp"
 
+using std::uint16_t;
+using std::uint32_t;
+using std::string;
+
 BMArrayWithColorPattle::BMArrayWithColorPattle(const string& str, uint32_t width,
         uint32_t height, ColorTableParser* colorTable){
     this->_str = str;

@@ -6,15 +6,10 @@
 #include <string>
 #include <vector>
 
-using std::string;
-using std::vector;
-using std::uint32_t;
-using std::uint16_t;
-
 class ColorTableParser {
 
-	string _str;
-	vector<Color*> _colors;
+	std::string _str;
+	std::vector<Color*> _colors;
 
 public:
 	/**
@@ -23,7 +18,7 @@ public:
 	 * @param str the string from the BMP file
 	 *  that refers to Color Palette.
 	 */
-	ColorTableParser(const string& str);
+	ColorTableParser(const std::string& str);
 
 	/**
 	 * @brief Get the Str object.
@@ -31,7 +26,7 @@ public:
 	 * @return const string& the string from the BMP file
 	 *  that refers to Color Palette.
 	 */
-	const string& getStr() const;
+	const std::string& getStr() const;
 
 	/**
 	 * @brief Get the Color Count object.
@@ -39,7 +34,7 @@ public:
 	 * @return uint32_t the size of the Color Palette
 	 *  (num of colors).
 	 */
-	uint32_t getColorCount() const;
+	std::uint32_t getColorCount() const;
 
 	/**
 	 * @brief Get the Color object.
@@ -47,7 +42,7 @@ public:
 	 * @param n 
 	 * @return Color the color in the n location.
 	 */
-	Color getColor(uint32_t n) const;
+	Color getColor(std::uint32_t n) const;
 
 	/**
 	 * @brief Get the Colors object.
@@ -55,14 +50,14 @@ public:
 	 * @return vector<Color> the vector that represents the
 	 * Color Palette.
 	 */
-	vector<Color*> getColors() const;
+	std::vector<Color*> getColors() const;
 
 	/**
 	 * @brief changing the specific color to gray.
 	 * 
 	 * @param n the index of the color in the vector<Color>. 
 	 */
-	void changeColorToGray(uint32_t n);
+	void changeColorToGray(std::uint32_t n);
 
 	/**
 	 * @brief Destroy the Color Table Parser object

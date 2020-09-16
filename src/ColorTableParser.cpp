@@ -1,5 +1,10 @@
 #include "ColorTableParser.hpp"
 
+using std::string;
+using std::vector;
+using std::uint32_t;
+using std::uint16_t;
+
 ColorTableParser::ColorTableParser(const string& str) {
 	this->_str = str;
 	for (uint32_t i = 0; i < str.length(); ++i) {

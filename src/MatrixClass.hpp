@@ -4,7 +4,7 @@
 
 #include <memory>
 #include <cstdint>
-using std::uint32_t;
+#include <iostream>
 
 class MatrixClass{
 //Fields
@@ -18,7 +18,7 @@ public:
 	 * @param[in] height Height of the matrix.
 	 * @param[in] width Width of the matrix.
 	 */
-	MatrixClass(uint32_t height, uint32_t width);
+	MatrixClass(std::uint32_t height, std::uint32_t width);
 
 	/**
 	 * @brief Constructor, a new Matrix Class object from matrix.
@@ -40,14 +40,14 @@ public:
 	 *
 	 * @return uint32_t
 	 */
-	uint32_t getHeight() const;
+	std::uint32_t getHeight() const;
 
 	/**
 	 * @brief Returns width of matrix.
 	 *
 	 * @return uint32_t
 	 */
-	uint32_t getWidth() const;
+	std::uint32_t getWidth() const;
 
 	/**
 	 * @brief Sets a value to the matrix.
@@ -57,7 +57,7 @@ public:
 	 * @param[in] colIndex Column index of the value to setF.
 	 * @param[in] value Value to set.
 	 */
-	void setValue(uint32_t rowIndex, uint32_t colIndex,
+	void setValue(std::uint32_t rowIndex, std::uint32_t colIndex,
                            double value);
 
 	/**
@@ -67,7 +67,7 @@ public:
 	 * @param[in] colIndex Column index of the value to get.
 	 * @return double.
 	 */
-	double operator()(uint32_t rowIndex, uint32_t colIndex) const;
+	double operator()(std::uint32_t rowIndex, std::uint32_t colIndex) const;
 
 	/**
 	 * @brief Addition opperator (adds to the left side the right side 
