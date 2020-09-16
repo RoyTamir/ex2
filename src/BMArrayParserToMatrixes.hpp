@@ -7,6 +7,7 @@
 namespace BMPClasses {
 //for 24 bits pixels
 class BMArrayParserToMatrixes {
+private:
 	//if we read a string that 
 	//represent 0 we will save her (writing 0 is special).
 	std::string m_zero;
@@ -19,7 +20,15 @@ class BMArrayParserToMatrixes {
 	MatrixClasses::MatrixClass* m_Bmatrix;
 	MatrixClasses::MatrixClass* m_Gmatrix;
 
-public:
+//private methods
+
+/**
+ * @brief writing the changes to the string.
+ * 
+ */
+void writeChangesToStr();
+
+public://public methods
 	/**
 	 * @brief Construct a new BMArrayParserToMatrixes object.
 	 * 
@@ -35,7 +44,7 @@ public:
 	 * 
 	 * @return const string& the string that represent the bmp array.
 	 */
-	const std::string& getStr();
+	const std::string& getStr() const;
 
 	/**
 	 * @brief Get the Width object.

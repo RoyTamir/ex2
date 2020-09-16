@@ -43,6 +43,6 @@ public:
      * 
      * @param er the ErrorCode.
      */
-    static void throwErrorIfNeeded(ErrorCode er);
+    static void throwErrorIfNeeded(const ErrorCode er);
 };
 }

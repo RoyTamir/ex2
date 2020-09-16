@@ -15,7 +15,7 @@ using std::cout;
 		cout<<error_getErrorMessage(m_errorCode)<<endl; 
 	}
 
-  void ErrorCodeException::throwErrorIfNeeded(ErrorCode er){
+  void ErrorCodeException::throwErrorIfNeeded(const ErrorCode er){
     //checking success
     ErrorCodeException exeption = ErrorCodeException(er);
     if(!exeption.isSuccess()) {
