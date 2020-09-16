@@ -79,17 +79,17 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 			//startOfRaw in the matrix, col = num of pixel in the raw before (*3 = his size in the string)
 			uint16_t* r = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3, 1).data()));
 			if(*r == 0){
-			this->m_zero = str.substr(starOfRow + col * 3, 1);
+				this->m_zero = str.substr(starOfRow + col * 3, 1);
 			}
 
 			uint16_t* g = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3 + 1, 1).data()));
 			if(*r == 0){
-			this->m_zero = str.substr(starOfRow + col * 3 + 1, 1);
+				this->m_zero = str.substr(starOfRow + col * 3 + 1, 1);
 			}
 
 			uint16_t* b = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3 + 2, 1).data()));
 			if(*r == 0){
-			this->m_zero = str.substr(starOfRow + col * 3 + 2, 1);
+				this->m_zero = str.substr(starOfRow + col * 3 + 2, 1);
 			}
 
 			this->m_Rmatrix->setValue(rowIndex, col, *r);

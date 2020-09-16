@@ -36,13 +36,13 @@ void BMPParser::imageToGray(){
 	
 	uint32_t arrayOffset = this->m_BHparser->getOffset();
 	if (this->m_DIBparser->getBitsPerPixel() == 24) { //if 24 bits per pixel
-	this->m_BMAparser->changeToGray();
+		this->m_BMAparser->changeToGray();
 
-	this->m_str.replace(arrayOffset, this->m_str.length() - arrayOffset, this->m_BMAparser->getStr());
+		this->m_str.replace(arrayOffset, this->m_str.length() - arrayOffset, this->m_BMAparser->getStr());
 	} else if (this->m_DIBparser->getBitsPerPixel() == 8) {//if 8 bits per pixel
-	this->m_BMAColorparser->changeToGray();
+		this->m_BMAColorparser->changeToGray();
 
-	this->m_str.replace(54, 1024, this->m_CTparser->getStr());
+		this->m_str.replace(54, 1024, this->m_CTparser->getStr());
 	} else { 
 		cout<<"Error: BMPParser Constructor: the bits per pixel arn't 8 or 24"<<endl;
 	}
@@ -57,9 +57,9 @@ void BMPParser::rotateImage() {
 
 		this->m_str.replace(arrayOffset, this->m_str.length() - arrayOffset, this->m_BMAparser->getStr());
 	} else if (this->m_DIBparser->getBitsPerPixel() == 8) {//if 8 bits per pixel
-	this->m_BMAColorparser->rotate();
+		this->m_BMAColorparser->rotate();
 
-	this->m_str.replace(arrayOffset, this->m_str.length() - arrayOffset, this->m_BMAColorparser->getStr());
+		this->m_str.replace(arrayOffset, this->m_str.length() - arrayOffset, this->m_BMAColorparser->getStr());
 	} else {
 		cout<<"Error: BMPParser Constructor: the bits per pixel arn't 8 or 24"<<endl;
 	}

@@ -31,9 +31,9 @@ BMArrayWithColorPattle::BMArrayWithColorPattle(const string& str, uint32_t width
 			//startOfRaw in the matrix, col = num of pixel in the raw before (*1 = this size in the string)
 			uint16_t* colorIndex = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col , 1).data()));
 			if(*colorIndex == 0){
-			this->m_zero = str.substr(starOfRow + col , 1);
+				this->m_zero = str.substr(starOfRow + col , 1);
 			}
-			this->m_matrix->setValue(rowIndex, col, *colorIndex);
+				this->m_matrix->setValue(rowIndex, col, *colorIndex);
 		}
 	}
 }

@@ -44,19 +44,19 @@ void ColorTableParser::changeColorToGray(uint32_t n) {
  	//then because we did "this->_colors.at(n)->toGray()"
 	// R = 0 G = 0 B = 0 so it's black and no need change
 	if(this->m_colors.at(n)->getR() != 0){
-	//each color takes 4 bits that the first 3 are: R G B.
-	color = static_cast<uint16_t>(this->m_colors.at(n)->getR());
-    c = reinterpret_cast<char*>(&color);
-   	s = c;
-	this->m_str.replace(n*4, 1, s); //n*4 the loction the bit starts from.
-	color = static_cast<uint16_t>(this->m_colors.at(n)->getG());
-    c = reinterpret_cast<char*>(&color);
-   	s = c;
-	this->m_str.replace(n*4 + 1, 1, s); //n*4 the loction the bit starts from.
+		//each color takes 4 bits that the first 3 are: R G B.
+		color = static_cast<uint16_t>(this->m_colors.at(n)->getR());
+    	c = reinterpret_cast<char*>(&color);
+   		s = c;
+		this->m_str.replace(n*4, 1, s); //n*4 the loction the bit starts from.
+		color = static_cast<uint16_t>(this->m_colors.at(n)->getG());
+    	c = reinterpret_cast<char*>(&color);
+   		s = c;
+		this->m_str.replace(n*4 + 1, 1, s); //n*4 the loction the bit starts from.
 
-	color = static_cast<uint16_t>(this->m_colors.at(n)->getB());
-    c = reinterpret_cast<char*>(&color);
-   	s = c;
-	this->m_str.replace(n*4 + 2, 1, s); //n*4 the loction the bit starts from.
+		color = static_cast<uint16_t>(this->m_colors.at(n)->getB());
+    	c = reinterpret_cast<char*>(&color);
+   		s = c;
+		this->m_str.replace(n*4 + 2, 1, s); //n*4 the loction the bit starts from.
 	}
 }
