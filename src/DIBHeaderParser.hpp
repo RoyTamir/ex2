@@ -15,13 +15,13 @@ class DIBHeaderParser {
 
 public:
 
-	static constexpr int NUM_BYTES_OF_BITS_PER_PIXEL = 2;
-	static constexpr int NUM_BYTES_OF_THE_OTHER_FIELDS = 4;
+	static constexpr int BYTES_PER_PIXEL = 2;
+	static constexpr int BYTES_FOR_OTHER_FIELDS = 4;
 
-	static constexpr int LOCATION_OF_BITMAP_ARRAY_WIDTH = 4;
-	static constexpr int LOCATION_OF_BITMAP_ARRAY_HEIGHT = 8;
-	static constexpr int LOCATION_OF__BITS_PER_PIXEL = 14;
-	static constexpr int LOCATION_OF_NUM_COLORS_IN_COLOR_PALETTE = 32;
+	static constexpr int BMP_ARRAY_WIDTH_LOCATION = 4;
+	static constexpr int BMP_ARRAY_HEIGHT_LOCATION = 8;
+	static constexpr int BITS_PER_PIXEL_LOCATION = 14;
+	static constexpr int NUM_COLORS_IN_COLOR_PALETTE_LOCATION = 32;
 
 	/**
 	 * @brief Construct a new DIBHeaderParser object.

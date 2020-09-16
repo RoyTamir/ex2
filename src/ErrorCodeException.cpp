@@ -2,7 +2,7 @@
 
 using namespace MatrixClasses;
 using std::endl;
-using std::cout;
+using std::cerr;
 
 //Implementing methods
 	ErrorCodeException::ErrorCodeException(const ErrorCode er) : m_errorCode(er){}
@@ -12,7 +12,7 @@ using std::cout;
   }
 
   void ErrorCodeException::printErrorMessage() const{
-		cout<<error_getErrorMessage(m_errorCode)<<endl; 
+		cerr<<error_getErrorMessage(m_errorCode)<<endl; 
 	}
 
   void ErrorCodeException::throwErrorIfNeeded(const ErrorCode er){

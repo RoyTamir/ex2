@@ -1,8 +1,6 @@
 #include "BMPHeaderParser.hpp"
 
 using namespace BMPClasses;
-using std::cout;
-using std::endl;
 using std::string;
 using std::uint32_t;
 
@@ -10,14 +8,14 @@ BMPHeaderParser::BMPHeaderParser(const string& str) {
 	this->m_str = str;
 
 	if(str[0] != 'B' && str[1] != 'M'){
-		cout<<"Error: BMPHeaderParser Constructor: This isn't a BMP file"<<endl;
+		throw std::runtime_error("Error: BMPHeaderParser Constructor: This isn't a BMP file");
 	}
 
-	uint32_t* size = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(LOCATION_OF_SIZE,
-			NUM_BYTES_OF_SIZE_AND_OFFSET).data()));
+	uint32_t* size = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(SIZE_LOCATION,
+			BYTES_IN_SIZE).data()));
 
-	uint32_t* offset = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(LOCATION_OF_OFFSET,
-			NUM_BYTES_OF_SIZE_AND_OFFSET).data()));
+	uint32_t* offset = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(OFFSET_LOCATION,
+			BYTES_IN_SIZE).data()));
 
 	this->m_size = *size;
 	this->m_offset = *offset;

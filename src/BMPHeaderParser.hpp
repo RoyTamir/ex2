@@ -13,9 +13,9 @@ class BMPHeaderParser {
 	std::uint32_t  m_offset;
 public:
 
-	static constexpr int NUM_BYTES_OF_SIZE_AND_OFFSET = 4;
-	static constexpr int LOCATION_OF_SIZE = 2;
-	static constexpr int LOCATION_OF_OFFSET = 10;
+	static constexpr int BYTES_IN_SIZE = 4;
+	static constexpr int SIZE_LOCATION = 2;
+	static constexpr int OFFSET_LOCATION = 10;
 
 	/**
 	 * @brief Construct a new BMPHeaderParser object.

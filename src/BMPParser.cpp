@@ -2,8 +2,6 @@
 
 using namespace BMPClasses;
 using std::string;
-using std::cout;
-using std::endl;
 using std::uint32_t;
 
 BMPParser::BMPParser(const string& str) {
@@ -24,7 +22,7 @@ BMPParser::BMPParser(const string& str) {
 		this->m_DIBparser->getBitArrayWidth(), this->m_DIBparser->getBitArrayHeight(), this->m_CTparser);
 
 	} else { 
-		cout<<"Error: BMPParser Constructor: the bits per pixel arn't 8 or 24"<<endl;
+		throw std::runtime_error("Error: BMPParser Constructor: the bits per pixel arn't 8 or 24");
 	}
 }
 
@@ -44,7 +42,7 @@ void BMPParser::imageToGray(){
 
 		this->m_str.replace(54, 1024, this->m_CTparser->getStr());
 	} else { 
-		cout<<"Error: BMPParser Constructor: the bits per pixel arn't 8 or 24"<<endl;
+		throw std::runtime_error("Error: BMPParser Constructor: the bits per pixel arn't 8 or 24");
 	}
 }
 
@@ -61,6 +59,6 @@ void BMPParser::rotateImage() {
 
 		this->m_str.replace(arrayOffset, this->m_str.length() - arrayOffset, this->m_BMAColorparser->getStr());
 	} else {
-		cout<<"Error: BMPParser Constructor: the bits per pixel arn't 8 or 24"<<endl;
+		throw std::runtime_error("Error: BMPParser Constructor: the bits per pixel arn't 8 or 24");
 	}
 }
