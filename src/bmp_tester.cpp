@@ -1,5 +1,6 @@
 #include "bmp_tester.hpp"
 
+using namespace BMPClasses;
 using std::string;
 using std::make_unique;
 

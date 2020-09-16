@@ -1,5 +1,6 @@
 #include "MatrixClass.hpp"
 
+using namespace MatrixClasses;
 using std::uint32_t;
 using std::endl;
 

@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+namespace BMPClasses {
 class ColorTableParser {
 
 	std::string _str;
@@ -65,3 +66,4 @@ public:
 	 */
 	~ColorTableParser();
 };
+}

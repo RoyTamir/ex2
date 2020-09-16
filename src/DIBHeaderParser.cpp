@@ -1,5 +1,6 @@
 #include "DIBHeaderParser.hpp"
 
+using namespace BMPClasses;
 using std::string;
 using std::uint32_t;
 using std::uint16_t;

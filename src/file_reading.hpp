@@ -4,6 +4,8 @@
 #include <iterator>
 #include <string>
 
-std::string readFileContent(const std::string& filePath);
+namespace BMPClasses {
+    std::string readFileContent(const std::string& filePath);
 
-void writeFileContent(const std::string& filePath, const std::string& content);
+    void writeFileContent(const std::string& filePath, const std::string& content);
+}

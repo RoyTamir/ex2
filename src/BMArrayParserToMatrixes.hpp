@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <string>
 
+namespace BMPClasses {
 //for 24 bits pixels
 class BMArrayParserToMatrixes {
 	//if we read a string that 
@@ -14,9 +15,9 @@ class BMArrayParserToMatrixes {
 	std::uint32_t _width;
 	std::uint32_t _height;
 	std::uint16_t _bytesPeddingPerRow; //max 3
-	MatrixClass* _Rmatrix;
-	MatrixClass* _Bmatrix;
-	MatrixClass* _Gmatrix;
+	MatrixClasses::MatrixClass* _Rmatrix;
+	MatrixClasses::MatrixClass* _Bmatrix;
+	MatrixClasses::MatrixClass* _Gmatrix;
 
 public:
 	/**
@@ -62,21 +63,21 @@ public:
 	 * 
 	 * @return MatrixClass& the R pixel'S value -matrix of the BitmapArray.
 	 */
-	MatrixClass& getBitMapR() const;
+	MatrixClasses::MatrixClass& getBitMapR() const;
 
 	/**
 	 * @brief Get the Bit Map G object.
 	 * 
 	 * @return MatrixClass& the G pixel'S value -matrix of the BitmapArray.
 	 */
-	MatrixClass& getBitMapG() const;
+	MatrixClasses::MatrixClass& getBitMapG() const;
 
 	/**
 	 * @brief Get the Bit Map B object.
 	 * 
 	 * @return MatrixClass& the B pixel'S value -matrix of the BitmapArray.
 	 */
-	MatrixClass& getBitMapB() const;
+	MatrixClasses::MatrixClass& getBitMapB() const;
 
 	/**
 	 * @brief Changes the matrixes to have
@@ -91,3 +92,4 @@ public:
  	*/
 	void rotate();
 };
+}

@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 
+namespace BMPClasses {
 class BMPParser {
 
 	std::string _str;
@@ -27,3 +28,4 @@ public:
 	void imageToGray();
 	void rotateImage();
 };
+}

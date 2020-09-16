@@ -1,5 +1,7 @@
 #include "BMArrayParserToMatrixes.hpp"
 
+using namespace BMPClasses;
+using namespace MatrixClasses;
 using std::uint16_t;
 using std::uint32_t;
 using std::string;

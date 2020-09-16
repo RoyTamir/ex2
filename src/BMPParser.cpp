@@ -1,5 +1,6 @@
 #include "BMPParser.hpp"
 
+using namespace BMPClasses;
 using std::string;
 using std::cout;
 using std::endl;

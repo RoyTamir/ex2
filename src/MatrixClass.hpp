@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <iostream>
 
+namespace MatrixClasses {
 class MatrixClass{
 //Fields
 PMatrix _matrix;
@@ -197,3 +198,4 @@ public:
 	 */
 	friend MatrixClass& operator*(double scalar, const MatrixClass& matrix);
 };
+}

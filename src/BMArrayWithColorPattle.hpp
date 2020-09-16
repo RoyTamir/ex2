@@ -6,7 +6,8 @@
 #include <string>
 #include <memory>
 
-//for 8 bits pixels
+
+namespace BMPClasses {
 class BMArrayWithColorPattle {
 	//if we read a string that 
 	//represent 0 we will save her (writing 0 is special).
@@ -16,7 +17,7 @@ class BMArrayWithColorPattle {
 	std::uint32_t _width;
 	std::uint32_t _height;
 	std::uint16_t _bytesPeddingPerRow; //max 3
-	MatrixClass* _matrix;
+	MatrixClasses::MatrixClass* _matrix;
     ColorTableParser* _colorTable;
 
 public:
@@ -63,7 +64,7 @@ public:
 	 * 
 	 * @return MatrixClass& the R pixel'S value -matrix of the BitmapArray.
 	 */
-	MatrixClass& getBitMap() const;
+	MatrixClasses::MatrixClass& getBitMap() const;
 
 	/**
 	 * @brief Changes the Color Table Parser to gray
@@ -78,3 +79,4 @@ public:
  	*/
 	void rotate();
 };
+}

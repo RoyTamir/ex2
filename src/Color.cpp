@@ -1,5 +1,6 @@
 #include "Color.hpp"
 
+using namespace BMPClasses;
 using std::uint16_t;
 
 Color::Color(uint16_t R, uint16_t G, uint16_t B) {

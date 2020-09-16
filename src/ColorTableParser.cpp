@@ -1,5 +1,6 @@
 #include "ColorTableParser.hpp"
 
+using namespace BMPClasses;
 using std::string;
 using std::vector;
 using std::uint32_t;

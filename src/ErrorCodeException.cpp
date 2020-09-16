@@ -1,5 +1,6 @@
 #include "ErrorCodeException.hpp"
 
+using namespace MatrixClasses;
 using std::endl;
 using std::cout;
 
