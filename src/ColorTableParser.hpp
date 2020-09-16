@@ -2,6 +2,7 @@
 
 #include "Color.hpp"
 
+#include <memory>
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -10,7 +11,7 @@ namespace BMPClasses {
 class ColorTableParser {
 
 	std::string m_str;
-	std::vector<Color*> m_colors;
+	std::vector<std::shared_ptr<Color>> m_colors;
 
 public:
 	/**
@@ -43,7 +44,7 @@ public:
 	 * @param n the index of the color in the vector<Color>. 
 	 * @return Color the color in the n location.
 	 */
-	Color getColor(std::uint32_t n) const;
+	Color& getColor(std::uint32_t n) const;
 
 	/**
 	 * @brief Get the Colors object.
@@ -51,7 +52,7 @@ public:
 	 * @return vector<Color> the vector that represents the
 	 * Color Palette.
 	 */
-	std::vector<Color*> getColors() const;
+	std::vector<std::shared_ptr<Color>> getColors() const;
 
 	/**
 	 * @brief changing the specific color to gray.
@@ -59,11 +60,5 @@ public:
 	 * @param n the index of the color in the vector<Color>. 
 	 */
 	void changeColorToGray(std::uint32_t n);
-
-	/**
-	 * @brief Destroy the Color Table Parser object
-	 * 
-	 */
-	~ColorTableParser();
 };
 }

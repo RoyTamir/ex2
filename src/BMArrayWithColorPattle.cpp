@@ -7,11 +7,11 @@ using std::uint32_t;
 using std::string;
 
 BMArrayWithColorPattle::BMArrayWithColorPattle(const string& str, uint32_t width,
-        uint32_t height, ColorTableParser* colorTable){
+        uint32_t height, const std::shared_ptr<ColorTableParser>& colorTable){
     this->m_str = str;
 	this->m_width = width;
 	this->m_height = height;
-	this->m_matrix = new MatrixClass(height, width);
+	this->m_matrix = std::make_shared<MatrixClass>(height, width);
     this->m_colorTable = colorTable;
 
 	//calculating how much padding for width *1 (=nub bits to pixel) to be 4*int
@@ -70,7 +70,7 @@ void BMArrayWithColorPattle::rotate() {
 	this->m_height = width;
 	this->m_width = height;
 
-	MatrixClass* newMatrix = new MatrixClass(this->m_height, this->m_width);
+	std::shared_ptr<MatrixClass> newMatrix = std::make_shared<MatrixClass>(this->m_height, this->m_width);
 
 	//Itarating on the old matrixes and intalizing the new ones.
 	for (uint32_t row = 0; row < this->m_width; ++row) {
@@ -80,7 +80,6 @@ void BMArrayWithColorPattle::rotate() {
 		
 		}
 	}
-	delete this->m_matrix;
 
 	this->m_matrix = newMatrix;
 

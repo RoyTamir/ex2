@@ -15,7 +15,7 @@ ColorTableParser::ColorTableParser(const string& str) {
 		++i;
 		uint16_t* b = (uint16_t*) str.substr(i, 1).data();
 		++i;
-		this->m_colors.push_back(new Color(*r, *g, *b));
+		this->m_colors.push_back(std::make_shared<Color>(*r, *g, *b));
 	}
 }
 
@@ -27,11 +27,11 @@ uint32_t ColorTableParser::getColorCount() const {
 	return this->m_colors.size();
 }
 
-Color ColorTableParser::getColor(uint32_t n) const {
+Color& ColorTableParser::getColor(uint32_t n) const {
 	return *(this->m_colors.at(n));
 }
 
-vector<Color*> ColorTableParser::getColors() const {
+vector<std::shared_ptr<Color>> ColorTableParser::getColors() const {
 	return this->m_colors;
 }
 
@@ -58,11 +58,5 @@ void ColorTableParser::changeColorToGray(uint32_t n) {
     c = (char*) &color;
    	s = c;
 	this->m_str.replace(n*4 + 2, 1, s); //n*4 the loction the bit starts from.
-	}
-}
-
-ColorTableParser::~ColorTableParser(){
-	for (uint32_t i = 0; i < this->m_colors.size(); ++i){
-		delete this->m_colors.at(i);
 	}
 }

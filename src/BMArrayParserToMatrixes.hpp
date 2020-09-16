@@ -1,6 +1,8 @@
 #pragma once
 
 #include "MatrixClass.hpp"
+
+#include <memory>
 #include <cstdint>
 #include <string>
 
@@ -16,9 +18,9 @@ private:
 	std::uint32_t m_width;
 	std::uint32_t m_height;
 	std::uint16_t m_bytesPeddingPerRow; //max 3
-	MatrixClasses::MatrixClass* m_Rmatrix;
-	MatrixClasses::MatrixClass* m_Bmatrix;
-	MatrixClasses::MatrixClass* m_Gmatrix;
+	std::shared_ptr<MatrixClasses::MatrixClass> m_Rmatrix;
+	std::shared_ptr<MatrixClasses::MatrixClass> m_Bmatrix;
+	std::shared_ptr<MatrixClasses::MatrixClass> m_Gmatrix;
 
 //private methods
 

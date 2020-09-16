@@ -8,6 +8,7 @@
 #include "BMPParser.hpp"
 #include "Color.hpp"
 
+#include <memory>
 #include <cstdint>
 #include <iostream>
 #include <string>
@@ -16,11 +17,11 @@ namespace BMPClasses {
 class BMPParser {
 
 	std::string m_str;
-	BMPHeaderParser* m_BHparser = nullptr;
-	DIBHeaderParser* m_DIBparser = nullptr;
-	ColorTableParser* m_CTparser = nullptr;//for 8 bits per pixel
-	BMArrayParserToMatrixes* m_BMAparser = nullptr;//for 24 bits per pixel
-	BMArrayWithColorPattle* m_BMAColorparser = nullptr;//for 8 bits per pixel
+	std::shared_ptr<BMPHeaderParser> m_BHparser = nullptr;
+	std::shared_ptr<DIBHeaderParser> m_DIBparser = nullptr;
+	std::shared_ptr<ColorTableParser> m_CTparser = nullptr;//for 8 bits per pixel
+	std::shared_ptr<BMArrayParserToMatrixes> m_BMAparser = nullptr;//for 24 bits per pixel
+	std::shared_ptr<BMArrayWithColorPattle> m_BMAColorparser = nullptr;//for 8 bits per pixel
 
 public:
 	/**

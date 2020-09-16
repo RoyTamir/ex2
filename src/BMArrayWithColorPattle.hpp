@@ -2,10 +2,11 @@
 
 #include "MatrixClass.hpp"
 #include "ColorTableParser.hpp"
+
+#include <memory>
 #include <cstdint>
 #include <string>
 #include <memory>
-
 
 namespace BMPClasses {
 class BMArrayWithColorPattle {
@@ -17,8 +18,8 @@ class BMArrayWithColorPattle {
 	std::uint32_t m_width;
 	std::uint32_t m_height;
 	std::uint16_t m_bytesPeddingPerRow; //max 3
-	MatrixClasses::MatrixClass* m_matrix;
-    ColorTableParser* m_colorTable;
+	std::shared_ptr<MatrixClasses::MatrixClass> m_matrix;
+    std::shared_ptr<ColorTableParser> m_colorTable;
 
 public:
 	/**
@@ -29,7 +30,7 @@ public:
 	 * @param height the height of the array.
 	 */
 	BMArrayWithColorPattle(const std::string& str, std::uint32_t width,
-            std::uint32_t height, ColorTableParser* colorTable);
+            std::uint32_t height, const std::shared_ptr<ColorTableParser>& colorTable);
 
 	/**
 	 * @brief Get the Str object.

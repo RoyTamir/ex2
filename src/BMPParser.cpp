@@ -8,19 +8,19 @@ using std::uint32_t;
 
 BMPParser::BMPParser(const string& str) {
 	this->m_str = str;
-	this->m_BHparser = new BMPHeaderParser(str.substr(0, 14));
-	this->m_DIBparser = new DIBHeaderParser(str.substr(14, 40));
+	this->m_BHparser = std::make_shared<BMPHeaderParser>(str.substr(0, 14));
+	this->m_DIBparser = std::make_shared<DIBHeaderParser>(str.substr(14, 40));
 
 	uint32_t arrayOffset = this->m_BHparser->getOffset();
 	if (this->m_DIBparser->getBitsPerPixel() == 24) { //if 24 bits per pixel
 		
-		this->m_BMAparser = new BMArrayParserToMatrixes(str.substr(arrayOffset, str.length() - arrayOffset),
+		this->m_BMAparser = std::make_shared<BMArrayParserToMatrixes>(str.substr(arrayOffset, str.length() - arrayOffset),
 		this->m_DIBparser->getBitArrayWidth(), this->m_DIBparser->getBitArrayHeight());
 
 	} else if (this->m_DIBparser->getBitsPerPixel() == 8) {//if 8 bits per pixel
-		this->m_CTparser = new ColorTableParser(str.substr(54, 1024));//2^8*4=1024
+		this->m_CTparser = std::make_shared<ColorTableParser>(str.substr(54, 1024));//2^8*4=1024
 
-		this->m_BMAColorparser = new BMArrayWithColorPattle(str.substr(arrayOffset, str.length() - arrayOffset),
+		this->m_BMAColorparser = std::make_shared<BMArrayWithColorPattle>(str.substr(arrayOffset, str.length() - arrayOffset),
 		this->m_DIBparser->getBitArrayWidth(), this->m_DIBparser->getBitArrayHeight(), this->m_CTparser);
 
 	} else { 

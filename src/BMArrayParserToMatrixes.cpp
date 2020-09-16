@@ -1,5 +1,8 @@
 #include "BMArrayParserToMatrixes.hpp"
 
+//calculating how much padding for width *3 (=nub bits to pixel) to be 4*int
+#define GET_BYTES_PEDDING_PER_ROW(width) ((4 - ((width * 3) % 4))%4)
+
 using namespace BMPClasses;
 using namespace MatrixClasses;
 using std::uint16_t;
@@ -58,12 +61,12 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 	this->m_str = str;
 	this->m_width = width;
 	this->m_height = height;
-	this->m_Rmatrix = new MatrixClass(height, width);
-	this->m_Gmatrix = new MatrixClass(height, width);
-	this->m_Bmatrix = new MatrixClass(height, width);
+	this->m_Rmatrix = std::make_shared<MatrixClass>(height, width);
+	this->m_Gmatrix = std::make_shared<MatrixClass>(height, width);
+	this->m_Bmatrix = std::make_shared<MatrixClass>(height, width);
 
 	//calculating how much padding for width *3 (=nub bits to pixel) to be 4*int
-	this->m_bytesPeddingPerRow = (4 - ((width * 3) % 4))%4;
+	this->m_bytesPeddingPerRow = GET_BYTES_PEDDING_PER_ROW(width);
 
 	for (uint32_t row = 0; row < height; ++row) {
 		//wher in the string the new row of the matrix starts
@@ -148,9 +151,9 @@ void BMArrayParserToMatrixes::rotate() {
 	this->m_height = width;
 	this->m_width = height;
 
-	MatrixClass* newRmatrix = new MatrixClass(this->m_height, this->m_width);
-	MatrixClass*  newGmatrix = new MatrixClass(this->m_height, this->m_width);
-	MatrixClass*  newBmatrix = new MatrixClass(this->m_height, this->m_width);
+	std::shared_ptr<MatrixClass>  newRmatrix = std::make_shared<MatrixClass>(this->m_height, this->m_width);
+	std::shared_ptr<MatrixClass>  newGmatrix = std::make_shared<MatrixClass>(this->m_height, this->m_width);
+	std::shared_ptr<MatrixClass>  newBmatrix = std::make_shared<MatrixClass>(this->m_height, this->m_width);
 
 	//Itarating on the old matrixes and intalizing the new ones.
 	for (uint32_t row = 0; row < this->m_width; ++row) {
@@ -162,9 +165,6 @@ void BMArrayParserToMatrixes::rotate() {
 		
 		}
 	}
-	delete this->m_Rmatrix;
-	delete this->m_Gmatrix;
-	delete this->m_Bmatrix;
 
 	this->m_Rmatrix = newRmatrix;
 	this->m_Gmatrix = newGmatrix;

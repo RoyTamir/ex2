@@ -82,7 +82,6 @@ using std::endl;
     MatrixClass&  MatrixClass::operator-=(const MatrixClass& other) {
         MatrixClass* minusOther = &(other * (-1));
         (*this) += *minusOther;
-        delete minusOther;
         return *this;
     }
 
@@ -125,7 +124,7 @@ using std::endl;
 //another operators. warning! they return new MatrixClass
     MatrixClass& MatrixClass::operator+(const MatrixClass& other) const{
         //Creating the result matrix 
-        MatrixClass* result = new MatrixClass(this->getHeight(), this->getWidth());
+        std::shared_ptr<MatrixClass> result = std::make_shared<MatrixClass>(this->getHeight(), this->getWidth());
 
         //Calculating result matrix & throwing exception if needed
         ErrorCodeException::throwErrorIfNeeded(
@@ -137,13 +136,12 @@ using std::endl;
     MatrixClass& MatrixClass::operator-(const MatrixClass& other) const {
         MatrixClass* minusOther = &(other * (-1));
         MatrixClass* result = &((*this) + *minusOther);
-        delete minusOther;
         return *result;
     }
 
     MatrixClass& MatrixClass::operator*(const MatrixClass& other) const{
         //Creating the result matrix 
-        MatrixClass* result = new MatrixClass(this->getHeight(), other.getWidth());
+        std::shared_ptr<MatrixClass> result = std::make_shared<MatrixClass>(this->getHeight(), other.getWidth());
 
         //Calculating result matrix & throwing exception if needed
         ErrorCodeException::throwErrorIfNeeded(
@@ -154,7 +152,7 @@ using std::endl;
 
     MatrixClass& MatrixClass::operator*(double scalar) const {
         //Creating the result matrix (copying this matrix)
-        MatrixClass* result = new MatrixClass(*this);
+        std::shared_ptr<MatrixClass> result = std::make_shared<MatrixClass>(*this);
 
         //Multipling this matrix with the scalar into 
         //this matrix & throwing exception if needed

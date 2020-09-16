@@ -2,6 +2,7 @@
 
 #include "file_reading.hpp"
 #include  "BMPParser.hpp"
+
 #include <string>
 #include <memory>
 
