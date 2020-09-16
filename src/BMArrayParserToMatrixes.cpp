@@ -28,8 +28,8 @@ void BMArrayParserToMatrixes::writeChangesToStr() {
 		//R=0, G=0, B=0
 		for (uint32_t col = 0; col < this->m_width; ++col) {
 			if ((*(this->m_Rmatrix))(rowIndex, col) != 0) {
-				color = (uint16_t) (*(this->m_Rmatrix))(rowIndex, col);
-				c = (char*) &color;
+				color = static_cast<uint16_t>((*(this->m_Rmatrix))(rowIndex, col));
+				c = reinterpret_cast<char*>(&color);
    		 		s = c;
 			}else{//0 is special to write
    		 		s = this->m_zero;	
@@ -37,8 +37,8 @@ void BMArrayParserToMatrixes::writeChangesToStr() {
 			this->m_str.replace(starOfRow + col * 3, 1, s);
 
 			if ((*(this->m_Gmatrix))(rowIndex, col) != 0) {
-				color = (uint16_t) (*(this->m_Gmatrix))(rowIndex, col);
-				c = (char*) &color;
+				color = static_cast<uint16_t>((*(this->m_Gmatrix))(rowIndex, col));
+				c = reinterpret_cast<char*>(&color);
    		 		s = c;
 			}else{//0 is special to write
    		 		s = this->m_zero;	
@@ -46,8 +46,8 @@ void BMArrayParserToMatrixes::writeChangesToStr() {
 			this->m_str.replace(starOfRow + col * 3 + 1, 1, s);
 
 			if ((*(this->m_Bmatrix))(rowIndex, col) != 0) {
-				color = (uint16_t) (*(this->m_Bmatrix))(rowIndex, col);
-				c = (char*) &color;
+				color = static_cast<uint16_t>((*(this->m_Bmatrix))(rowIndex, col));
+				c = reinterpret_cast<char*>(&color);
    		 		s = c;
 			}else{//0 is special to write
    		 		s = this->m_zero;	
@@ -77,17 +77,17 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 		uint32_t rowIndex = (height - 1) - row;
 		for (uint32_t col = 0; col < width; ++col) {
 			//startOfRaw in the matrix, col = num of pixel in the raw before (*3 = his size in the string)
-			uint16_t* r = (uint16_t*) str.substr(starOfRow + col * 3, 1).data();
+			uint16_t* r = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3, 1).data()));
 			if(*r == 0){
 			this->m_zero = str.substr(starOfRow + col * 3, 1);
 			}
 
-			uint16_t* g = (uint16_t*) str.substr(starOfRow + col * 3 + 1, 1).data();
+			uint16_t* g = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3 + 1, 1).data()));
 			if(*r == 0){
 			this->m_zero = str.substr(starOfRow + col * 3 + 1, 1);
 			}
 
-			uint16_t* b = (uint16_t*) str.substr(starOfRow + col * 3 + 2, 1).data();
+			uint16_t* b = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3 + 2, 1).data()));
 			if(*r == 0){
 			this->m_zero = str.substr(starOfRow + col * 3 + 2, 1);
 			}

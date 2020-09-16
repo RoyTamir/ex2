@@ -13,11 +13,11 @@ BMPHeaderParser::BMPHeaderParser(const string& str) {
 		cout<<"Error: BMPHeaderParser Constructor: This isn't a BMP file"<<endl;
 	}
 
-	uint32_t* size = (uint32_t*) str.substr(LOCATION_OF_SIZE,
-			NUM_BYTES_OF_SIZE_AND_OFFSET).data();
+	uint32_t* size = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(LOCATION_OF_SIZE,
+			NUM_BYTES_OF_SIZE_AND_OFFSET).data()));
 
-	uint32_t* offset = (uint32_t*) str.substr(LOCATION_OF_OFFSET,
-			NUM_BYTES_OF_SIZE_AND_OFFSET).data();
+	uint32_t* offset = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(LOCATION_OF_OFFSET,
+			NUM_BYTES_OF_SIZE_AND_OFFSET).data()));
 
 	this->m_size = *size;
 	this->m_offset = *offset;
