@@ -39,14 +39,14 @@ public:
 	/**
 	 * @brief Returns height of given matrix.
 	 *
-	 * @return uint32_t
+	 * @return uint32_t the height of the matrix.
 	 */
 	std::uint32_t getHeight() const;
 
 	/**
 	 * @brief Returns width of matrix.
 	 *
-	 * @return uint32_t
+	 * @return uint32_t the width of the matrix.
 	 */
 	std::uint32_t getWidth() const;
 
@@ -66,7 +66,7 @@ public:
 	 *
 	 * @param[in] rowIndex Row index of the value to get.
 	 * @param[in] colIndex Column index of the value to get.
-	 * @return double.
+	 * @return double the value in the indexes location.
 	 */
 	double operator()(std::uint32_t rowIndex, std::uint32_t colIndex) const;
 
@@ -84,7 +84,7 @@ public:
 	 * (this matrix chenges)).
 	 *
 	 * @param[in] other The right hand side of the addition operation.
-	 * @return MatrixClass& this matrix
+	 * @return MatrixClass& this matrix.
 	 */
 	MatrixClass& operator-=(const MatrixClass& other);
 
@@ -92,7 +92,7 @@ public:
 	 * @brief Multiplication opperator (matrix by matrix the risult in the left matrix(this)).
 	 *
 	 * @param[in] other The right hand side of the multiplication operation.
-	 * @return MatrixClass& this matrix
+	 * @return MatrixClass& this matrix.
 	 */
 	MatrixClass& operator*=(const MatrixClass& other);
 
@@ -100,7 +100,7 @@ public:
 	 * @brief Multiplication operator (matrix by scalar the result in this matrix).
 	 *
 	 * @param[in] scalar The scalar to multiply with.
-	 * @return MatrixClass& this matrix
+	 * @return MatrixClass& this matrix.
 	 */
 	MatrixClass& operator*=(double scalar);
 
@@ -108,7 +108,7 @@ public:
 	 * @brief Division operator (dividing the matrix by the scalar & the result in this matrix).
 	 *
 	 * @param[in] scalar The scalar to divide with.
-	 * @return MatrixClass& this matrix
+	 * @return MatrixClass& this matrix.
 	 */
 	MatrixClass& operator/=(double scalar);
 

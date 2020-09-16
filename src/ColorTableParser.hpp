@@ -40,7 +40,7 @@ public:
 	/**
 	 * @brief Get the Color object.
 	 * 
-	 * @param n 
+	 * @param n the index of the color in the vector<Color>. 
 	 * @return Color the color in the n location.
 	 */
 	Color getColor(std::uint32_t n) const;

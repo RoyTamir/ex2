@@ -23,9 +23,30 @@ class BMPParser {
 	BMArrayWithColorPattle* m_BMAColorparser = nullptr;//for 8 bits per pixel
 
 public:
+	/**
+	 * @brief Construct a new BMPParser object.
+	 * 
+	 * @param str the string that represent the image.
+	 */
 	BMPParser(const std::string& str);
+
+	/**
+	 * @brief Returns the string that represent the image.
+	 * 
+	 * @return const std::string& the string that represent the image.
+	 */
 	const std::string& getBMP() const;
+
+	/**
+	 * @brief convert the image pixels to gray.
+	 * 
+	 */
 	void imageToGray();
+
+	/**
+	 * @brief rotatting the image color.
+	 * 
+	 */
 	void rotateImage();
 };
 }

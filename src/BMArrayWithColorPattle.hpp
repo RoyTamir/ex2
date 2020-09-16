@@ -24,9 +24,9 @@ public:
 	/**
 	 * @brief Construct a new BMArrayParserToMatrixes object.
 	 * 
-	 * @param str 
-	 * @param width 
-	 * @param height 
+	 * @param str the string that represent the bmp array.
+	 * @param width the width of the array.
+	 * @param height the height of the array.
 	 */
 	BMArrayWithColorPattle(const std::string& str, std::uint32_t width,
             std::uint32_t height, ColorTableParser* colorTable);
@@ -34,7 +34,7 @@ public:
 	/**
 	 * @brief Get the Str object.
 	 * 
-	 * @return const string& 
+	 * @return const string& the string that represent the bmp array.
 	 */
 	const std::string& getStr() const;
 

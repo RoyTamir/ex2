@@ -23,9 +23,9 @@ public:
 	/**
 	 * @brief Construct a new BMArrayParserToMatrixes object.
 	 * 
-	 * @param str 
-	 * @param width 
-	 * @param height 
+	 * @param str the string that represent the bmp array.
+	 * @param width the width of the array.
+	 * @param height the height of the array.
 	 */
 	BMArrayParserToMatrixes(const std::string& str, std::uint32_t width, std::uint32_t height);
 
@@ -33,7 +33,7 @@ public:
 	 * @brief Get the Str object.
 	 * (& changing the str to support the matrixes)
 	 * 
-	 * @return const string& 
+	 * @return const string& the string that represent the bmp array.
 	 */
 	const std::string& getStr();
 
