@@ -6,8 +6,8 @@ using std::vector;
 using std::uint32_t;
 using std::uint16_t;
 
-ColorTableParser::ColorTableParser(const string& str) {
-	this->m_str = str;
+ColorTableParser::ColorTableParser(string str) {
+	this->m_str = std::move(str);
 	for (uint32_t i = 0; i < str.length(); ++i) {
 		uint16_t* r = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(i, 1).data()));
 		++i;
@@ -19,7 +19,7 @@ ColorTableParser::ColorTableParser(const string& str) {
 	}
 }
 
-const string& ColorTableParser::getStr() const {
+string ColorTableParser::getStr() const {
 	return this->m_str;
 }
 

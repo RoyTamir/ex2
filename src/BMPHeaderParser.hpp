@@ -23,7 +23,7 @@ public:
 	 * @param str the string from the BMP file
 	 * that refers to header.
 	 */
-	BMPHeaderParser(const std::string& str);
+	BMPHeaderParser(std::string str);
 
 	/**
 	 * @brief Get the Str object.
@@ -31,7 +31,7 @@ public:
 	 * @return the string from the BMP file
 	 * * that refers to header.
 	 */
-	const std::string& getStr() const;
+	std::string getStr() const;
 
 	/**
 	 * @brief Get the Size object.

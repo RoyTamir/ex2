@@ -12,7 +12,7 @@ using std::string;
 void BMArrayParserToMatrixes::writeChangesToStr() {
 	//writing the changes to the string
 	for (uint32_t row = 0; row < this->m_height; ++row) {
-		//wher in the string the new row of the matrix starts
+		//where in the string the new row of the matrix starts
 		uint32_t starOfRow = row * (this->m_width * 3 + m_bytesPeddingPerRow);
 
 		//the file is starting from the bottom left of 
@@ -57,8 +57,8 @@ void BMArrayParserToMatrixes::writeChangesToStr() {
 	}
 }
 
-BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t width, uint32_t height) {
-	this->m_str = str;
+BMArrayParserToMatrixes::BMArrayParserToMatrixes(string str, uint32_t width, uint32_t height) {
+	this->m_str = std::move(str);
 	this->m_width = width;
 	this->m_height = height;
 	this->m_Rmatrix = std::make_shared<MatrixClass>(height, width);
@@ -99,7 +99,7 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(const string& str, uint32_t wid
 	}
 }
 
-const string& BMArrayParserToMatrixes::getStr() const{
+string BMArrayParserToMatrixes::getStr() const{
 	return this->m_str;
 }
 
@@ -128,6 +128,8 @@ MatrixClass& BMArrayParserToMatrixes::getBitMapB() const {
 }
 
 void BMArrayParserToMatrixes::changeToGray() {
+	//the numbers are part of a 
+	//formula to make a RGB color to gray.
 	*(this->m_Rmatrix) *= 0.2126;
 	*(this->m_Gmatrix) *= 0.7152;
 	*(this->m_Bmatrix) *= 0.0722;

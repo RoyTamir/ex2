@@ -9,9 +9,9 @@ using std::uint16_t;
 using std::uint32_t;
 using std::string;
 
-BMArrayWithColorPattle::BMArrayWithColorPattle(const string& str, uint32_t width,
+BMArrayWithColorPattle::BMArrayWithColorPattle(string str, uint32_t width,
         uint32_t height, const std::shared_ptr<ColorTableParser>& colorTable){
-    this->m_str = str;
+    this->m_str = std::move(str);
 	this->m_width = width;
 	this->m_height = height;
 	this->m_matrix = std::make_shared<MatrixClass>(height, width);
@@ -38,7 +38,7 @@ BMArrayWithColorPattle::BMArrayWithColorPattle(const string& str, uint32_t width
 	}
 }
 
-const string& BMArrayWithColorPattle::getStr() const {
+string BMArrayWithColorPattle::getStr() const {
 	return this->m_str;
 }
 

@@ -5,8 +5,8 @@ using std::string;
 using std::uint32_t;
 using std::uint16_t;
 
-DIBHeaderParser::DIBHeaderParser(const string& str) {
-	this->m_str = str;
+DIBHeaderParser::DIBHeaderParser(string str) {
+	this->m_str = std::move(str);
 
 	uint32_t* bitmapArrayWidth = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(BMP_ARRAY_WIDTH_LOCATION,
 			 BYTES_FOR_OTHER_FIELDS).data()));
@@ -26,7 +26,7 @@ DIBHeaderParser::DIBHeaderParser(const string& str) {
 	this->m_numColorsInColorPalette = *numColorsInColorPalette;
 }
 
-const string& DIBHeaderParser::getStr() const {
+string DIBHeaderParser::getStr() const {
 	return this->m_str;
 }
 

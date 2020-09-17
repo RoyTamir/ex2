@@ -29,15 +29,15 @@ public:
 	 * @param width the width of the array.
 	 * @param height the height of the array.
 	 */
-	BMArrayWithColorPattle(const std::string& str, std::uint32_t width,
+	BMArrayWithColorPattle(std::string str, std::uint32_t width,
             std::uint32_t height, const std::shared_ptr<ColorTableParser>& colorTable);
 
 	/**
 	 * @brief Get the Str object.
 	 * 
-	 * @return const string& the string that represent the bmp array.
+	 * @return string the string that represent the bmp array.
 	 */
-	const std::string& getStr() const;
+	std::string getStr() const;
 
 	/**
 	 * @brief Get the Width object.

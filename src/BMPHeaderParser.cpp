@@ -4,8 +4,8 @@ using namespace BMPClasses;
 using std::string;
 using std::uint32_t;
 
-BMPHeaderParser::BMPHeaderParser(const string& str) {
-	this->m_str = str;
+BMPHeaderParser::BMPHeaderParser(string str) {
+	this->m_str = std::move(str);
 
 	if(str[0] != 'B' && str[1] != 'M'){
 		throw std::runtime_error("Error: BMPHeaderParser Constructor: This isn't a BMP file");
@@ -21,7 +21,7 @@ BMPHeaderParser::BMPHeaderParser(const string& str) {
 	this->m_offset = *offset;
 }
 
-const string& BMPHeaderParser::getStr() const {
+string BMPHeaderParser::getStr() const {
 	return this->m_str;
 }
 

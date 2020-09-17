@@ -38,15 +38,15 @@ public://public methods
 	 * @param width the width of the array.
 	 * @param height the height of the array.
 	 */
-	BMArrayParserToMatrixes(const std::string& str, std::uint32_t width, std::uint32_t height);
+	BMArrayParserToMatrixes(std::string str, std::uint32_t width, std::uint32_t height);
 
 	/**
 	 * @brief Get the Str object.
 	 * (& changing the str to support the matrixes)
 	 * 
-	 * @return const string& the string that represent the bmp array.
+	 * @return string the string that represent the bmp array.
 	 */
-	const std::string& getStr() const;
+	std::string getStr() const;
 
 	/**
 	 * @brief Get the Width object.

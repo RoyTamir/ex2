@@ -29,15 +29,15 @@ public:
 	 * @param str the string from the BMP file
 	 * that refers to DIBheader.
 	 */
-	DIBHeaderParser(const std::string& str);
+	DIBHeaderParser(std::string str);
 	
 	/**
 	 * @brief Get the Str object.
 	 * 
-	 * @return const string& the string from the BMP file
+	 * @return string the string from the BMP file
 	 *  that refers to DIBheader.
 	 */
-	const std::string& getStr() const;
+	std::string getStr() const;
 
 	/**
 	 * @brief Get the Bit Array Width object.

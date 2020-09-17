@@ -20,15 +20,15 @@ public:
 	 * @param str the string from the BMP file
 	 *  that refers to Color Palette.
 	 */
-	ColorTableParser(const std::string& str);
+	ColorTableParser(std::string str);
 
 	/**
 	 * @brief Get the Str object.
 	 * 
-	 * @return const string& the string from the BMP file
+	 * @return string the string from the BMP file
 	 *  that refers to Color Palette.
 	 */
-	const std::string& getStr() const;
+	std::string getStr() const;
 
 	/**
 	 * @brief Get the Color Count object.

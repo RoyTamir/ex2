@@ -29,14 +29,14 @@ public:
 	 * 
 	 * @param str the string that represent the image.
 	 */
-	BMPParser(const std::string& str);
+	BMPParser(std::string str);
 
 	/**
 	 * @brief Returns the string that represent the image.
 	 * 
-	 * @return const std::string& the string that represent the image.
+	 * @return const std::string the string that represent the image.
 	 */
-	const std::string& getBMP() const;
+	std::string getBMP() const;
 
 	/**
 	 * @brief convert the image pixels to gray.

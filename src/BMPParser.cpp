@@ -4,8 +4,8 @@ using namespace BMPClasses;
 using std::string;
 using std::uint32_t;
 
-BMPParser::BMPParser(const string& str) {
-	this->m_str = str;
+BMPParser::BMPParser(string str) {
+	this->m_str = std::move(str);
 	this->m_BHparser = std::make_shared<BMPHeaderParser>(str.substr(0, 14));
 	this->m_DIBparser = std::make_shared<DIBHeaderParser>(str.substr(14, 40));
 
@@ -26,7 +26,7 @@ BMPParser::BMPParser(const string& str) {
 	}
 }
 
-const string& BMPParser::getBMP() const {
+string BMPParser::getBMP() const {
 	return this->m_str;
 }
 
