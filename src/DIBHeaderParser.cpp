@@ -8,17 +8,17 @@ using std::uint16_t;
 DIBHeaderParser::DIBHeaderParser(string str) {
 	this->m_str = std::move(str);
 
-	uint32_t* bitmapArrayWidth = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(BMP_ARRAY_WIDTH_LOCATION,
-			 BYTES_FOR_OTHER_FIELDS).data()));
+	uint32_t* bitmapArrayWidth = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(
+		this->m_str.substr(BMP_ARRAY_WIDTH_LOCATION, BYTES_FOR_OTHER_FIELDS).data()));
 
-	uint32_t* bitmapArrayHeight = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(BMP_ARRAY_HEIGHT_LOCATION,
-			BYTES_FOR_OTHER_FIELDS).data()));
+	uint32_t* bitmapArrayHeight = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(
+		this->m_str.substr(BMP_ARRAY_HEIGHT_LOCATION, BYTES_FOR_OTHER_FIELDS).data()));
 
-	uint16_t* bitsPerPixel = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(BITS_PER_PIXEL_LOCATION,
-			BYTES_PER_PIXEL).data()));
+	uint16_t* bitsPerPixel = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(this->m_str.substr(
+		BITS_PER_PIXEL_LOCATION, BYTES_PER_PIXEL).data()));
 
-	uint32_t* numColorsInColorPalette = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(str.substr(NUM_COLORS_IN_COLOR_PALETTE_LOCATION,
-			BYTES_FOR_OTHER_FIELDS).data()));
+	uint32_t* numColorsInColorPalette = const_cast<uint32_t*>(reinterpret_cast<const uint32_t*>(
+		this->m_str.substr(NUM_COLORS_IN_COLOR_PALETTE_LOCATION, BYTES_FOR_OTHER_FIELDS).data()));
 
 	this->m_bitmapArrayWidth = *bitmapArrayWidth;
 	this->m_bitmapArrayHeight = *bitmapArrayHeight;

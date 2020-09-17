@@ -31,6 +31,12 @@ private:
 void writeChangesToStr();
 
 public://public methods
+
+    static constexpr int BYTES_FOR_PIXEL = 3;
+    static constexpr int ROW_SIZE_DIVISOR = 4;
+
+    static constexpr int BIT_SIZE = 1;
+
 	/**
 	 * @brief Construct a new BMArrayParserToMatrixes object.
 	 * 

@@ -1,7 +1,7 @@
 #include "BMArrayWithColorPattle.hpp"
 
 //calculating how much padding for width *1 (=nub bits to pixel) to be 4*int
-#define GET_BYTES_PEDDING_PER_ROW(width) (4 - ((width) % 4))%4
+#define GET_BYTES_PEDDING_PER_ROW(width) (ROW_SIZE_DIVISOR - ((width) % ROW_SIZE_DIVISOR)) % ROW_SIZE_DIVISOR
 
 using namespace BMPClasses;
 using namespace MatrixClasses;
@@ -29,9 +29,10 @@ BMArrayWithColorPattle::BMArrayWithColorPattle(string str, uint32_t width,
 		uint32_t rowIndex = (height - 1) - row;
 		for (uint32_t col = 0; col < width; ++col) {
 			//startOfRaw in the matrix, col = num of pixel in the raw before (*1 = this size in the string)
-			uint16_t* colorIndex = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col , 1).data()));
+			uint16_t* colorIndex = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(
+				this->m_str.substr(starOfRow + col , BIT_SIZE).data()));
 			if(*colorIndex == 0){
-				this->m_zero = str.substr(starOfRow + col , 1);
+				this->m_zero = this->m_str.substr(starOfRow + col , BIT_SIZE);
 			}
 				this->m_matrix->setValue(rowIndex, col, *colorIndex);
 		}
@@ -107,7 +108,7 @@ void BMArrayWithColorPattle::rotate() {
 			}else{//0 is special to write
    		 		s = this->m_zero;	
 			}
-			this->m_str.replace(starOfRow + col , 1, s);
+			this->m_str.replace(starOfRow + col , BIT_SIZE, s);
 		}
 	}
 }

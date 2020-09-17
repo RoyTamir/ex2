@@ -14,6 +14,12 @@ class ColorTableParser {
 	std::vector<std::shared_ptr<Color>> m_colors;
 
 public:
+
+	//each color takes 4 bits that the first 3 are: R G B.
+	static constexpr int BITES_PER_COLOR = 4;
+
+	static constexpr int BIT_SIZE = 1;
+
 	/**
 	 * @brief Construct a new Color Table Parser object.
 	 * 

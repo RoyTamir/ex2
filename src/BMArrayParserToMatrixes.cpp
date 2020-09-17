@@ -1,7 +1,7 @@
 #include "BMArrayParserToMatrixes.hpp"
 
 //calculating how much padding for width *3 (=nub bits to pixel) to be 4*int
-#define GET_BYTES_PEDDING_PER_ROW(width) ((4 - ((width * 3) % 4))%4)
+#define GET_BYTES_PEDDING_PER_ROW(width) ((ROW_SIZE_DIVISOR - ((width * BYTES_FOR_PIXEL) % ROW_SIZE_DIVISOR)) % ROW_SIZE_DIVISOR)
 
 using namespace BMPClasses;
 using namespace MatrixClasses;
@@ -13,7 +13,7 @@ void BMArrayParserToMatrixes::writeChangesToStr() {
 	//writing the changes to the string
 	for (uint32_t row = 0; row < this->m_height; ++row) {
 		//where in the string the new row of the matrix starts
-		uint32_t starOfRow = row * (this->m_width * 3 + m_bytesPeddingPerRow);
+		uint32_t starOfRow = row * (this->m_width * BYTES_FOR_PIXEL + m_bytesPeddingPerRow);
 
 		//the file is starting from the bottom left of 
 		//the picture to the upper right of the picture.
@@ -34,7 +34,7 @@ void BMArrayParserToMatrixes::writeChangesToStr() {
 			}else{//0 is special to write
    		 		s = this->m_zero;	
 			}
-			this->m_str.replace(starOfRow + col * 3, 1, s);
+			this->m_str.replace(starOfRow + col * BYTES_FOR_PIXEL, BIT_SIZE, s);
 
 			if ((*(this->m_Gmatrix))(rowIndex, col) != 0) {
 				color = static_cast<uint16_t>((*(this->m_Gmatrix))(rowIndex, col));
@@ -43,7 +43,7 @@ void BMArrayParserToMatrixes::writeChangesToStr() {
 			}else{//0 is special to write
    		 		s = this->m_zero;	
 			}
-			this->m_str.replace(starOfRow + col * 3 + 1, 1, s);
+			this->m_str.replace(starOfRow + col * BYTES_FOR_PIXEL + BIT_SIZE, BIT_SIZE, s);
 
 			if ((*(this->m_Bmatrix))(rowIndex, col) != 0) {
 				color = static_cast<uint16_t>((*(this->m_Bmatrix))(rowIndex, col));
@@ -52,7 +52,7 @@ void BMArrayParserToMatrixes::writeChangesToStr() {
 			}else{//0 is special to write
    		 		s = this->m_zero;	
 			}
-			this->m_str.replace(starOfRow + col * 3 + 2, 1, s);
+			this->m_str.replace(starOfRow + col * BYTES_FOR_PIXEL + 2 * BIT_SIZE, BIT_SIZE, s);
 		}
 	}
 }
@@ -70,26 +70,29 @@ BMArrayParserToMatrixes::BMArrayParserToMatrixes(string str, uint32_t width, uin
 
 	for (uint32_t row = 0; row < height; ++row) {
 		//wher in the string the new row of the matrix starts
-		uint32_t starOfRow = row * (width * 3 + m_bytesPeddingPerRow);
+		uint32_t starOfRow = row * (width * BYTES_FOR_PIXEL + m_bytesPeddingPerRow);
 
 		//the file is starting from the bottom left of 
 		//the picture to the upper right of the picture.
 		uint32_t rowIndex = (height - 1) - row;
 		for (uint32_t col = 0; col < width; ++col) {
 			//startOfRaw in the matrix, col = num of pixel in the raw before (*3 = his size in the string)
-			uint16_t* r = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3, 1).data()));
+			uint16_t* r = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(this->m_str.substr(
+				starOfRow + col * BYTES_FOR_PIXEL, BIT_SIZE).data()));
 			if(*r == 0){
-				this->m_zero = str.substr(starOfRow + col * 3, 1);
+				this->m_zero = this->m_str.substr(starOfRow + col * BYTES_FOR_PIXEL, BIT_SIZE);
 			}
 
-			uint16_t* g = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3 + 1, 1).data()));
+			uint16_t* g = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(this->m_str.substr(
+				starOfRow + col * BYTES_FOR_PIXEL + BIT_SIZE, BIT_SIZE).data()));
 			if(*r == 0){
-				this->m_zero = str.substr(starOfRow + col * 3 + 1, 1);
+				this->m_zero = this->m_str.substr(starOfRow + col * BYTES_FOR_PIXEL + BIT_SIZE, BIT_SIZE);
 			}
 
-			uint16_t* b = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(starOfRow + col * 3 + 2, 1).data()));
+			uint16_t* b = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(this->m_str.substr(
+				starOfRow + col * BYTES_FOR_PIXEL + 2 * BIT_SIZE, BIT_SIZE).data()));
 			if(*r == 0){
-				this->m_zero = str.substr(starOfRow + col * 3 + 2, 1);
+				this->m_zero = this->m_str.substr(starOfRow + col * BYTES_FOR_PIXEL + 2 * BIT_SIZE, BIT_SIZE);
 			}
 
 			this->m_Rmatrix->setValue(rowIndex, col, *r);

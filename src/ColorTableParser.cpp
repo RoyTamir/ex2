@@ -8,12 +8,12 @@ using std::uint16_t;
 
 ColorTableParser::ColorTableParser(string str) {
 	this->m_str = std::move(str);
-	for (uint32_t i = 0; i < str.length(); ++i) {
-		uint16_t* r = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(i, 1).data()));
+	for (uint32_t i = 0; i < this->m_str.length(); ++i) {
+		uint16_t* r = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(this->m_str.substr(i, BIT_SIZE).data()));
 		++i;
-		uint16_t* g = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(i, 1).data()));
+		uint16_t* g = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(this->m_str.substr(i, BIT_SIZE).data()));
 		++i;
-		uint16_t* b = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(str.substr(i, 1).data()));
+		uint16_t* b = const_cast<uint16_t*>(reinterpret_cast<const uint16_t*>(this->m_str.substr(i, BIT_SIZE).data()));
 		++i;
 		this->m_colors.push_back(std::make_shared<Color>(*r, *g, *b));
 	}
@@ -48,15 +48,15 @@ void ColorTableParser::changeColorToGray(uint32_t n) {
 		color = static_cast<uint16_t>(this->m_colors.at(n)->getR());
     	c = reinterpret_cast<char*>(&color);
    		s = c;
-		this->m_str.replace(n*4, 1, s); //n*4 the loction the bit starts from.
+		this->m_str.replace(n * BITES_PER_COLOR, BIT_SIZE, s); //n*4 the loction the bit starts from.
 		color = static_cast<uint16_t>(this->m_colors.at(n)->getG());
     	c = reinterpret_cast<char*>(&color);
    		s = c;
-		this->m_str.replace(n*4 + 1, 1, s); //n*4 the loction the bit starts from.
+		this->m_str.replace(n * BITES_PER_COLOR + BIT_SIZE, BIT_SIZE, s); //n*4 the loction the bit starts from.
 
 		color = static_cast<uint16_t>(this->m_colors.at(n)->getB());
     	c = reinterpret_cast<char*>(&color);
    		s = c;
-		this->m_str.replace(n*4 + 2, 1, s); //n*4 the loction the bit starts from.
+		this->m_str.replace(n * BITES_PER_COLOR + 2 * BIT_SIZE, BIT_SIZE, s); //n*4 the loction the bit starts from.
 	}
 }

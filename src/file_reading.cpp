@@ -7,7 +7,7 @@ std::string BMPClasses::readFileContent(const std::string& filePath) {
   // The file is in a bad state. The error can be retrieved
   //	using the global `errno` in linux (#include <cerrno>).
   if (!in) {
-    // Error here...
+    throw std::system_error(errno, std::system_category());
   }
 
   // Read the file to a vector. This is not the most effecient
@@ -17,12 +17,14 @@ std::string BMPClasses::readFileContent(const std::string& filePath) {
 
   // After reading the file, it should meet EOF (end of file). If
   //  it did not, it means that an error occurred.
-  if (!in.eof()) {
-    // Unlikly to happen error here...
+  if (in.fail()) {
+    in.close();
+    throw std::system_error(errno, std::system_category());
   }
+
+  in.close();
   return content;
 }
-
 
 void BMPClasses::writeFileContent(const std::string& filePath, const std::string& content) {
   // Opens output-only file (ofstream) in binary mode, and truncates all
@@ -31,11 +33,14 @@ void BMPClasses::writeFileContent(const std::string& filePath, const std::string
 
   // The file is in a bad state.
   if (!out) {
-    // Error here...
+    throw std::system_error(errno, std::system_category());
   }
 
   out.write(content.data(), static_cast<std::streamsize>(content.length()));
   if (!out) {
-    // Unlikly to happen error here...
+    out.close();
+    throw std::system_error(errno, std::system_category());
   }
+
+  out.close();
 }

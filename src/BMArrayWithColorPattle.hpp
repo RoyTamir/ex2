@@ -22,6 +22,11 @@ class BMArrayWithColorPattle {
     std::shared_ptr<ColorTableParser> m_colorTable;
 
 public:
+
+    static constexpr int ROW_SIZE_DIVISOR = 4;
+
+	static constexpr int BIT_SIZE = 1;
+
 	/**
 	 * @brief Construct a new BMArrayParserToMatrixes object.
 	 * 
