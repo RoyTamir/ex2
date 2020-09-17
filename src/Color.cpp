@@ -23,6 +23,7 @@ uint16_t Color::getB() const {
 
 void Color::toGray() {
 	//the formula to make gray color from rgb
+	//this is not dupliction this is for the 8 bit pixel
 	uint16_t gray = static_cast<uint16_t>(0.2126 * this->m_R + 0.7152 * this->m_G + 0.0722 * this->m_B);
 
 	this->m_R = gray;

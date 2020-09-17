@@ -23,7 +23,7 @@ public:
 	 * @param str the string from the BMP file
 	 * that refers to header.
 	 */
-	BMPHeaderParser(std::string str);
+	explicit BMPHeaderParser(std::string str);
 
 	/**
 	 * @brief Get the Str object.

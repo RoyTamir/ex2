@@ -24,7 +24,7 @@ link_directories(${PARENT_DIR})
 file(GLOB My_Source_Files *.cpp)
 
 #rename your file if not called main.cpp or change here
-add_executable(ex2.out ${PARENT_DIR}/main.cpp ${My_Source_Files})
+add_executable(ex2.out ${My_Source_Files})
 set_target_properties(ex2.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 target_link_libraries(ex2.out matrix)
 

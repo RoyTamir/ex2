@@ -3,11 +3,12 @@
 #include "ErrorCode.h"
 
 #include <iostream>
+#include <exception>
 
 namespace MatrixClasses {
-class ErrorCodeException{
+class ErrorCodeException : public std::exception{
 //Fields
-const ErrorCode m_errorCode;
+ErrorCode m_errorCode;
 
 //methods
 public:
@@ -29,7 +30,7 @@ public:
 	/**
 	 * @brief Checks prints error code's error message.
 	 */
-	void printErrorMessage() const;
+	virtual const char* what() const noexcept override;
 
 	/**
 	 * @brief Destroy the ErrorCodeException object.

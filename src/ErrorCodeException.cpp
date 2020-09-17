@@ -11,8 +11,8 @@ using std::cerr;
     return error_isSuccess(m_errorCode); 
   }
 
-  void ErrorCodeException::printErrorMessage() const{
-		cerr<<error_getErrorMessage(m_errorCode)<<endl; 
+  const char* ErrorCodeException::what() const noexcept{
+		return error_getErrorMessage(m_errorCode); 
 	}
 
   void ErrorCodeException::throwErrorIfNeeded(const ErrorCode er){

@@ -27,7 +27,7 @@ public:
 	 * 
 	 * @param[in] source The matrix to copy.
 	 */
-	MatrixClass(const MatrixClass& source);
+	explicit MatrixClass(const MatrixClass& source);
 
 	/**
 	 * @brief assignment opperator (copy assignment).
@@ -117,21 +117,20 @@ public:
 	 */
 	~MatrixClass();
 
-//DELETING MOVE METHODS (We would use only cpt methods)
 	/**
 	 * @brief Constructor, a new Matrix Class object from matrix.
 	 * (move Constructor)
 	 * 
 	 * @param[in] source The matrix to copy.
 	 */
-	MatrixClass(MatrixClass&& source) = delete;
+	MatrixClass(MatrixClass&& source);
 
 	/**
 	 * @brief assignment opperator (move assignment).
 	 *
 	 * @param[in] source The assigned MatrixClass.
 	 */
-	MatrixClass& operator=(MatrixClass&& source) = delete;
+	MatrixClass& operator=(MatrixClass&& source);
 
 //another operators. warning! they return new MatrixClass
 
@@ -179,15 +178,6 @@ public:
 	MatrixClass& operator/(double scalar) const;
 
 //friends functins
-
-	/**
-	 * @brief used for printing the matrix (make it a stream)
-	 * 
-	 * @param stream to add the matrix to.
-	 * @param matrix the matrix to add.
-	 * @return std::ostream& the stream with the matrix.
-	 */
-	friend std::ostream& operator<<(std::ostream& stream, const MatrixClass& matrix);
 
 	/**
 	 * @brief Multiplication operator (multipling the matrixe & the scalar

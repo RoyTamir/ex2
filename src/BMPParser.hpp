@@ -42,7 +42,7 @@ public:
 	 * 
 	 * @param str the string that represent the image.
 	 */
-	BMPParser(std::string str);
+	explicit BMPParser(std::string str);
 
 	/**
 	 * @brief Returns the string that represent the image.

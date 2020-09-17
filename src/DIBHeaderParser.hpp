@@ -29,7 +29,7 @@ public:
 	 * @param str the string from the BMP file
 	 * that refers to DIBheader.
 	 */
-	DIBHeaderParser(std::string str);
+	explicit DIBHeaderParser(std::string str);
 	
 	/**
 	 * @brief Get the Str object.

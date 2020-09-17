@@ -26,7 +26,7 @@ public:
 	 * @param str the string from the BMP file
 	 *  that refers to Color Palette.
 	 */
-	ColorTableParser(std::string str);
+	explicit ColorTableParser(std::string str);
 
 	/**
 	 * @brief Get the Str object.
@@ -63,8 +63,8 @@ public:
 	/**
 	 * @brief changing the specific color to gray.
 	 * 
-	 * @param n the index of the color in the vector<Color>. 
+	 * @param colorIndex the index of the color in the vector<Color>. 
 	 */
-	void changeColorToGray(std::uint32_t n);
+	void changeColorToGray(std::uint32_t colorIndex);
 };
 }
