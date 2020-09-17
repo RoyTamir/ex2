@@ -42,7 +42,7 @@ void BMPParser::imageToGray(){
 
 		this->m_str.replace(54, 1024, this->m_CTparser->getStr());
 	} else { 
-		throw std::runtime_error("Error: BMPParser Constructor: the bits per pixel arn't 8 or 24");
+		throw std::runtime_error("Error: BMPParser imageToGray: the bits per pixel arn't 8 or 24");
 	}
 }
 
@@ -59,6 +59,6 @@ void BMPParser::rotateImage() {
 
 		this->m_str.replace(arrayOffset, this->m_str.length() - arrayOffset, this->m_BMAColorparser->getStr());
 	} else {
-		throw std::runtime_error("Error: BMPParser Constructor: the bits per pixel arn't 8 or 24");
+		throw std::runtime_error("Error: BMPParser rotateImage: the bits per pixel arn't 8 or 24");
 	}
 }
